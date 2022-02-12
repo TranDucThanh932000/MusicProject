@@ -1,0 +1,88 @@
+<template>
+  <v-row>
+    <v-col md="2">
+      <v-btn plain class="btn-menu">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-btn plain class="btn-menu">
+        <v-icon>mdi-arrow-right</v-icon>
+      </v-btn>
+    </v-col>
+    <v-col md="5">
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-form>
+            <v-text-field
+              v-bind="attrs"
+              v-on="on"
+              class="pa-0"
+              placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..."
+              prepend-inner-icon="mdi-magnify"
+              color="white"
+              background-color="#231b2e"
+              rounded
+            >
+            </v-text-field>
+          </v-form>
+        </template>
+        <v-list style="background-color:#432275; color:white;">
+          <v-list-item
+            v-for="(item, index) in Recommends"
+            :key="index"
+            @click="chooseRecommended()"
+          >
+            <v-list-item-icon>
+              <v-icon style="color:white">mdi-chart-line-variant</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-col>
+
+    <v-spacer></v-spacer>
+
+    <v-col md="2">
+      <div class="float-right">
+        <v-btn plain class="btn-menu secondary" >
+          <v-icon> mdi-shape </v-icon>
+        </v-btn>
+        <v-btn plain class="btn-menu secondary" >
+          <v-icon> mdi-tray-arrow-up </v-icon>
+        </v-btn>
+        <v-btn plain class="btn-menu secondary" >
+          <v-icon> mdi-cog-outline </v-icon>
+        </v-btn>
+        <v-btn plain class="btn-menu secondary" >
+          <v-icon> mdi-account-circle-outline </v-icon>
+        </v-btn>
+      </div>
+    </v-col>
+  </v-row>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      Recommends: [{ title: "123" }, { title: "234" }, { title: "345" }],
+      changeColorForm: true
+    };
+  },
+  methods:{
+    chooseRecommended(){
+
+    }
+  }
+};
+</script>
+
+<style scope>
+    .btn-menu{
+        min-width: 36px !important; 
+        padding: 0px 0px !important;
+        margin-left: 10px;
+        border-radius: 50% !important;
+    }
+</style>
