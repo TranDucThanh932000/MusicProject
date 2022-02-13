@@ -5,7 +5,9 @@
         <v-row class="pl-2">
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="text-h6"> Zing Mp3 </v-list-item-title>
+              <v-list-item-title class="text-h6"> <span style="font-size: 30px;"><b style="color:red;">C</b></span><span style="font-size: 30px"><b style="color: yellow;">O</b></span><span style="font-size: 30px"><b style="color: green;">C</b></span> MOUNTAIN </v-list-item-title>
+              <!-- <v-img :src="logo">
+              </v-img> -->
             </v-list-item-content>
           </v-list-item>
 
@@ -25,7 +27,7 @@
         <v-divider class="pl-2" style="background-color:#FFFAF0;margin: 15px 10px 15px 0px;box-shadow: 0px 3px 5px white;"></v-divider>
 
         <v-row class="overflow-y-auto pl-2" id="scroll-target">
-          <v-list dense nav v-scroll:#scroll-target="onScroll" style="height: 300px;">
+          <v-list dense nav style="height: 300px;">
             <v-list-item
               v-for="item in itemBelowSideBars"
               :key="item.title"
@@ -82,6 +84,7 @@ export default {
         { title: "Top 100", icon: "mdi-help-box" },
         { title: "MV", icon: "mdi-help-box" },
       ],
+      logo:'https://drive.google.com/file/d/1YQVbztuUH02bcmBULwQ2aUiTxx6yKrxm',
     };
   },
 };

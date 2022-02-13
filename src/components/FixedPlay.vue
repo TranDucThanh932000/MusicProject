@@ -1,8 +1,15 @@
 <template>
   <v-row style="height: 95px; z-index: 100000">
-    <v-card
-      width="100%"
-      style="border-top: 1px solid white; background-color: #170f23"
+    <div
+      style="
+        border-top: 1px solid white;
+        background-color: #170f23;
+        justify-content: space-between;
+        display: flex;
+        width: 100%;
+        position: fixed;
+        bottom:0px;
+      "
     >
       <div class="d-flex" style="padding: 10px 10px 0px 20px">
         <div>
@@ -57,8 +64,10 @@
                 <v-icon style="color: white">mdi-dots-horizontal</v-icon>
               </v-btn>
             </template>
-            <v-list style="background-color: #432275; color: white">
-              <v-list-item>
+            <v-list
+              style="background-color: #432275; color: white; width: 250px"
+            >
+              <v-list-item @click="copy()">
                 <v-list-item-icon>
                   <v-icon style="color: white">mdi-content-copy</v-icon>
                 </v-list-item-icon>
@@ -81,7 +90,10 @@
                         <v-icon style="color: white">mdi-share</v-icon>
                       </v-list-item-icon>
                       <v-list-item-content>
-                        <v-list-item-title>Chia sẻ</v-list-item-title>
+                        <v-list-item-title
+                          style="text-align: left; text-transform: initial"
+                          >Chia sẻ</v-list-item-title
+                        >
                       </v-list-item-content>
                       <v-icon style="color: white">mdi-chevron-right</v-icon>
                     </v-btn>
@@ -110,19 +122,82 @@
           </v-menu>
         </div>
       </div>
-      <div></div>
-      <div></div>
-    </v-card>
+      <div class="d-flex" style="align-items: center;">
+        <v-btn plain color="white">
+          <v-icon>mdi-repeat</v-icon>
+        </v-btn>
+        <v-btn plain color="white">
+          <v-icon>mdi-skip-previous</v-icon>
+        </v-btn>
+        <v-btn outlined color="white" v-if="play == true" @click="play = false" class="btnPlayPause">
+          <v-icon>mdi-play</v-icon>
+        </v-btn>
+        <v-btn outlined color="white" v-else @click="play = true" class="btnPlayPause">
+          <v-icon>mdi-pause</v-icon>
+        </v-btn>
+        <v-btn plain color="white">
+          <v-icon>mdi-skip-next</v-icon>
+        </v-btn>
+        <v-btn plain color="white">
+          <v-icon>mdi-shuffle-variant</v-icon>
+        </v-btn>
+      </div>
+      <div class="d-flex" style="align-items: center;">
+        <v-btn plain color="white">
+          <v-icon>mdi-monitor</v-icon>
+        </v-btn>
+        <v-btn class="speakers" plain color="white" v-if="vol.val >= 80 && sing == true" @click="sing = false">
+          <v-icon>mdi-volume-high</v-icon>
+        </v-btn>
+        <v-btn class="speakers" plain color="white" v-if="vol.val >= 50 && vol.val < 80 && sing == true" @click="sing = false">
+          <v-icon>mdi-volume-medium</v-icon>
+        </v-btn>
+        <v-btn class="speakers" plain color="white" v-if="vol.val > 0 && vol.val < 50 && sing == true" @click="sing = false">
+          <v-icon>mdi-volume-low</v-icon>
+        </v-btn>
+        <v-btn class="speakers" plain color="white" v-if="vol.val == 0 || sing == false" @click="sing = true">
+          <v-icon>mdi-volume-off</v-icon>
+        </v-btn>
+        <v-slider
+          v-model="vol.val"
+          style="width:100px;margin-right: 15px;"
+          class="volumns"
+          @click="sing = true"
+        >
+        </v-slider>
+        <v-btn style="background-color: #696969">
+          <p style="color:white;margin-bottom:0px;">Lịch phát sóng</p>
+        </v-btn>
+      </div>
+    </div>
   </v-row>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      vol: {val: 50, color: 'red' },
+      sing: true,
+      play: true
+    };
   },
 };
 </script>
 
 <style scoped>
+  .speakers{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    min-width: 0px !important;
+  }
+  .volumns{
+    margin-top: 20px;
+  }
+  .btnPlayPause{
+    border-radius: 50%;
+    padding: 0px !important; 
+    height: 48px !important; 
+    min-width: 48px !important;
+  }
 </style>

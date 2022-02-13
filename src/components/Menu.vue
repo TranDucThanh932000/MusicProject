@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="mgr-16">
     <v-col md="2">
       <v-btn plain class="btn-menu">
         <v-icon>mdi-arrow-left</v-icon>
@@ -44,7 +44,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-col md="2">
+    <v-col md="2" class="remove-pdr">
       <div class="float-right">
         <v-btn plain class="btn-menu secondary" >
           <v-icon> mdi-shape </v-icon>
@@ -84,5 +84,29 @@ export default {
         padding: 0px 0px !important;
         margin-left: 10px;
         border-radius: 50% !important;
+    }
+    .btn-menu:first-child{
+      margin-left: 0px;
+    }
+    .mgr-16{
+      margin-right: 16px;
+    }
+    .remove-pdr{
+      padding-right: 0px;
+    }
+    .mdi-arrow-left, .mdi-arrow-right{
+      color:white !important;
+    }
+    .mdi-magnify{
+      color:white !important;
+      opacity: 0.7;
+    }
+    ::placeholder {
+      color: white !important;
+      opacity: 0.3; 
+    }
+    input{
+      color:white !important;
+      opacity: 0.7;
     }
 </style>

@@ -7,32 +7,33 @@
         style="
           background-color: #170f23;
           margin: 0px !important;
+          margin-left:12px !important;
           width: 100%;
           margin-top: 20px;
         "
       >
-        <v-slide-group active-class="success" show-arrows>
+        <v-slide-group  show-arrows class="list-radio">
           <v-slide-item v-for="(radio, index) in radios" :key="index">
-            <div class="">
+            <div class="mg">
               <v-card
-                class="ma-4 imgContainBtnPlay"
-                height="166px"
-                width="166px"
+                class="imgContainBtnPlay"
+                height="173px"
+                width="173px"
                 style="border-radius: 50%"
               >
                 <v-row
                   class="fill-height"
                   align="center"
                   justify="center"
-                  style="height: 166px; width: 166px; margin: 0px"
+                  style="height: 173px; width: 173px; margin: 0px"
                 >
                   <v-scale-transition>
                     <v-img
                       :src="radio.img"
                       style="
                         object-fit: cover;
-                        height: 166px;
-                        width: 166px;
+                        height: 173px;
+                        width: 173px;
                         border-radius: 50%;
                         position: relative;"
                     >
@@ -47,7 +48,7 @@
                   <p class="live">LIVE</p>
                 </v-row>
               </v-card>
-              <div style="text-align: center">
+              <div style="text-align: center;margin-top: 10px;">
                 <h4>{{ radio.channel }}</h4>
                 <h5>{{ radio.view }}</h5>
               </div>
@@ -124,20 +125,56 @@ export default {
           channel: "Bolero",
           view: "56 đang nghe",
         },
+        {
+          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
+          link: "",
+          channel: "Bolero",
+          view: "56 đang nghe",
+        },
+        {
+          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
+          link: "",
+          channel: "Bolero",
+          view: "56 đang nghe",
+        },
+        {
+          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
+          link: "",
+          channel: "Bolero",
+          view: "56 đang nghe",
+        },
+        {
+          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
+          link: "",
+          channel: "Bolero",
+          view: "56 đang nghe",
+        },
+        {
+          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
+          link: "",
+          channel: "Bolero",
+          view: "56 đang nghe",
+        },
       ],
     };
   },
 };
 </script>
 
-<style>
-.mdi-chevron-left {
-  color: white !important;
-  font-size: 40px !important;
+<style scope>
+.list-radio .mdi-chevron-left {
+  color: black !important;
+    font-size: 40px !important;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 10000;
 }
-.mdi-chevron-right {
-  color: white !important;
-  font-size: 40px !important;
+.list-radio .mdi-chevron-right {
+  color: black !important;
+    font-size: 40px !important;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 10000;
 }
 
 .v-slide-group__prev {
@@ -149,7 +186,7 @@ export default {
 .live {
   background-color: red;
   color: white;
-  font-size: 10px;
+  font-size: 11px;
   padding: 0px 5px;
   border-radius: 3px;
   position: absolute;
@@ -173,5 +210,34 @@ export default {
 }
 .btnPlay:hover{
   display: flex;
+}
+.list-radio{
+  width: calc(100% - 42px);
+  /* lẻ 12 vì margin-right : 12px*/
+}
+.list-radio .v-slide-group__prev{
+    position: absolute;
+    top: 30%;
+    left: -1.7%;
+}
+.list-radio .v-slide-group__next{
+    position: absolute;
+    top: 30%;
+    right: -1.5%;
+}
+.list-radio .mg:first-child{
+  margin-left: 0px;
+}
+.list-radio .mg:nth-child(7n){
+  margin-left: 0px;
+}
+.list-radio .mg:nth-child(6n){
+  margin-right: 0px;
+}
+.list-radio .mg:last-child{
+  margin-right: 0px;
+}
+.list-radio .mg{
+  margin: 0px 15px;
 }
 </style>

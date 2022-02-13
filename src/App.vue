@@ -1,8 +1,14 @@
 <template>
   <v-app style="background-color:#170f23;">
     <v-row class="pa-4">
-      <sidebar/>
-      <main-content/>
+      <v-navigation-drawer app>
+        <sidebar/>
+      </v-navigation-drawer>
+      <v-main>
+        <v-container fluid>
+          <main-content/>
+        </v-container>
+      </v-main>
     </v-row>
     <fixed-play></fixed-play>
   </v-app>
@@ -10,7 +16,7 @@
 
 <script>
 import Sidebar from './components/Sidebar.vue'
-import MainContent from './components/Main.vue'
+import MainContent from './components/main/Main.vue'
 import FixedPlay from './components/FixedPlay.vue'
 
 export default {

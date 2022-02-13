@@ -1,9 +1,9 @@
 <template>
   <v-row >
     <v-sheet
-        class="mx-auto"
-        width="100%"
-        style="background-color:#170f23;"
+        class="slider-top"
+        width="calc(100%-15px)"
+        style="background-color:#170f23;margin: 0px 12px;"
     >
         <v-slide-group
         v-model="model"
@@ -14,14 +14,10 @@
                 :key="index"
             >
                 <v-card
-                class="ma-4"
+                class="card-img"
                 style="border-radius: 10px;"
                 >
-                    <v-row class="fill-height"  align="center" justify="center" style="height:200px;width: 365px;margin:0px;border-radius: 10px;">
-                      <v-scale-transition>
-                            <v-img :src="slider.img"  style="object-fit:cover;border-radius: 8px;"></v-img>
-                      </v-scale-transition>
-                    </v-row>
+                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 377px;"></v-img>
                 </v-card>
             </v-slide-item>
         </v-slide-group>
@@ -70,4 +66,59 @@ export default {
     height: 200px;
     padding-bottom: 0px !important;
   }
+  .mdi-chevron-left{
+    font-size: 60px !important;
+    color: black !important;
+  }
+  .mdi-chevron-right{
+    font-size: 60px !important;
+    color: black !important;
+  }
+  .v-slide-group__prev{
+    position: absolute;
+    top: 37%;
+    left: 0px;
+    min-width: 0px !important;
+    z-index: 10000;
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 50%;
+    visibility: hidden;
+  }
+  .v-slide-group__next{
+    min-width: 0px !important;
+    position: absolute;
+    top: 37%;
+    right: -0.1px;
+    z-index: 10000;
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 50%;
+    visibility: hidden;
+  }
+  .slider-top{
+    width: calc(100% - 40px);
+  }
+  .slider-top:hover .v-slide-group__prev{
+    visibility: visible;
+  }
+  .slider-top:hover .v-slide-group__next{
+    visibility: visible;
+  }
+  .card-img{
+    margin : 0px 15px;
+  }
+  .card-img:nth-child(4n){
+    margin-left: 0px;
+  }
+  .card-img:first-child{
+    margin-left: 0px;
+  }
+  .card-img:nth-child(3n){
+    margin-right: 0px;
+  }
+  .card-img:last-child{
+    margin-right: 0px;
+  }
+
 </style>
