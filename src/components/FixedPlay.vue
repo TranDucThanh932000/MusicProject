@@ -95,7 +95,7 @@
                           >Chia sẻ</v-list-item-title
                         >
                       </v-list-item-content>
-                      <v-icon style="color: white">mdi-chevron-right</v-icon>
+                      <v-icon style="color: white">mdi-unfold-more-vertical</v-icon>
                     </v-btn>
                   </template>
                   <v-list style="background-color: #432275; color: white">

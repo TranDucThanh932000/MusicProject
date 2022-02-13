@@ -67,7 +67,7 @@
                             <v-list-item-content>
                               <v-list-item-title style="text-align: left;text-transform: initial;">Chia sẻ</v-list-item-title>
                             </v-list-item-content>
-                            <v-icon plain style="color:white">mdi-chevron-right</v-icon>
+                            <v-icon plain style="color:white">mdi-unfold-more-vertical</v-icon>
                           </v-btn>
                         </template>
                         <v-list style="background-color:#432275; color:white;" >
