@@ -18,7 +18,9 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <router-link :to="item.to" >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </router-link>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -72,11 +74,11 @@ export default {
   data() {
     return {
       itemSideBars: [
-        { title: "Cá Nhân", icon: "mdi-view-dashboard" },
-        { title: "Khám Phá", icon: "mdi-image" },
-        { title: "#zingchart", icon: "mdi-help-box" },
-        { title: "#Radio", icon: "mdi-help-box" },
-        { title: "Theo Dõi", icon: "mdi-help-box" },
+        { title: "Cá Nhân", icon: "mdi-view-dashboard" ,to:'/'},
+        { title: "Khám Phá", icon: "mdi-image",to:'/' },
+        { title: "#musicchart", icon: "mdi-help-box",to:'/music-chart' },
+        { title: "#Radio", icon: "mdi-help-box",to:'/radio' },
+        { title: "Theo Dõi", icon: "mdi-help-box",to:'/' },
       ],
       itemBelowSideBars: [
         { title: "Nhạc Mới", icon: "mdi-view-dashboard" },
@@ -93,5 +95,8 @@ export default {
 <style scope>
 .v-list-item{
   margin-bottom: 0px !important;
+}
+a{
+  text-decoration: none;
 }
 </style>

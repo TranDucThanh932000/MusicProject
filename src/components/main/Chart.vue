@@ -11,7 +11,7 @@
       <div
         style="
           width: 100%;
-          height: 90.5%;
+          height: 81%;
           display: flex;
           flex-wrap: wrap;
           align-content: space-between;
@@ -54,53 +54,25 @@
           </v-card>
         </div>
       </div>
+      <div style="text-align: center;width:100%;margin: 10px auto;">
+        <v-btn outlined rounded color="white">
+          <router-link to = "/music-chart" style="color: white">Xem thêm</router-link>
+        </v-btn>
+      </div>
     </div>
     <v-card style="margin-top: 36px" width="calc(65% - 15px)" height="100%">
-      <v-sheet color="#BA68C8" height="350px" style="position: relative">
-        <v-sparkline
-          :labels="time"
-          :value="value1"
-          line-width="3"
-          padding="16"
-          auto-draw
-          smooth="4"
-          :gradient="gradient[0]"
-          class="chart-line"
-        ></v-sparkline>
-        <v-sparkline
-          :labels="time"
-          :value="value2"
-          line-width="3"
-          padding="16"
-          auto-draw
-          smooth="4"
-          :gradient="gradient[1]"
-          class="chart-line"
-        ></v-sparkline>
-        <v-sparkline
-          :labels="time"
-          :value="value3"
-          line-width="3"
-          padding="16"
-          auto-draw
-          smooth="4"
-          :gradient="gradient[2]"
-          class="chart-line"
-        ></v-sparkline>
-      </v-sheet>
+      <line-chart></line-chart>
     </v-card>
   </div>
 </template>
 
 <script>
+import LineChart from '../musicchart/LineChart.vue';
+
 export default {
+  components: { LineChart },
   data() {
     return {
-      time: ["12am", "3am", "6am", "9am", "12pm", "3pm", "6pm", "9pm"],
-      value1: [229, 675, 410, 390, 310, 460, 250, 240],
-      value2: [300, 125, 500, 390, 300, 456, 250, 240],
-      value3: [100, 321, 456, 222, 333, 231, 777, 555],
-      gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],
       icons: [
         "mdi-numeric-1-circle-outline",
         "mdi-numeric-2-circle-outline",
@@ -124,6 +96,7 @@ export default {
         },
       ],
       songs: [false, false, false],
+      gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],
     };
   },
   methods: {
@@ -145,12 +118,7 @@ export default {
 </script>
 
 <style scope>
-.chart-line {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-  max-height: 350px;
-}
+
 .btn-play:before {
   opacity: 0 !important;
 }

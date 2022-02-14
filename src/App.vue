@@ -6,7 +6,7 @@
       </v-navigation-drawer>
       <v-main>
         <v-container fluid>
-          <main-content/>
+          <router-view/>
         </v-container>
       </v-main>
     </v-row>
@@ -16,13 +16,13 @@
 
 <script>
 import Sidebar from './components/Sidebar.vue'
-import MainContent from './components/main/Main.vue'
+// import MainContent from './components/main/Main.vue'
 import FixedPlay from './components/FixedPlay.vue'
 
 export default {
   components: {
     Sidebar,
-    MainContent,
+    // MainContent,
     FixedPlay
   },
   data() {
@@ -30,7 +30,7 @@ export default {
       itemSideBars: [
         { title: "Cá Nhân", icon: "mdi-view-dashboard" },
         { title: "Khám Phá", icon: "mdi-image" },
-        { title: "#zingchart", icon: "mdi-help-box" },
+        { title: "#musicchart", icon: "mdi-help-box" },
         { title: "#Radio", icon: "mdi-help-box" },
         { title: "Theo Dõi", icon: "mdi-help-box" },
       ],
