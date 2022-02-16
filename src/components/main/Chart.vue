@@ -19,8 +19,9 @@
       >
         <div v-for="(top3, index) in listTop3" :key="index" style="width: 100%">
           <v-card
-            class="d-flex px-1"
+            class="d-flex px-1 "
             :style="{ backgroundColor: gradient[index] }"
+            @click="fill = index + 1"
           >
             <div style="display: flex; align-items: center">
               <v-icon color="white">{{ icons[index] }}</v-icon>
@@ -61,7 +62,7 @@
       </div>
     </div>
     <v-card style="margin-top: 36px" width="calc(65% - 15px)" height="100%">
-      <line-chart></line-chart>
+      <line-chart :fill="fill" :color="color" bg_img="url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')"></line-chart>
     </v-card>
   </div>
 </template>
@@ -81,8 +82,8 @@ export default {
       listTop3: [
         {
           img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
+          title: "Nếu ngày ấy",
+          singer: "Soobin",
         },
         {
           img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
@@ -97,6 +98,8 @@ export default {
       ],
       songs: [false, false, false],
       gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],
+      color: '#BA68C8',
+      fill: 0
     };
   },
   methods: {
