@@ -74,7 +74,7 @@ export default {
     font-size: 60px !important;
     color: black !important;
   }
-  .v-slide-group__prev{
+  .slider-top .v-slide-group__prev{
     position: absolute;
     top: 37%;
     left: 0px;
@@ -85,7 +85,7 @@ export default {
     border-radius: 50%;
     visibility: hidden;
   }
-  .v-slide-group__next{
+  .slider-top .v-slide-group__next{
     min-width: 0px !important;
     position: absolute;
     top: 37%;

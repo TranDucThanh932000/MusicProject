@@ -74,17 +74,17 @@ export default {
   data() {
     return {
       itemSideBars: [
-        { title: "Cá Nhân", icon: "mdi-view-dashboard" ,to:'/'},
-        { title: "Khám Phá", icon: "mdi-image",to:'/' },
-        { title: "#musicchart", icon: "mdi-help-box",to:'/music-chart' },
-        { title: "#Radio", icon: "mdi-help-box",to:'/radio' },
-        { title: "Theo Dõi", icon: "mdi-help-box",to:'/' },
+        { title: "Cá Nhân", icon: "mdi-account-music" ,to:'/'},
+        { title: "Khám Phá", icon: "mdi-sort-alphabetical-variant",to:'/' },
+        { title: "#musicchart", icon: "mdi-music",to:'/music-chart' },
+        { title: "#Radio", icon: "mdi-radio",to:'/radio' },
+        { title: "Theo Dõi", icon: "mdi-bell",to:'/' },
       ],
       itemBelowSideBars: [
-        { title: "Nhạc Mới", icon: "mdi-view-dashboard" },
-        { title: "Thể Loại", icon: "mdi-image" },
-        { title: "Top 100", icon: "mdi-help-box" },
-        { title: "MV", icon: "mdi-help-box" },
+        { title: "Nhạc Mới", icon: "mdi-new-box" },
+        { title: "Thể Loại", icon: "mdi-shape" },
+        { title: "Top 100", icon: "mdi-star" },
+        { title: "MV", icon: "mdi-shopping-music" },
       ],
       logo:'https://drive.google.com/file/d/1YQVbztuUH02bcmBULwQ2aUiTxx6yKrxm',
     };

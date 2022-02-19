@@ -102,24 +102,6 @@ export default {
           view: "56 đang nghe",
         },
         {
-          img: "https://i.ytimg.com/vi/HXkh7EOqcQ4/maxresdefault.jpg",
-          link: "",
-          channel: "K-POP",
-          view: "56 đang nghe",
-        },
-        {
-          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-          link: "",
-          channel: "Bolero",
-          view: "56 đang nghe",
-        },
-        {
-          img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-          link: "",
-          channel: "Bolero",
-          view: "56 đang nghe",
-        },
-        {
           img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
           link: "",
           channel: "Bolero",

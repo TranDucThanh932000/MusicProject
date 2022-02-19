@@ -4,8 +4,10 @@
     style="background-color: #ba68c8; margin-right: 18px"
   >
     <div style="width: 33%; margin-right: 2%">
-      <v-btn text color="white" class="btn-musicchart">
-        #musicchart
+      <v-btn text rounded color="white" class="btn-musicchart">
+        <router-link to="/music-chart" style="color: white"
+          >#musicchart</router-link
+        >
         <v-icon>mdi-play-circle</v-icon>
       </v-btn>
       <div
@@ -19,7 +21,7 @@
       >
         <div v-for="(top3, index) in listTop3" :key="index" style="width: 100%">
           <v-card
-            class="d-flex px-1 "
+            class="d-flex px-1"
             :style="{ backgroundColor: gradient[index] }"
             @click="fill = index + 1"
           >
@@ -30,7 +32,7 @@
                   :src="top3.img"
                   height="65px"
                   width="65px"
-                  style="object-fit: cover;border-radius: 3px;"
+                  style="object-fit: cover; border-radius: 3px"
                 ></v-img>
                 <div
                   style="position: absolute"
@@ -55,20 +57,26 @@
           </v-card>
         </div>
       </div>
-      <div style="text-align: center;width:100%;margin: 10px auto;">
+      <div style="text-align: center; width: 100%; margin: 10px auto">
         <v-btn outlined rounded color="white">
-          <router-link to = "/music-chart" style="color: white">Xem thêm</router-link>
+          <router-link to="/music-chart" style="color: white"
+            >Xem thêm</router-link
+          >
         </v-btn>
       </div>
     </div>
     <v-card style="margin-top: 36px" width="calc(65% - 15px)" height="100%">
-      <line-chart :fill="fill" :color="color" bg_img="url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')"></line-chart>
+      <line-chart
+        :fill="fill"
+        :color="color"
+        bg_img="url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')"
+      ></line-chart>
     </v-card>
   </div>
 </template>
 
 <script>
-import LineChart from '../musicchart/LineChart.vue';
+import LineChart from "../musicchart/LineChart.vue";
 
 export default {
   components: { LineChart },
@@ -98,14 +106,14 @@ export default {
       ],
       songs: [false, false, false],
       gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],
-      color: '#BA68C8',
-      fill: 0
+      color: "#BA68C8",
+      fill: 0,
     };
   },
   methods: {
     checkPause(index) {
       if (this.songs[index] == true) {
-        this.songs = [false,false,false]
+        this.songs = [false, false, false];
         return;
       }
       if (index == 0) {
@@ -121,14 +129,13 @@ export default {
 </script>
 
 <style scope>
-
 .btn-play:before {
   opacity: 0 !important;
 }
 .v-ripple__container {
   display: none;
 }
-.btn-musicchart:before{
-    opacity: 0 !important;
+.btn-musicchart:before {
+  opacity: 0 !important;
 }
 </style>
