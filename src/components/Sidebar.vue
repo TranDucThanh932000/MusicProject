@@ -5,9 +5,11 @@
         <v-row class="pl-2">
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="text-h6"> <span style="font-size: 30px;"><b style="color:red;">C</b></span><span style="font-size: 30px"><b style="color: yellow;">O</b></span><span style="font-size: 30px"><b style="color: green;">C</b></span> MOUNTAIN </v-list-item-title>
-              <!-- <v-img :src="logo">
-              </v-img> -->
+              <div style="width: 100%">
+              <!-- <v-list-item-title class="text-h6"> <span style="font-size: 30px;"><b style="color:red;">C</b></span><span style="font-size: 30px"><b style="color: yellow;">O</b></span><span style="font-size: 30px"><b style="color: green;">C</b></span> MOUNTAIN </v-list-item-title> -->
+                <v-img class="logo-web" style="height: 100px; object-fit: cover;background-color: transparent" :src="require('../assets/' + logo)">
+                </v-img>
+              </div>
             </v-list-item-content>
           </v-list-item>
 
@@ -86,7 +88,7 @@ export default {
         { title: "Top 100", icon: "mdi-star" },
         { title: "MV", icon: "mdi-shopping-music" },
       ],
-      logo:'https://drive.google.com/file/d/1YQVbztuUH02bcmBULwQ2aUiTxx6yKrxm',
+      logo:'logo-COCMOUNTAIN.png',
     };
   },
 };
@@ -98,5 +100,8 @@ export default {
 }
 a{
   text-decoration: none;
+}
+.logo-web .v-responsive__content{
+  width: 0px !important;
 }
 </style>
