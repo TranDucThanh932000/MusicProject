@@ -1,6 +1,5 @@
 <template>
     <v-col>
-        <Menu/>
         <slider-top></slider-top>
         <just-now></just-now>
         <selected-today></selected-today>
@@ -12,7 +11,6 @@
 </template>
 
 <script>
-import Menu from '../Menu.vue'
 import SliderTop from './SliderTop.vue'
 import JustNow from './JustNow.vue'
 import SelectedToday from './SelectedToday.vue'
@@ -23,7 +21,6 @@ import Chart from './Chart.vue'
 
 export default {
     components:{
-        Menu,
         SliderTop,
         JustNow,
         SelectedToday,

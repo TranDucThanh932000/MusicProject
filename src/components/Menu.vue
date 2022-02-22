@@ -1,6 +1,6 @@
 <template>
-  <v-row class="mgr-16">
-    <v-col md="2">
+  <v-row class="pdr-16" style="position:sticky;z-index:10000000;top:0;width: 100%;background-color:#170f23;">
+    <v-col md="2" style="padding-left:0px;">
       <v-btn plain class="btn-menu">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
@@ -42,9 +42,9 @@
       </v-menu>
     </v-col>
 
-    <v-spacer></v-spacer>
+    <!-- <v-spacer></v-spacer> -->
 
-    <v-col md="2" class="remove-pdr">
+    <v-col md="5" class="remove-pdr">
       <div class="float-right">
         <v-btn plain class="btn-menu secondary" >
           <v-icon> mdi-shape </v-icon>
@@ -88,8 +88,8 @@ export default {
     .btn-menu:first-child{
       margin-left: 0px;
     }
-    .mgr-16{
-      margin-right: 16px;
+    .pdr-16{
+      /* padding-right: 16px; */
     }
     .remove-pdr{
       padding-right: 0px;

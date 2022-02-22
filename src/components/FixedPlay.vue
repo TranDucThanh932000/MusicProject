@@ -1,10 +1,10 @@
 <template>
-  <v-row style="height: 95px; z-index: 100000">
+  <v-row style="height: 95px; z-index: 10000000;background-color: #170f23;">
     <div
       style="
         border-top: 1px solid white;
-        background-color: #170f23;
         justify-content: space-between;
+        background-color: #170f23;
         display: flex;
         width: 100%;
         position: fixed;
@@ -214,16 +214,23 @@ export default {
       timeCurrent: 0,
       timeViewDuration : '0:00',
       songs : [
+        { src:'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3' },
+        { src:'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3' },
         { src:'thay-moi-co-gai-yeu-anh.mp3' },
+        { src:'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3' },
         { src:'thay-moi-co-gai-yeu-anh.mp3' }
       ],
-      src: "thay-moi-co-gai-yeu-anh.mp3"
+      src: ''
     };
+  },
+  created(){
+    this.src = this.songs[0].src
   },
   mounted() {
     var aud = document.getElementById("myAudio")
     aud.volume = '0.5'
     aud.loop = true
+    
     // this.ended = aud.ended    
     aud.onloadedmetadata =  () => {
       this.duration =  (aud.duration / 60) - (aud.duration % 60)/60 +':'+ Math.floor(aud.duration % 60)

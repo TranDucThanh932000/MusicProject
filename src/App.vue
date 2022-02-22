@@ -6,6 +6,7 @@
       </v-navigation-drawer>
       <v-main>
         <v-container fluid>
+          <Menu/>
           <router-view/>
         </v-container>
       </v-main>
@@ -18,11 +19,13 @@
 import Sidebar from './components/Sidebar.vue'
 // import MainContent from './components/main/Main.vue'
 import FixedPlay from './components/FixedPlay.vue'
+import Menu from './components/Menu.vue'
 
 export default {
   components: {
     Sidebar,
     // MainContent,
+    Menu,
     FixedPlay
   },
   data() {

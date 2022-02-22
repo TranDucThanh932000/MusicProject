@@ -3,7 +3,7 @@
             <v-btn plain style="color: white">
               <v-icon>mdi-heart</v-icon>
             </v-btn>
-            <v-btn plain outlined style="color: white; border-radius: 50%; padding: 0px !important; height: 48px; min-width: 48px;">
+            <v-btn  plain outlined style="color: white; border-radius: 50%; padding: 0px !important; height: 48px; min-width: 48px;">
               <v-icon>mdi-play</v-icon>
             </v-btn>
             <v-menu offset-x>
