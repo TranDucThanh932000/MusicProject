@@ -1,3 +1,5 @@
-export const updatePlay = ({commit}, payload) => {
-    commit('updatePlay', payload);
+export const actions = {
+    updatePlay ({ commit }, payload) {
+        commit('updatePlay', payload);
+    }
 }

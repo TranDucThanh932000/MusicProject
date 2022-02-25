@@ -149,7 +149,7 @@
         <div class="d-flex" style="align-items: center;">
           <span style="opacity: 0.5;">{{timeViewDuration}}</span>
           <v-slider
-            v-model="incTime"
+            v-model="timeCurrent"
             :max="timeEnd"
             style="width:100%;"
             class="time-current-slider-2"
@@ -175,7 +175,7 @@
           <v-icon>mdi-volume-off</v-icon>
         </v-btn>
         <v-slider
-          v-model="adjustVol"
+          v-model="vol"
           style="width:100px;margin-right: 15px;"
           class="volumns"
           @click="updateSing(true)"
@@ -199,55 +199,61 @@
 import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex'
 
-// let firstInteval;
-// let secondIntevel;
 export default {
   data(){
     return{
-      incTime : 0,
-      adjustVol: 0
     }
   },
   created(){
-    this.$store.dispatch('updateSrc')
-    this.adjustVol = this.vol
-
-    this.unwatchTimeCurrent = this.$store.watch(
-      (state, getters) => getters.timeCurrent,
-      (newValue) => {
-        this.incTime = newValue
-      },
-    )
-
-    this.unwatchVol = this.$store.watch(
-      (state, getters) => getters.vol,
-      (newValue) => {
-        this.adjustVol = newValue
-      }
-    )
+    this.$store.dispatch('fixedplay/updateSrc')
+    
+    // this.unwatchVol = this.$store.watch(
+    //   (state, getters) => getters.vol,
+    //   (newValue) => {
+    //     this.adjustVol = newValue
+    //   }
+    // )
   },
   beforeDestroy() {
-    this.unwatchTimeCurrent()
-    this.unwatchVol()
+    // this.unwatchVol()
   },
   mounted() {
-    this.$store.dispatch('mounted')
+    this.$store.dispatch('fixedplay/mounted')
   },
   methods: {
-    ...mapActions(['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing']),
+    ...mapActions('fixedplay',['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing']),
   },
   computed:{
-    ...mapGetters(['play','vol','loop','sing','ended','duration','timeEnd','timeViewDuration','songs','src']),
+    ...mapGetters('fixedplay',['loop','sing','ended','duration','timeEnd','timeViewDuration','songs','src']),
+    play: {
+      get(){
+        return this.$store.getters.play
+      },
+      set(newValue){
+        this.$store.dispatch('updatePlay', newValue)
+      }
+    },
+    //vi` thang nay la v-model
+    timeCurrent: {
+      get(){
+        return this.$store.getters['fixedplay/timeCurrent']
+      },
+      set(newValue){
+        this.$store.dispatch('fixedplay/updateTimeCurrent', newValue)
+      }
+    },
+    vol: {
+      get(){
+        return this.$store.getters['fixedplay/vol']
+      },
+      set(newValue){
+        this.$store.dispatch('fixedplay/updateVol', newValue)
+      }
+    }
   },
   watch: {
-    incTime(){
-      this.$store.dispatch('updateTimeCurrent', this.incTime)
-    },
-    adjustVol(){
-      this.$store.dispatch('updateVol', this.adjustVol)
-    },
     sing(){
-      this.$store.dispatch('updateSing', this.sing)
+      this.$store.dispatch('fixedplay/updateSing', this.sing)
     }
   }
 };

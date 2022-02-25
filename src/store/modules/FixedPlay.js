@@ -1,4 +1,6 @@
-const state = {
+export default  {
+namespaced: true, 
+state: () => ({
     vol: 50,
     sing: true,
     loop: true,
@@ -17,9 +19,9 @@ const state = {
     src: '',
     firstInteval: null,
     secondIntevel: null
-}
+}),
 
-const getters = {
+ getters : {
     vol: state => {
         return state.vol
     },
@@ -56,9 +58,9 @@ const getters = {
     secondIntevel: state => {
         return state.secondIntevel
     }
-}
+},
 
-const mutations = {
+ mutations : {
     sing(state, value) {
         state.sing = value
     },
@@ -104,39 +106,39 @@ const mutations = {
     updateVol(state, value){
         state.vol = value
     }
-}
+},
 
-const actions = {
-    playAudio({ commit }, data) {
+actions : {
+    playAudio({ commit, getters}, data) {
         var aud = document.getElementById("myAudio");
-        clearInterval(state.secondIntevel)
+        clearInterval(getters.secondIntevel)
         commit('secondIntevel', null)
         if (data == true) {
-            commit('updatePlay', true)
+            commit('updatePlay', true, { root: true })
             aud.pause()
-            clearInterval(state.firstInteval)
-            clearInterval(state.secondIntevel)
+            clearInterval(getters.firstInteval)
+            clearInterval(getters.secondIntevel)
             commit('firstInteval', null)
             commit('secondIntevel', null)
         } else {
-            commit('updatePlay', false)
+            commit('updatePlay', false, { root: true })
             aud.play()
             //calculate to time to display
             commit('timeCurrent', aud.currentTime)
             commit('firstInteval', setInterval(() => {
-                commit('timeCurrent', state.timeCurrent + 1)
+                commit('timeCurrent', getters.timeCurrent + 1)
 
-                if (state.timeCurrent == state.timeEnd) {
+                if (getters.timeCurrent == getters.timeEnd) {
                     commit('timeCurrent', 0)
                     commit('timeViewDuration', '0:00')
-                    if (!state.loop) {
-                        clearInterval(state.firstInteval)
-                        commit('updatePlay', true)
+                    if (!getters.loop) {
+                        clearInterval(getters.firstInteval)
+                        commit('updatePlay', true, { root: true })
                     }
                 }
 
-                var minute = Math.floor(state.timeCurrent / 60)
-                var second = Math.floor(state.timeCurrent % 60)
+                var minute = Math.floor(getters.timeCurrent / 60)
+                var second = Math.floor(getters.timeCurrent % 60)
                 if (second < 10) {
                     second = '0' + second
                 }
@@ -144,12 +146,12 @@ const actions = {
             }, 1000))
         }
     },
-    updateSrc({ commit }) {
-        commit('src', state.songs[0].src)
+    updateSrc({ commit , getters}) {
+        commit('src', getters.songs[0].src)
     },
-    mounted({ commit }) {
+    mounted({ commit,getters }) {
         var aud = document.getElementById("myAudio")
-        aud.volume = state.vol / 100
+        aud.volume = getters.vol / 100
         aud.loop = true
 
         commit('ended', aud.ended)
@@ -161,34 +163,34 @@ const actions = {
             commit('ended', aud.ended)
         }, 1000)
     },
-    loopAudio({ commit }) {
-        commit('loop', !state.loop)
-        if (state.loop) {
+    loopAudio({ commit, getters }) {
+        commit('loop', !getters.loop)
+        if (getters.loop) {
             document.getElementById("myAudio").loop = true;
         } else {
             document.getElementById("myAudio").loop = false;
         }
     },
-    playTimeCurrent({ commit }) {
+    playTimeCurrent({ commit, getters }) {
         var aud = document.getElementById("myAudio");
-        aud.currentTime = state.timeCurrent
-        clearInterval(state.firstInteval)
-        clearInterval(state.secondIntevel)
+        aud.currentTime = getters.timeCurrent
+        clearInterval(getters.firstInteval)
+        clearInterval(getters.secondIntevel)
         commit('firstInteval', null)
         commit('secondIntevel', null)
         commit('secondIntevel', setInterval(() => {
-            commit('timeCurrent', state.timeCurrent + 1)
-            if (state.timeCurrent == state.timeEnd) {
+            commit('timeCurrent', getters.timeCurrent + 1)
+            if (getters.timeCurrent == getters.timeEnd) {
                 commit('timeCurrent', 0)
                 commit('timeViewDuration', '0:00')
-                if (!state.loop) {
-                    clearInterval(state.secondIntevel)
-                    commit('updatePlay', true)
+                if (!getters.loop) {
+                    clearInterval(getters.secondIntevel)
+                    commit('updatePlay', true, { root: true })
                 }
             }
 
-            var minute = Math.floor(state.timeCurrent / 60)
-            var second = Math.floor(state.timeCurrent % 60)
+            var minute = Math.floor(getters.timeCurrent / 60)
+            var second = Math.floor(getters.timeCurrent % 60)
             if (second < 10) {
                 second = '0' + second
             }
@@ -199,9 +201,9 @@ const actions = {
     updateTimeCurrent({ commit }, payload) {
         commit('updateTimeCurrent', payload)
     },
-    updateSing({commit}, payload){
+    updateSing({commit , getters}, payload){
         var aud = document.getElementById("myAudio");
-        if(state.sing == false){
+        if(getters.sing == false){
             aud.muted = true;
         }else{
             aud.muted = false;
@@ -214,7 +216,8 @@ const actions = {
         commit('updateVol', payload)
     }
 }
-
-export default {
-    state, getters, mutations, actions
 }
+
+// export default {
+//     state, getters, mutations, actions
+// }

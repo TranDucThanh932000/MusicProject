@@ -1,3 +1,5 @@
-export const play = state => {
-    return state.play;
+export const getters = {
+    play(state){
+        return state.play;
+    }
 }

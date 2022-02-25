@@ -1,3 +1,5 @@
-export const updatePlay = (state, payload) => {
-    state.play = payload
+export const mutations = {
+    updatePlay(state, payload) {
+        state.play = payload
+    }
 }
