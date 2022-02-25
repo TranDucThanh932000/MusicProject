@@ -100,6 +100,7 @@
 </template>
 
 <script>
+// import {mapGetters} from 'vuex'
 export default {
     data() {
         return{
@@ -303,6 +304,9 @@ export default {
     },
     mounted(){
       this.height = window.innerHeight
+    },
+    computed:{
+        // ...mapGetters(['value'])
     },
     methods: {
         checkPause(index) {

@@ -149,11 +149,11 @@
         <div class="d-flex" style="align-items: center;">
           <span style="opacity: 0.5;">{{timeViewDuration}}</span>
           <v-slider
-            v-model="timeCurrent"
+            v-model="incTime"
             :max="timeEnd"
             style="width:100%;"
             class="time-current-slider-2"
-            @click="playTimeCurrent()"
+            @click="playTimeCurrent"
           ></v-slider>
           <span>{{duration}}</span>
         </div>
@@ -162,23 +162,23 @@
         <v-btn plain color="white">
           <v-icon>mdi-monitor</v-icon>
         </v-btn>
-        <v-btn class="speakers" plain color="white" v-if="vol >= 80 && sing == true" @click="sing = false">
+        <v-btn class="speakers" plain color="white" v-if="vol >= 80 && sing == true" @click="updateSing(false)">
           <v-icon>mdi-volume-high</v-icon>
         </v-btn>
-        <v-btn class="speakers" plain color="white" v-if="vol >= 50 && vol < 80 && sing == true" @click="sing = false">
+        <v-btn class="speakers" plain color="white" v-if="vol >= 50 && vol < 80 && sing == true" @click="updateSing(false)">
           <v-icon>mdi-volume-medium</v-icon>
         </v-btn>
-        <v-btn class="speakers" plain color="white" v-if="vol > 0 && vol < 50 && sing == true" @click="sing = false">
+        <v-btn class="speakers" plain color="white" v-if="vol > 0 && vol < 50 && sing == true" @click="updateSing(false)">
           <v-icon>mdi-volume-low</v-icon>
         </v-btn>
-        <v-btn class="speakers" plain color="white" v-if="vol == 0 || sing == false" @click="sing = true">
+        <v-btn class="speakers" plain color="white" v-if="vol == 0 || sing == false" @click="updateSing(true)">
           <v-icon>mdi-volume-off</v-icon>
         </v-btn>
         <v-slider
-          v-model="vol"
+          v-model="adjustVol"
           style="width:100px;margin-right: 15px;"
           class="volumns"
-          @click="sing = true"
+          @click="updateSing(true)"
         >
         </v-slider>
         <v-btn style="background-color: #696969">
@@ -192,136 +192,62 @@
       Your browser does not support the audio element.
     </audio>
     
-    <!-- <audio controls id="myAudio"  preload="metadata">
-      <source src="../assets/audio/thay-moi-co-gai-yeu-anh.mp3" type="audio/mpeg" />
-    </audio> -->
   </v-row>
 </template>
 
 <script>
-let firstInteval;
-let secondIntevel;
+import { mapGetters } from 'vuex';
+import { mapActions } from 'vuex'
+
+// let firstInteval;
+// let secondIntevel;
 export default {
-  data() {
-    return {
-      vol: 50,
-      sing: true,
-      play: true,
-      loop: true,
-      ended: false,
-      duration: '00:00',
-      timeEnd: 0,
-      timeCurrent: 0,
-      timeViewDuration : '0:00',
-      songs : [
-        { src:'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3' },
-        { src:'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3' },
-        { src:'thay-moi-co-gai-yeu-anh.mp3' },
-        { src:'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3' },
-        { src:'thay-moi-co-gai-yeu-anh.mp3' }
-      ],
-      src: ''
-    };
+  data(){
+    return{
+      incTime : 0,
+      adjustVol: 0
+    }
   },
   created(){
-    this.src = this.songs[0].src
+    this.$store.dispatch('updateSrc')
+    this.adjustVol = this.vol
+
+    this.unwatchTimeCurrent = this.$store.watch(
+      (state, getters) => getters.timeCurrent,
+      (newValue) => {
+        this.incTime = newValue
+      },
+    )
+
+    this.unwatchVol = this.$store.watch(
+      (state, getters) => getters.vol,
+      (newValue) => {
+        this.adjustVol = newValue
+      }
+    )
+  },
+  beforeDestroy() {
+    this.unwatchTimeCurrent()
+    this.unwatchVol()
   },
   mounted() {
-    var aud = document.getElementById("myAudio")
-    aud.volume = '0.5'
-    aud.loop = true
-    
-    // this.ended = aud.ended    
-    aud.onloadedmetadata =  () => {
-      this.duration =  (aud.duration / 60) - (aud.duration % 60)/60 +':'+ Math.floor(aud.duration % 60)
-      this.timeEnd = Math.floor(aud.duration) - 1
-    }
-    setInterval(() => {
-      this.ended = aud.ended
-    }, 1000)
+    this.$store.dispatch('mounted')
   },
   methods: {
-    playAudio(data){
-      var aud = document.getElementById("myAudio");
-      if(data == true){
-        this.play = true
-        aud.pause()
-        clearInterval(firstInteval)
-        clearInterval(secondIntevel)
-      }else{
-        this.play = false
-        aud.play()
-        //calculate to time to display
-        this.timeCurrent = aud.currentTime
-        firstInteval = setInterval(() => {
-          if(this.timeCurrent == this.timeEnd){
-            this.timeCurrent = 0;
-            this.timeViewDuration = '0:00'
-            return
-          }
-          this.timeCurrent++
-          var minute = (this.timeCurrent / 60) - (this.timeCurrent % 60)/60
-          var second = Math.floor(this.timeCurrent % 60)
-          if(second < 10){
-            second = '0' + second
-          }
-          this.timeViewDuration = minute +':'+ second
-        }, 1000)
-      }
-    },
-    loopAudio(){
-      this.loop = !this.loop
-      if(this.loop){
-        document.getElementById("myAudio").loop = true;
-
-      }else{
-        document.getElementById("myAudio").loop = false;
-      }
-    },
-    playTimeCurrent(){
-      var aud = document.getElementById("myAudio");
-      aud.currentTime = this.timeCurrent
-      clearInterval(firstInteval)
-      clearInterval(secondIntevel)
-      secondIntevel = setInterval(() => {
-        if(this.timeCurrent == this.timeEnd){
-          this.timeCurrent = 0;
-          this.timeViewDuration = '0:00'
-          return
-        }
-        this.timeCurrent++
-        var minute = (this.timeCurrent / 60) - (this.timeCurrent % 60)/60
-        var second = Math.floor(this.timeCurrent % 60)
-        if(second < 10){
-          second = '0' + second
-        }
-        this.timeViewDuration = minute +':'+ second
-      }, 1000)
-    }
+    ...mapActions(['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing']),
+  },
+  computed:{
+    ...mapGetters(['play','vol','loop','sing','ended','duration','timeEnd','timeViewDuration','songs','src']),
   },
   watch: {
-    vol(){
-      var aud = document.getElementById("myAudio");
-      aud.volume = this.vol / 100
+    incTime(){
+      this.$store.dispatch('updateTimeCurrent', this.incTime)
+    },
+    adjustVol(){
+      this.$store.dispatch('updateVol', this.adjustVol)
     },
     sing(){
-      var aud = document.getElementById("myAudio");
-      if(this.sing == false){
-        aud.muted = true;
-      }else{
-        aud.muted = false;
-      }
-    },
-    ended(){
-      if(this.ended){
-        this.play = true
-        clearInterval(firstInteval)
-        clearInterval(secondIntevel)
-        this.timeCurrent = 0;
-        this.timeViewDuration = '0:00'
-      }else{
-        this.play = false
-      }
+      this.$store.dispatch('updateSing', this.sing)
     }
   }
 };
