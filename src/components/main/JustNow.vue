@@ -21,22 +21,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Option from './Option.vue'
 export default {
   components:{
     Option
   },
-  data() {
-    return {
-        listJustNow: [
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Nhạc Mới Mỗi Ngày', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...'},
-        ],
-    };
-  },
+  computed:{
+    ...mapGetters('justNow',['listJustNow'])
+  }
 };
 </script>
 

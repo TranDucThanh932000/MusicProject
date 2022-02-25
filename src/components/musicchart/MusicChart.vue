@@ -2,8 +2,6 @@
   <v-col>
     <v-card height="100%" style="background-color: #170f23">
       <line-chart
-        :color="color"
-        bg_img="url('https://vnmedia.vn/file/8a10a0d36ccebc89016ce0c6fa3e1b83/old_image/201809/original/images2228470_le.jpg')"
       />
       <div class="style-top-3" style="padding: 12px">
         <v-row
@@ -65,7 +63,7 @@
         </v-row>
         <v-row align="center" justify="center" class="py-3" v-if="appear_top100 == false">
           <div>
-            <v-btn rounded outlined color="white" @click="appear_top100 = !appear_top100">Xem top 100</v-btn>
+            <v-btn rounded outlined color="white" @click="updateAppearTop100">Xem top 100</v-btn>
           </div>
         </v-row>
       </div>
@@ -74,212 +72,21 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import LineChart from "./LineChart.vue";
 export default {
   components: {
     LineChart,
   },
-  data() {
-    return {
-      listTop100: [
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Nếu ngày ấy",
-          singer: "Soobin",
-          album: "Playah (Album)",
-          time: "03:44",
-        },
-        {
-          img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-          title: "Thay mọi cô gái yêu anh",
-          singer: "AMEE",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-        },
-      ],
-      songs: [],
-      color: "transparent",
-      appear_top100: false,
-    };
+  created(){
+    this.$store.dispatch('updateBgImgGlobal', "url('https://vnmedia.vn/file/8a10a0d36ccebc89016ce0c6fa3e1b83/old_image/201809/original/images2228470_le.jpg')")
   },
   methods: {
-    checkPause(index) {
-      if (this.songs[index] == true) {
-        this.songs = new Array(this.songs.length).fill(false);
-        return;
-      }
-      this.songs = new Array(this.songs.length).fill(false);
-      this.songs[index] = true;
-    },
+    ...mapActions('musicChart', ['checkPause','updateAppearTop100']),
   },
+  computed: {
+    ...mapGetters('musicChart', ['listTop100','color','songs','appear_top100'])
+  }
 };
 </script>
 

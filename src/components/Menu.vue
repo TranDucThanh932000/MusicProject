@@ -63,17 +63,16 @@
   </v-row>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  data() {
-    return {
-      Recommends: [{ title: "123" }, { title: "234" }, { title: "345" }],
-      changeColorForm: true
-    };
-  },
+
   methods:{
     chooseRecommended(){
 
     }
+  },
+  computed:{
+    ...mapGetters('menu',['Recommends','changeColorForm'])
   }
 };
 </script>

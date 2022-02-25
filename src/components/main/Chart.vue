@@ -67,64 +67,26 @@
     </div>
     <v-card style="margin-top: 36px" width="calc(65% - 15px)" height="100%">
       <line-chart
-        :fill="fill"
-        :color="color"
-        bg_img="url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')"
       ></line-chart>
     </v-card>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import LineChart from "../musicchart/LineChart.vue";
 
 export default {
   components: { LineChart },
-  data() {
-    return {
-      icons: [
-        "mdi-numeric-1-circle-outline",
-        "mdi-numeric-2-circle-outline",
-        "mdi-numeric-3-circle-outline",
-      ],
-      listTop3: [
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Nếu ngày ấy",
-          singer: "Soobin",
-        },
-        {
-          img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-          title: "Thay mọi cô gái yêu anh",
-          singer: "AMEE",
-        },
-        {
-          img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-          title: "Chạy Về Khóc Với Anh",
-          singer: "Erik",
-        },
-      ],
-      songs: [false, false, false],
-      gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],
-      color: "#BA68C8",
-      fill: 0,
-    };
+  created(){
+    this.$store.dispatch('updateBgImgGlobal',"url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')")
   },
   methods: {
-    checkPause(index) {
-      if (this.songs[index] == true) {
-        this.songs = [false, false, false];
-        return;
-      }
-      if (index == 0) {
-        this.songs = [true, false, false];
-      } else if (index == 1) {
-        this.songs = [false, true, false];
-      } else {
-        this.songs = [false, false, true];
-      }
-    },
+    ...mapActions('chart',['checkPause'])
   },
+  computed:{
+    ...mapGetters('chart',['icons','listTop3','songs','gradient','color','fill','bg_img'])
+  }
 };
 </script>
 

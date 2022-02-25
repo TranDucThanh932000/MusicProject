@@ -21,22 +21,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Option from './Option.vue'
 export default {
   components:{
     Option
   },
-  data() {
-    return {
-        listEachDay: [
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', title: 'Nhạc Mới Mỗi Ngày', detail: 'Conan Gray, The Chainsmokers, Tate McRae...', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', title: 'Top Hits V-Pop', detail: 'Conan Gray, The Chainsmokers, Tate McRae...', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', title: 'Top Hits V-Pop',detail: 'Conan Gray, The Chainsmokers, Tate McRae...', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', title: 'Top Hits V-Pop',detail: 'Conan Gray, The Chainsmokers, Tate McRae...', to: '...'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', title: 'Top Hits V-Pop',detail: 'Conan Gray, The Chainsmokers, Tate McRae...', to: '...'},
-        ],
-    };
-  },
+  computed: {
+    ...mapGetters('newSongEachDay',['listEachDay'])
+  }
 };
 </script>
 

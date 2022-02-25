@@ -1,6 +1,6 @@
 <template>
     <v-sheet :color="color" height="380px" style="position: relative;">
-      <div :style="bg_img == ''? '' : bgImg"></div>
+      <div :style="bgImg"></div>
       <div class="blur_bg" style="background-image: linear-gradient( 0deg,hsla(0,0%,100%,0) 37%,#170f23);"></div>
       <div class="blur_bg" style="background-image: linear-gradient( 90deg,hsla(0,0%,100%,0) 95%,#170f23);"></div>
       <div class="blur_bg" style="background-image: linear-gradient( 180deg,hsla(0,0%,100%,0) 37%,#170f23);"></div>
@@ -46,36 +46,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  props:{
-    color: {
-      type: String,
-      default: '#BA68C8',
-    },
-    bg_img: {
-      type: String,
-      default: ''
-    },
-    fill: {
-      type: Number,
-      default: 0
-    }
+  // data(){
+  //   return{
+  //     bgImgGlobal: this.$store.getters['bgImgGlobal'],
+  //   }
+  // },
+  computed: {
+    ...mapGetters('lineChart',['time','value1','value2','value3','gradient','bgImg','fill','color']),
   },
-  data() {
-    return {
-      time: ["0:00", "3:00", "6:00", "9:00", "12:00", "15:00", "18:00", "21:00"],
-      value1: [229, 675, 410, 390, 310, 460, 250, 555],
-      value2: [300, 125, 500, 390, 300, 456, 250, 240],
-      value3: [100, 321, 456, 222, 333, 231, 777, 100],
-      gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],
-      bgImg : {
-        backgroundImage: this.bg_img,
-        'background-position' : 'center center',
-        'background-size': 'cover',
-        'height' : '100%',
-      },
-    };
-  },
+  created(){
+    this.$store.dispatch('lineChart/updateBgImg')
+  }
 };
 </script>
 
