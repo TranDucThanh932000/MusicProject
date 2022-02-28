@@ -1,0 +1,85 @@
+<template>
+    <v-navigation-drawer
+      absolute
+      permanent
+      right
+      style="z-index:9999999;background-color: #120822;position: fixed;right:0px; overflow: hidden;"
+      :height="height+'px'"
+      class="customScrollBar"
+    >
+      <template v-slot:prepend>
+        <h3 style="padding: 10px 16px;">Danh sách bài hát</h3>
+        <v-list-item two-line :style="index !== songPlayed.length - 1?'opacity:0.5':''" v-for="(song, index) in songPlayed" :key="song.src+index"> 
+          <v-list-item-avatar style="margin-top:0px;margin-bottom:0px;">
+            <img :src="song.img">
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ song.title }}</v-list-item-title>
+            <v-list-item-subtitle style="color:white;opacity: 0.65;">{{ song.singer }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+
+      <v-divider style="background-color: white;"></v-divider>
+      <div style="padding: 8px 16px 0px 16px;">
+        <p style="margin:0px;"><b>Tiếp theo</b></p>
+      </div>
+
+      <v-list dense style="padding-top: 0px;">
+        <v-list-item
+          v-for="index in (items.length - 1)"
+          :key="index"
+        >
+          <v-list-item-avatar>
+            <img :src="items[index].img">
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ items[index].title }}</v-list-item-title>
+            <v-list-item-subtitle style="color:white;opacity: 0.65;">{{ items[index].singer }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+</template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex'
+  export default {
+    computed: {
+      ...mapGetters('sidebarRight',['items','height','songPlayed']),
+      index: {
+        get(){
+          return this.$store.getters['fixedplay/index_song']
+        }
+      }
+    },
+    methods: {
+      ...mapActions('sidebarRight',['updateHeight'])
+    },
+    created(){
+      this.$store.dispatch('sidebarRight/updateHeight', window.innerHeight - 100)
+      this.$store.dispatch('sidebarRight/firstUpdateSongPlayed', (this.$store.getters['sidebarRight/items'])[0])
+    }
+
+  }
+</script>
+
+<style>
+.customScrollBar ::-webkit-scrollbar {
+  width: 5px;
+  background: #170f23;
+}
+.customScrollBar ::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.customScrollBar ::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
+}
+.customScrollBar ::-webkit-scrollbar-thumb:hover {
+  background: grey; 
+}
+
+</style>

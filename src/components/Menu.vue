@@ -1,5 +1,5 @@
 <template>
-  <v-row class="pdr-16" style="position:sticky;z-index:10000000;top:0;width: 100%;background-color:#170f23;">
+  <v-row class="pdr-16" style="position:sticky;z-index:9999998;top:0;width: 100%;background-color:#170f23;">
     <v-col md="2" style="padding-left:0px;">
       <v-btn plain class="btn-menu">
         <v-icon>mdi-arrow-left</v-icon>

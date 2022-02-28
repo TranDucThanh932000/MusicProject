@@ -1,22 +1,24 @@
 <template>
-  <v-row style="height: 95px; z-index: 10000000;background-color: #170f23;">
+  <v-row style="height: 95px; z-index: 10000000;background-color: #170f23;padding: 0px;margin: 0px;">
     <div
+    class="row"
       style="
         border-top: 1px solid white;
         justify-content: space-between;
         background-color: #170f23;
-        display: flex;
         width: 100%;
         position: fixed;
         bottom:0px;
+        right: 0px;
+        margin: 0px;
       "
     >
-      <div class="d-flex" style="padding: 10px 10px 0px 20px">
+      <div class="d-flex col-md-3">
         <div>
           <v-img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Xone-logo.jpg/800px-Xone-logo.jpg"
-            width="80px"
-            height="80px"
+            :src="live_song.img"
+            width="88px"
+            height="88px"
             style="object-fit: cover; border-radius: 50%"
             class="d-flex align-center"
           >
@@ -24,9 +26,9 @@
         </div>
         <div class="d-flex" style="align-items: center; margin-left: 10px">
           <div>
-            <p style="margin: 0px"><b>XONE Radio</b></p>
+            <p style="margin: 0px"><b>{{ live_song.title }}</b></p>
             <div style="display: flex">
-              <p
+              <p v-if="!live_song.singer"
                 class="text-center px-2"
                 style="
                   background: red;
@@ -37,7 +39,7 @@
               >
                 <b>LIVE RADIO </b>
               </p>
-              <p
+              <p v-if="!live_song.singer"
                 style="
                   font-size: 10px;
                   opacity: 0.6;
@@ -46,6 +48,16 @@
                 "
               >
                 467 đang nghe
+              </p>
+              <p v-if="live_song.singer"
+                style="
+                  font-size: 13px;
+                  opacity: 0.6;
+                  margin: 0px;
+                  padding-left: 0px;
+                "
+              >
+                {{ live_song.singer }}
               </p>
             </div>
           </div>
@@ -122,15 +134,15 @@
           </v-menu>
         </div>
       </div>
-      <div style="padding-top: 20px;">
-        <div class="d-flex" style="align-items: center;">
+      <div class="col-md-6" style="padding-top: 20px;">
+        <div class="d-flex" style="align-items: center;justify-content: center;">
           <v-btn plain color="white" v-if="loop == true" @click="loopAudio()">
             <v-icon>mdi-repeat</v-icon>
           </v-btn>
           <v-btn plain color="white" v-else @click="loopAudio()">
             <v-icon>mdi-repeat-off</v-icon>
           </v-btn>
-          <v-btn plain color="white">
+          <v-btn plain color="white" :style="index_song === 0? 'cursor: not-allowed;':''" @click="prevSong()">
             <v-icon>mdi-skip-previous</v-icon>
           </v-btn>
           <v-btn outlined color="white" v-if="play == true" @click="playAudio(false)" class="btnPlayPause">
@@ -139,7 +151,7 @@
           <v-btn outlined color="white" v-else @click="playAudio(true)" class="btnPlayPause">
             <v-icon>mdi-pause</v-icon>
           </v-btn>
-          <v-btn plain color="white">
+          <v-btn plain color="white" :style="index_song === songs.length - 1? 'cursor: not-allowed;':''" @click="index_song !== songs.length - 1?nextSong() : ''">
             <v-icon>mdi-skip-next</v-icon>
           </v-btn>
           <v-btn plain color="white">
@@ -158,7 +170,7 @@
           <span>{{duration}}</span>
         </div>
       </div>
-      <div class="d-flex" style="align-items: center;">
+      <div class="d-flex col-md-3" style="align-items: center;">
         <v-btn plain color="white">
           <v-icon>mdi-monitor</v-icon>
         </v-btn>
@@ -181,8 +193,9 @@
           @click="updateSing(true)"
         >
         </v-slider>
-        <v-btn style="background-color: #696969">
-          <p style="color:white;margin-bottom:0px;">Lịch phát sóng</p>
+        <v-btn style="background-color: #696969" v-if="live_song.singer" @click="showNavRight()">
+          <v-icon color="white" >mdi-playlist-music</v-icon>
+          <p style="color:white;margin-bottom:0px;">Danh sách phát</p>
         </v-btn>
       </div>
     </div>
@@ -200,10 +213,6 @@ import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex'
 
 export default {
-  data(){
-    return{
-    }
-  },
   created(){
     this.$store.dispatch('fixedplay/updateSrc')
     
@@ -221,10 +230,10 @@ export default {
     this.$store.dispatch('fixedplay/mounted')
   },
   methods: {
-    ...mapActions('fixedplay',['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing']),
+    ...mapActions('fixedplay',['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing','prevSong','nextSong','updateIndexSong','showNavRight']),
   },
   computed:{
-    ...mapGetters('fixedplay',['loop','sing','ended','duration','timeEnd','timeViewDuration','songs','src']),
+    ...mapGetters('fixedplay',['loop','sing','ended','duration','timeEnd','timeViewDuration','songs','src','live_song','index_song']),
     play: {
       get(){
         return this.$store.getters.play

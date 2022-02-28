@@ -17,13 +17,19 @@ import NewSongEachDay from "./modules/NewSongEachDay";
 import Chart from "./modules/Chart";
 import LineChart from "./modules/LineChart";
 import MusicChart from "./modules/MusicChart";
+import Sidebar from "./modules/Sidebar";
+import Schedule from "./modules/Schedule";
+import Album from "./modules/Album";
+import SidebarRight from "./modules/SidebarRight";
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
         play: true,
-        bgImgGlobal : ''
+        bgImgGlobal : '',
+        srcPlay: null,
+        navRight: false
     },
     getters,
     mutations,
@@ -39,7 +45,11 @@ export const store = new Vuex.Store({
         newSongEachDay : NewSongEachDay,
         chart: Chart,
         lineChart : LineChart,
-        musicChart : MusicChart
+        musicChart : MusicChart,
+        sideBar: Sidebar,
+        schedule: Schedule,
+        album : Album,
+        sidebarRight: SidebarRight
 
     }
 })

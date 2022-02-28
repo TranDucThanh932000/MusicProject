@@ -4,5 +4,11 @@ export const actions = {
     },
     updateBgImgGlobal({commit}, payload){
         commit('updateBgImgGlobal', payload)
-    }
+    },
+    updateSrcPlay({commit}, payload){
+        commit('updateSrcPlay', payload)
+    },
+    updateNavRight({commit}){
+        commit('updateNavRight')
+    },
 }

@@ -4,5 +4,11 @@ export const getters = {
     },
     bgImgGlobal(state){
         return state.bgImgGlobal;
+    },
+    srcPlay(state){
+        return state.srcPlay
+    },
+    navRight(state){
+        return state.navRight
     }
 }

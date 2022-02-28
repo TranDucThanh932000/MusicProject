@@ -12,11 +12,6 @@ export default {
     components:{
         Radio,
         Schedule
-    },
-    data() {
-        return{
-
-        }
-    },
+    }
 }
 </script>

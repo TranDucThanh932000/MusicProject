@@ -31,7 +31,7 @@
       </v-col>
       <v-col md="11" style="position: relative;z-index: 0;">
         <v-sheet max-width="100%" color="transparent" height="100%">
-          <v-btn plain style="position: absolute;z-index: 1;top: 45%;left:-20px;" @click="display_range(1)">
+          <v-btn plain style="position: absolute;z-index: 1;top: 45%;left:-20px;" @click="clickDisplayRange(1)">
             <v-icon>mdi-arrow-left-bold</v-icon>
           </v-btn>
           <v-slide-group show-arrows class="dpbl" style="height: 100%" ref="auto_scroll" next-icon="" prev-icon="">
@@ -96,7 +96,7 @@
               </v-slide-item>
             </div>
           </v-slide-group>
-          <v-btn plain style="position: absolute;z-index: 1;top: 45%;right:-20px;" @click="display_range(2)">
+          <v-btn plain style="position: absolute;z-index: 1;top: 45%;right:-20px;" @click="clickDisplayRange(2)">
             <v-icon>mdi-arrow-right-bold</v-icon>
           </v-btn>
         </v-sheet>
@@ -106,238 +106,31 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
-  data() {
-    return {
-      listShow: [
-        {
-          imgChannel: "https://i.ytimg.com/vi/BMtaUb-E5Uc/maxresdefault.jpg",
-          shows: [
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS1",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 1,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS2",
-              duration: "20:00 - 21:00",
-              type: 6,
-              key: 2,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS3",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 3,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS4",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 4,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS5",
-              duration: "20:00 - 21:00",
-              type: 9,
-              key: 5,
-            },
-          ],
-        },
-        {
-          imgChannel:
-            "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/c/2/4/7/c2475264a30999a45a3c8bcf0e5f090d.jpg",
-          shows: [
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "TRAN DUC THANH",
-              duration: "20:00 - 21:00",
-              type: 6,
-              key: 6,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 6,
-              key: 7,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 8,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 9,
-              key: 9,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 13,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 14,
-            },
-          ],
-        },
-        {
-          imgChannel: "https://i.ytimg.com/vi/HXkh7EOqcQ4/maxresdefault.jpg",
-          shows: [
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "THE LA SAO",
-              duration: "20:00 - 21:00",
-              type: 6,
-              key: 10,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 6,
-              key: 11,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 6,
-              key: 15,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 16,
-            },
-            {
-              img: "https://znews-photo.zadn.vn/w660/Uploaded/izhqv/2018_10_14/thang_dien_0.jpg",
-              title: "VIETNAM'S HOT HITS",
-              duration: "20:00 - 21:00",
-              type: 3,
-              key: 17,
-            },
-          ],
-        },
-      ],
-      current_time: '00:00',
-      current_time_location: 0,
-      loading_time: true,
-      display_schedule_range: 0,
-      width: 0
-    };
-  },
-  created() {
-    // setInterval(this.getCurrentTime, 1000)
-    // setTimeout(this.getCurrentLocation, 0)
-    // setInterval(this.getCurrentLocation, 360000)
-  },
   mounted() {
-    setInterval(this.getCurrentTime, 1000)
-    setTimeout(this.getCurrentLocation, 0)
-    setInterval(this.getLocationLine, 60000)
-    // setInterval(this.nextToPage, 360000)
+    setInterval(this.dispatchGetCurrentTime, 1000)
+    setTimeout(this.dispatchGetCurrentLocation, 0)
+    setInterval(this.dispatchGetLocationLine, 60000)
+    
   },
   methods: {
-    async getCurrentTime(){
-      const today = new Date()
-      this.current_time_location = await today.getHours() * 252 + 4.2 * today.getMinutes()
-      this.current_time = await today.getHours() + ':' + today.getMinutes()
-      if(today.getHours() < 10){
-        this.current_time = '0' + today.getHours() + ':' + today.getMinutes()
-      }
-      if(today.getMinutes() < 10){
-        this.current_time = today.getHours() + ':0' + today.getMinutes()
-      }
-      if(today.getHours() < 10 && today.getMinutes() < 10){
-        this.current_time = '0' + today.getHours() + ':0' + today.getMinutes()
-      }
-      this.loading_time = false
+    ...mapActions('schedule',['getCurrentTime','getCurrentLocation','getLocationLine']),
+    clickDisplayRange(payload){
+      this.$store.dispatch('schedule/display_range', payload)
     },
-    // async getCurrentLocation() {
-    //     var element = this.$refs['auto_scroll']
-    //     const today = new Date()
-    //     this.current_time_location = await today.getHours() * 252 + 4.2 * today.getMinutes()
-    //     var hour = today.getHours()
-    //     if(hour <= 4){
-    //       hour = today.getHours()
-    //     }else if(hour <= 8){
-    //       element.scrollTo(1 , 0)
-    //     }else if(hour <= 12){
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //     }else if(hour <= 16){
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //     }else if(hour <= 20){
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //     }else{
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //       element.scrollTo(1 , 0)
-    //     }
-    // },
-    async getCurrentLocation() {
-      var element = document.getElementsByClassName('v-slide-group__content')
-      const today = new Date()
-      this.current_time_location = await today.getHours() * 252 + 4.2 * today.getMinutes()
-      if(today.getHours() >  0){
-        element[1].style.transform = "translateX(-" + (this.current_time_location - 250 ) + "px)"
-      }else{
-        element[1].style.transform = "translateX(-" + (this.current_time_location) + "px)"
-      }
-      this.display_schedule_range = this.current_time_location
-      this.width = element[1].getBoundingClientRect().width;
+    dispatchGetCurrentTime(){
+      this.$store.dispatch('schedule/getCurrentTime')
     },
-    async getLocationLine(){
-      const today = new Date()
-      this.current_time_location = await today.getHours() * 252 + 4.2 * today.getMinutes()
+    dispatchGetCurrentLocation(){
+      this.$store.dispatch('schedule/getCurrentLocation')
     },
-    display_range(flag){
-      var element = document.getElementsByClassName('v-slide-group__content')
-      if(flag == 1){
-        if(this.display_schedule_range < 700){
-          element[1].style.transform = "translateX(-" + 0 + "px)"
-          this.display_schedule_range = 0
-        }else{
-          element[1].style.transform = "translateX(-" + (this.display_schedule_range - 700 ) + "px)"
-          this.display_schedule_range = this.display_schedule_range - 700 
-        }
-      }else{
-        if(this.display_schedule_range > this.width * 0.85){
-          element[1].style.transform = "translateX(-" + 0 + "px)"
-          this.display_schedule_range = 0
-        }else{
-          element[1].style.transform = "translateX(-" + (this.display_schedule_range + 700 ) + "px)"
-          this.display_schedule_range = this.display_schedule_range + 700 
-        }
-      }
+    dispatchGetLocationLine(){
+      this.$store.dispatch('schedule/getLocationLine')
     }
+  },
+  computed: {
+    ...mapGetters('schedule',['listShow','current_time','current_time_location','loading_time','display_schedule_range','width'])
   }
 };
 </script>
