@@ -120,7 +120,7 @@ export default {
   display: flex;
 }
 .list-radio{
-  width: calc(100% - 42px);
+  width: calc(100% - 50px);
   /* lẻ 12 vì margin-right : 12px*/
 }
 .list-radio .v-slide-group__prev{

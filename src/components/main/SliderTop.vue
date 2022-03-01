@@ -1,9 +1,8 @@
 <template>
-  <v-row >
+  <div style="width: 100%">
     <v-sheet
         class="slider-top"
-        width="calc(100%-15px)"
-        style="background-color:#170f23;margin: 0px 12px;"
+        style="background-color:#170f23;width:calc(100%-15px);"
     >
         <v-slide-group
         show-arrows
@@ -16,12 +15,12 @@
                 class="card-img"
                 style="border-radius: 10px;"
                 >
-                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 377px;"></v-img>
+                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 376.4px;"></v-img>
                 </v-card>
             </v-slide-item>
         </v-slide-group>
     </v-sheet>
-  </v-row>
+  </div>
 </template>
 
 <script>
@@ -69,7 +68,7 @@ export default {
     visibility: hidden;
   }
   .slider-top{
-    width: calc(100% - 40px);
+    width: calc(100% - 25px);
   }
   .slider-top:hover .v-slide-group__prev{
     visibility: visible;
