@@ -49,34 +49,38 @@ export default {
     },
     actions: {
         checkPause({ commit, getters, dispatch, rootGetters }, index) {
-            dispatch('fixedplay/updateSongs', getters.listTop3, { root: true })
-            if (getters.songs[index] == true) {
-                commit('updatePause', [false, false, false])
+            
+            if(rootGetters['fixedplay/nameSpacedComponent'] !== 'chart' && rootGetters['fixedplay/nameSpacedComponent'] !== ''){
+                var number = (rootGetters['chart/songs']).length
+                dispatch(rootGetters['fixedplay/nameSpacedComponent'] + '/updateSongs', new Array(number).fill(false), { root: true })
+              }
 
+            dispatch('fixedplay/updateSongs', getters.listTop3, { root: true })
+            dispatch('fixedplay/updateNameSpacedComponent', 'chart', { root: true })
+            
+            if (getters.songs[index] == true) {
+                commit('updateSongs', [false, false, false])
                 commit('updatePlay', true,  { root: true })
                 dispatch('fixedplay/playAudio', true, { root: true })
-                // if (index == 0) {
-                //     dispatch('fixedplay/updateIndexSong', 0, { root: true })
-                // } else if (index == 1) {
-                //     dispatch('fixedplay/updateIndexSong', 1, { root: true })
-                // } else {
-                //     dispatch('fixedplay/updateIndexSong', 2, { root: true })
-                // }
                 return;
             }
+
+            //khi bấm vào nút play trên Chart
             if (index == 0) {
-                commit('updatePause', [true, false, false])
+                commit('updateSongs', [true, false, false])
                 dispatch('fixedplay/updateIndexSong', 0, { root: true })
             } else if (index == 1) {
-                commit('updatePause', [false, true, false])
+                commit('updateSongs', [false, true, false])
                 dispatch('fixedplay/updateIndexSong', 1, { root: true })
             } else {
-                commit('updatePause', [false, false, true])
+                commit('updateSongs', [false, false, true])
                 dispatch('fixedplay/updateIndexSong', 2, { root: true })
             }
 
-            commit('updatePause', new Array(getters.songs.length).fill(false))
-            getters.songs[index] = true;
+            dispatch('fixedplay/updateSongTrueFalse', getters.songs, { root: true })
+
+            // commit('updateSongs', new Array(getters.listTop3.length).fill(false))
+            // getters.songs[index] = true;
             if(getters.listTop3[index].src != rootGetters.srcPlay){
                 //sau khi update src moi thi load() lai audio
                 var aud = document.getElementById("myAudio")
@@ -84,7 +88,7 @@ export default {
             }
             
             var temp = []
-            for(let i = index; i < getters.songs.length; i++){
+            for(let i = index; i < getters.listTop3.length; i++){
                 temp.push(getters.listTop3[i])
             }
             dispatch('sidebarRight/updateItems', temp, { root: true })
@@ -107,14 +111,20 @@ export default {
         },
         updateFill({ commit }, payload) {
             commit('lineChart/updateFill', payload, { root: true })
+        },
+        updateSongs({commit}, payload){
+            commit('updateSongs', payload)
         }
     },
     mutations: {
-        updatePause(state, payload) {
-            state.songs = payload
-        },
+        // updatePause(state, payload) {
+        //     state.songs = payload
+        // },
         updateFill(state, payload) {
             state.fill = payload
+        },
+        updateSongs(state, payload){
+            state.songs = payload
         }
     }
 }

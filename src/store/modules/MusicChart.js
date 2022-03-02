@@ -223,7 +223,14 @@ export default {
   },
   actions: {
     checkPause({ commit, getters, dispatch, rootGetters }, index) {
+      //xoá play của album cũ để sang album mới
+      if(rootGetters['fixedplay/nameSpacedComponent'] !== 'musicChart' && rootGetters['fixedplay/nameSpacedComponent'] !== ''){
+        var number = (rootGetters['chart/songs']).length
+        dispatch(rootGetters['fixedplay/nameSpacedComponent'] + '/updateSongs', new Array(number).fill(false), { root: true })
+      }
+      
       dispatch('fixedplay/updateSongs', getters.listTop100, { root: true })
+      dispatch('fixedplay/updateNameSpacedComponent', 'musicChart', { root: true })
       if (getters.songs[index] == true) {
         commit('updatePause', new Array(getters.songs.length).fill(false))
         commit('updatePlay', true, { root: true })
@@ -263,6 +270,9 @@ export default {
     },
     updateAppearTop100({ commit, getters }) {
       commit('updateAppearTop100', !getters.appear_top100)
+    },
+    updateSongs({commit}, payload){
+      commit('updateSongs', payload)
     }
   },
   mutations: {
@@ -271,6 +281,9 @@ export default {
     },
     updateAppearTop100(state, payload) {
       state.appear_top100 = payload
+    },
+    updateSongs(state, payload){
+      state.songs = payload
     }
   }
 }

@@ -92,12 +92,13 @@ export default {
             },
             
         ],
+        songTrueFalse: [],
         src: '',
         firstInteval: null,
         secondIntevel: null,
         live_song: {},
-        index_song: 0
-
+        index_song: 0,
+        nameSpacedComponent: ''
     }),
 
     getters: {
@@ -142,6 +143,12 @@ export default {
         },
         index_song: state => {
             return state.index_song
+        },
+        nameSpacedComponent: state => {
+            return state.nameSpacedComponent
+        },
+        updateSongTrueFalse: state => {
+            return state.songTrueFalse
         }
     },
 
@@ -197,6 +204,12 @@ export default {
         updateIndexSong(state, value) {
             state.index_song = value
         },
+        nameSpacedComponent(state, value){
+            state.nameSpacedComponent = value
+        },
+        updateSongTrueFalse(state, value){
+            state.songTrueFalse = value
+        }
     },
 
     actions: {
@@ -335,6 +348,11 @@ export default {
                 commit('updateIndexSong', getters.index_song - 1)
                 dispatch('updateSrc', getters.songs[getters.index_song].src)
 
+                commit('updateSongTrueFalse', new Array(getters.songs.length).fill(false))
+                getters.updateSongTrueFalse[getters.index_song] = true
+                //trường hợp mở 354 và khóa 351 lại thì k ăn, thế là thế nào ta
+                // getters.updateSongTrueFalse[getters.index_song + 1] = false
+
                 //get list haven't been played
                 var temp = []
                 for(let i = getters.index_song; i < getters.songs.length; i++){
@@ -351,6 +369,11 @@ export default {
 
                 var aud = document.getElementById("myAudio")
                 aud.load()
+
+                if(getters.nameSpacedComponent !== ''){
+                    dispatch(getters.nameSpacedComponent + '/updateSongs', getters.updateSongTrueFalse, { root: true })
+                }
+
                 dispatch('playAudio', false)
             }
 
@@ -358,15 +381,21 @@ export default {
         nextSong({ commit, getters, dispatch }) {
             var temp = []
 
-            if (getters.index_song + 1 <= getters.songs.length - 1) {
+            if (getters.index_song + 1 < getters.songs.length) {
                 commit('updateLiveSong', getters.songs[getters.index_song + 1])
                 commit('updateIndexSong', getters.index_song + 1)
                 dispatch('updateSrc', getters.songs[getters.index_song].src)
+                commit('updateSongTrueFalse', new Array(getters.songs.length).fill(false))
+                getters.updateSongTrueFalse[getters.index_song] = true
+
             } else {
                 commit('updateLiveSong', getters.songs[0])
                 commit('updateIndexSong', 0)
                 dispatch('updateSrc', getters.songs[0].src)
+                commit('updateSongTrueFalse', new Array(getters.songs.length).fill(false))
+                getters.updateSongTrueFalse[0] = true
             }
+
             for(let i = getters.index_song; i < getters.songs.length; i++){
                 temp.push(getters.songs[i])
             }
@@ -380,6 +409,10 @@ export default {
 
             var aud = document.getElementById("myAudio")
             aud.load()
+            
+            if(getters.nameSpacedComponent !== ''){
+                dispatch(getters.nameSpacedComponent + '/updateSongs', getters.updateSongTrueFalse, { root: true })
+            }
             dispatch('playAudio', false)
         },
         updateIndexSong({ commit }, payload) {
@@ -390,6 +423,12 @@ export default {
         },
         updateSongs({commit}, payload){
             commit('songs', payload)
+        },
+        updateNameSpacedComponent({commit}, payload){
+            commit('nameSpacedComponent', payload)
+        },
+        updateSongTrueFalse({commit}, payload){
+            commit('updateSongTrueFalse', payload)
         }
     }
 }

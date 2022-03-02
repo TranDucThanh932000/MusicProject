@@ -9,7 +9,7 @@
     >
       <template v-slot:prepend>
         <h3 style="padding: 10px 16px;">Danh sách bài hát</h3>
-        <v-list-item two-line :style="index !== songPlayed.length - 1?'opacity:0.5':''" v-for="(song, index) in songPlayed" :key="song.src+index"> 
+        <v-list-item two-line :style="index !== songPlayed.length - 1?'opacity:0.5':''" v-for="(song, index) in songPlayed" :key="index+'a'"> 
           <v-list-item-avatar style="margin-top:0px;margin-bottom:0px;">
             <img :src="song.img">
           </v-list-item-avatar>
@@ -29,7 +29,7 @@
       <v-list dense style="padding-top: 0px;">
         <v-list-item
           v-for="index in (items.length - 1)"
-          :key="index"
+          :key="index+'ab'"
         >
           <v-list-item-avatar>
             <img :src="items[index].img">

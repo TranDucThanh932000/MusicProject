@@ -245,16 +245,22 @@ export default {
         updateHeight({commit}, payload){
             commit('updateHeight',payload)
         },
-        checkPause({dispatch,commit, getters, rootGetters},payload) {
+        checkPause({dispatch,commit, getters, rootGetters}, payload) {
+            if(rootGetters['fixedplay/nameSpacedComponent'] !== 'album' && rootGetters['fixedplay/nameSpacedComponent'] !== ''){
+                var number = (rootGetters['chart/songs']).length
+                dispatch(getters.nameSpacedComponent + '/updateSongs', new Array(number).fill(false), { root: true })
+            }
             dispatch('fixedplay/updateSongs', getters.listTop100, { root: true })
+            dispatch('fixedplay/updateNameSpacedComponent', 'album', { root: true })
+
             if (getters.songs[payload] == true) {
-                commit('updateSongs', new Array(getters.songs.length).fill(false))
+                commit('updateSongs', new Array(getters.listTop100.length).fill(false))
                 commit('updatePlaying', false)
                 commit('updatePlay', true,  { root: true })
                 dispatch('fixedplay/playAudio', true, { root: true })
                 return;
             }
-            commit('updateSongs', new Array(getters.songs.length).fill(false))
+            commit('updateSongs', new Array(getters.listTop100.length).fill(false))
             getters.songs[payload] = true;
             if(getters.listTop100[payload].src != rootGetters.srcPlay){
                 //sau khi update src moi thi load() lai audio
@@ -262,6 +268,8 @@ export default {
                 aud.load()
                 dispatch('fixedplay/updateLiveSong', getters.listTop100[payload], { root: true })
             }
+
+            dispatch('fixedplay/updateSongTrueFalse', getters.songs, { root: true })
 
             var temp = []
             for (let i = payload; i < getters.listTop100.length; i++) {
@@ -307,6 +315,9 @@ export default {
                 },10)
                 document.getElementById("circleImg").classList.remove('rotate')
             }
+        },
+        updateSongs({commit}, payload){
+            commit('updateSongs', payload)
         }
     },
     mutations: {

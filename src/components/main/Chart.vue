@@ -19,7 +19,7 @@
           align-content: space-between;
         "
       >
-        <div v-for="(top3, index) in listTop3" :key="index" style="width: 100%">
+        <div v-for="(top3, index) in listTop3" :key="index+'n'" style="width: 100%">
           <v-card
             class="d-flex px-1"
             :style="{ backgroundColor: gradient[index] }"
@@ -82,10 +82,10 @@ export default {
     this.$store.dispatch('updateBgImgGlobal',"url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')")
   },
   methods: {
-    ...mapActions('chart',['checkPause','updateFill'])
+    ...mapActions('chart',['checkPause','updateFill','updateSongs'])
   },
   computed:{
-    ...mapGetters('chart',['icons','listTop3','songs','gradient','color','fill','bg_img'])
+    ...mapGetters('chart',['icons','listTop3','gradient','color','fill','bg_img','songs']),
   }
 };
 </script>
