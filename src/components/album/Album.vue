@@ -3,19 +3,19 @@
     <v-row style="position: relative;">
         <v-col md="3" style="position: sticky; top: 0px;">
             <div class="text-center">
-                <v-img :src="srcImg" height="300px" width="300px" :style="{borderRadius : borderRadius}"></v-img>
-                <h3 style="margin-top: 10px;">Pop Việt Ngày Nay</h3>
-                <h5 style="opacity: 0.5;">Cập nhật: 21/02/2022</h5>
-                <h5 style="opacity: 0.5;">Hoàng Dũng, ERIK, Đức Phúc, AMEE</h5>
-                <h5 style="opacity: 0.5;margin-bottom: 10px;">49K người yêu thích</h5>
-                <v-btn rounded color="#7200a1" style="margin-bottom:10px;" class="py-5" v-if="playing == false" @click="clickPlaying(!playing)">
+                <v-img :src="liveAlbum.img" height="300px" width="300px" id="circleImg" :style="{borderRadius : borderRadius}"></v-img>
+                <h3 style="margin-top: 10px;">{{ liveAlbum.name }}</h3>
+                <h5 style="opacity: 0.5;">Cập nhật: {{ liveAlbum.updatedTime }}</h5>
+                <h5 style="opacity: 0.5;">{{ liveAlbum.artists }}</h5>
+                <h5 style="opacity: 0.5;margin-bottom: 10px;">{{ liveAlbum.numberOfLike }} người yêu thích</h5>
+                <!-- <v-btn rounded color="#7200a1" style="margin-bottom:10px;" class="py-5" v-if="playing == false" @click="clickPlaying(!playing)">
                     <v-icon color="white">mdi-play</v-icon>
                     <span style="color:white">TIẾP TỤC PHÁT</span>
                 </v-btn>
                 <v-btn rounded color="#7200a1" style="margin-bottom:10px;" class="py-5" v-else @click="clickPlaying(!playing)">
                     <v-icon color="white">mdi-stop</v-icon>
                     <span style="color:white">TẠM DỪNG</span>
-                </v-btn>
+                </v-btn> -->
                 <div class="text-center">
                     <v-btn fab style="margin-right: 5px;background-color: rgb(35 27 46);">
                         <v-icon color="white">mdi-heart</v-icon>
@@ -107,7 +107,7 @@ export default {
       this.$store.dispatch('album/updateHeight', window.innerHeight)
     },
     computed:{
-        ...mapGetters('album',['srcImg','listTop100','songs','playing','borderRadius','height','singers'])
+        ...mapGetters('album',['srcImg','listTop100','songs','playing','borderRadius','height','singers','liveAlbum'])
     },
     methods: {
         ...mapActions('album',['checkPause','updateHeight','playingAction']),
@@ -146,4 +146,24 @@ export default {
 .col-xs-5ths:hover .btn-play-album{
     display: flex !important;
 }
+.rotate {
+  animation: rotation 15s infinite linear;
+  /* animation: borderRadius 1s 1 linear; */
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+/* @keyframes borderRadius {
+    from {
+        border-radius: 10%;
+    }
+    to {
+        border-radius: 50%;
+    }
+} */
 </style>

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   // data(){
   //   return{
@@ -55,6 +55,9 @@ export default {
   // },
   computed: {
     ...mapGetters('lineChart',['time','value1','value2','value3','gradient','bgImg','fill','color']),
+  },
+  methods: {
+    ...mapActions('lineChart',['updateFill'])
   },
   created(){
     this.$store.dispatch('lineChart/updateBgImg')

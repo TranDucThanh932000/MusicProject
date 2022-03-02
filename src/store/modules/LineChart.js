@@ -30,11 +30,17 @@ export default {
     actions: {
         updateBgImg({commit, rootState}){
             commit('updateBgImg', rootState.bgImgGlobal)
+        },
+        updateFill({commit}, payload){
+            commit('updateFill', payload)
         }
     },
     mutations : {
         updateBgImg(state, payload){
             state.bgImg.backgroundImage = payload
+        },
+        updateFill(state, payload){
+            state.fill = payload
         }
     }
 }

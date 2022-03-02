@@ -1,7 +1,7 @@
 <template>
   <div
     class="d-flex pa-3"
-    style="background-color: #ba68c8; margin-right: 18px"
+    style="background-color: #ba68c8; margin-right: 25px;border-radius: 10px;"
   >
     <div style="width: 33%; margin-right: 2%">
       <v-btn text rounded color="white" class="btn-musicchart">
@@ -23,7 +23,7 @@
           <v-card
             class="d-flex px-1"
             :style="{ backgroundColor: gradient[index] }"
-            @click="fill = index + 1"
+            @click="updateFill(index + 1)"
           >
             <div style="display: flex; align-items: center">
               <v-icon color="white">{{ icons[index] }}</v-icon>
@@ -82,7 +82,7 @@ export default {
     this.$store.dispatch('updateBgImgGlobal',"url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')")
   },
   methods: {
-    ...mapActions('chart',['checkPause'])
+    ...mapActions('chart',['checkPause','updateFill'])
   },
   computed:{
     ...mapGetters('chart',['icons','listTop3','songs','gradient','color','fill','bg_img'])

@@ -387,6 +387,9 @@ export default {
         },
         showNavRight({ commit }) {
             commit('updateNavRight', null, { root: true })
+        },
+        updateSongs({commit}, payload){
+            commit('songs', payload)
         }
     }
 }

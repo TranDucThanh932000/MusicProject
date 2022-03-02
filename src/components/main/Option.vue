@@ -1,5 +1,5 @@
 <template>
-          <div class="moreTools" style="position: absolute; top: calc(50% - 44px); width : 100%;text-align: center;z-index:10000000;">
+          <div class="moreTools" style="position: absolute; top: calc(50% - 44px); width : 100%;text-align: center;z-index:9999997;">
             <v-btn plain style="color: white">
               <v-icon>mdi-heart</v-icon>
             </v-btn>
