@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="px-6" style="max-width: 1238.4px; margin: 0px auto;">
     <v-row style="position: relative;">
         <v-col md="3" style="position: sticky; top: 0px;">
             <div class="text-center">
@@ -72,8 +72,10 @@
             </div>
         </v-col>
     </v-row>
-    <h3 class="my-4">Nghệ Sĩ Tham Gia</h3>
-    <v-row style="margin-top: 0px;">
+    <v-row style="margin:0px;">
+        <h3 class="py-5">Nghệ Sĩ Tham Gia</h3>
+    </v-row>
+    <v-row>
         <div class="col-xs-5ths" v-for="(singer, index) in singers" :key="index">
             <div style="position: relative;top:0px;" >
                 <v-img :src="singer.img" style="border-radius: 50%;position: absolute;top:0;"></v-img>

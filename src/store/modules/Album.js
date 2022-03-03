@@ -250,6 +250,7 @@ export default {
                 var number = (rootGetters['chart/songs']).length
                 dispatch(getters.nameSpacedComponent + '/updateSongs', new Array(number).fill(false), { root: true })
             }
+            dispatch('fixedplay/updateIndexSong', payload, { root: true })
             dispatch('fixedplay/updateSongs', getters.listTop100, { root: true })
             dispatch('fixedplay/updateNameSpacedComponent', 'album', { root: true })
 

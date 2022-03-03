@@ -98,7 +98,7 @@ export default {
         secondIntevel: null,
         live_song: {},
         index_song: 0,
-        nameSpacedComponent: ''
+        nameSpacedComponent: '',
     }),
 
     getters: {

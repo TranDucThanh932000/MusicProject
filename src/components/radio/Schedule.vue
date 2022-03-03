@@ -3,7 +3,7 @@
     class="pa-4"
     style="
       background-image: linear-gradient(#12c2e9, #c471ed, #f64f59);
-      border-radius: 5px;
+      border-radius: 5px;width: 100%;
     "
   >
     <v-row>
@@ -41,7 +41,7 @@
                 class="time-schedule"
               >
                 <div
-                  v-for="(n, index) in 24"
+                  v-for="(n, index) in 25"
                   :key="n"
                   style="margin-left: 12px"
                 >
@@ -57,7 +57,11 @@
                 </div>
               </div>
             </div>
-            <div class="time-current" :style="{left: -4 + current_time_location +'px'}"><v-card :loading="loading_time" flat >{{current_time}}</v-card></div>
+            <div class="time-current" :style="{left: -4 + current_time_location +'px'}">
+              <v-card :loading="loading_time" flat >
+                  {{current_time}}
+              </v-card>
+            </div>
             <div class="line-hozi-time-current" :style="{left: 16 + current_time_location +'px'}"></div>
             <div class="triangle-time-current" :style="{left: 8 + current_time_location +'px'}"></div>
             <div

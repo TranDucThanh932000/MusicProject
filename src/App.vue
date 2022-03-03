@@ -4,12 +4,16 @@
       <v-navigation-drawer app>
         <sidebar />
       </v-navigation-drawer>
+      
       <v-main>
         <v-container fluid>
           <Menu />
-          <router-view />
+          <keep-alive>
+            <router-view />
+          </keep-alive>
         </v-container>
       </v-main>
+      
       <transition name="fade">
         <div v-show="navRight">
           <SidebarRight />

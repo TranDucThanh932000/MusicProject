@@ -228,7 +228,7 @@ export default {
         var number = (rootGetters['chart/songs']).length
         dispatch(rootGetters['fixedplay/nameSpacedComponent'] + '/updateSongs', new Array(number).fill(false), { root: true })
       }
-      
+      dispatch('fixedplay/updateIndexSong', index, { root: true })
       dispatch('fixedplay/updateSongs', getters.listTop100, { root: true })
       dispatch('fixedplay/updateNameSpacedComponent', 'musicChart', { root: true })
       if (getters.songs[index] == true) {

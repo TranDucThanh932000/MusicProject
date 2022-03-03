@@ -11,4 +11,8 @@ export const mutations = {
     updateNavRight(state){
         state.navRight = !state.navRight
     },
+    updateLoadingAlbum(state, payload){
+        state.loadingAlbum = payload
+        console.log(payload)
+    }
 }

@@ -12,6 +12,8 @@
             class="hoverImg"
           ></v-img>
           <Option/>
+        </v-card>
+        <v-card flat style="background-color: #170f23;">
           <v-card-title style="background-color: #170f23;padding: 0px"><h6>{{ justNow.category }}</h6></v-card-title>
           <v-card-text style="color: gray;padding: 0px;width:218.5px;">{{ justNow.detail }}</v-card-text>
         </v-card>
@@ -33,7 +35,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

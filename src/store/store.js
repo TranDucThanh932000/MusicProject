@@ -29,7 +29,8 @@ export const store = new Vuex.Store({
         play: true,
         bgImgGlobal : '',
         srcPlay: null,
-        navRight: false
+        navRight: false,
+        loadingAlbum: false
     },
     getters,
     mutations,

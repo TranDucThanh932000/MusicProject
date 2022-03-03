@@ -1,5 +1,5 @@
 <template>
-  <v-row class="pdr-16" style="position:sticky;z-index:9999998;top:0;width: 100%;background-color:#170f23;">
+  <v-row style="position:sticky;z-index:9999998;top:0;background-color:#170f23;margin: 0px;">
     <v-col md="2" style="padding-left:0px;">
       <v-btn plain class="btn-menu">
         <v-icon>mdi-arrow-left</v-icon>
@@ -86,9 +86,6 @@ export default {
     }
     .btn-menu:first-child{
       margin-left: 0px;
-    }
-    .pdr-16{
-      /* padding-right: 16px; */
     }
     .remove-pdr{
       padding-right: 0px;

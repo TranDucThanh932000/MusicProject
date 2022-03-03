@@ -10,5 +10,8 @@ export const getters = {
     },
     navRight(state){
         return state.navRight
+    },
+    loadingAlbum(state){
+        return state.loadingAlbum
     }
 }

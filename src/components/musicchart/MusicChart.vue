@@ -1,6 +1,6 @@
 <template>
   <v-col>
-    <v-card height="100%" style="background-color: #170f23">
+    <v-card height="100%" style="max-width: 1238.4px; margin: 0px auto;background-color: #170f23;">
       <line-chart
       />
       <div class="style-top-3" style="padding: 12px">

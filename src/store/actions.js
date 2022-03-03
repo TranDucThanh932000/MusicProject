@@ -11,4 +11,7 @@ export const actions = {
     updateNavRight({commit}){
         commit('updateNavRight')
     },
+    updateLoadingAlbum({commit}, payload){
+        commit('updateLoadingAlbum', payload)
+    }
 }

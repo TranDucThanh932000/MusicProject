@@ -2,7 +2,7 @@
   <div style="width: 100%">
     <v-sheet
         class="slider-top"
-        style="background-color:#170f23;width:calc(100%-15px);"
+        style="background-color:#170f23;"
     >
         <v-slide-group
         show-arrows
@@ -15,7 +15,7 @@
                 class="card-img"
                 style="border-radius: 10px;"
                 >
-                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 376.4px;"></v-img>
+                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 384.675px;"></v-img>
                 </v-card>
             </v-slide-item>
         </v-slide-group>
@@ -66,9 +66,6 @@ export default {
     opacity: 0.5;
     border-radius: 50%;
     visibility: hidden;
-  }
-  .slider-top{
-    width: calc(100% - 25px);
   }
   .slider-top:hover .v-slide-group__prev{
     visibility: visible;

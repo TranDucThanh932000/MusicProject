@@ -1,7 +1,7 @@
 <template>
   <div
     class="d-flex pa-3"
-    style="background-color: #ba68c8; margin-right: 25px;border-radius: 10px;"
+    style="background-color: #ba68c8;border-radius: 10px;width: 100%;"
   >
     <div style="width: 33%; margin-right: 2%">
       <v-btn text rounded color="white" class="btn-musicchart">
@@ -65,7 +65,7 @@
         </v-btn>
       </div>
     </div>
-    <v-card style="margin-top: 36px" width="calc(65% - 15px)" height="100%">
+    <v-card style="margin-top: 36px" width="calc(65% - 15px)">
       <line-chart
       ></line-chart>
     </v-card>

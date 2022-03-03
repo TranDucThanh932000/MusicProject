@@ -53,8 +53,8 @@ export default {
             if(rootGetters['fixedplay/nameSpacedComponent'] !== 'chart' && rootGetters['fixedplay/nameSpacedComponent'] !== ''){
                 var number = (rootGetters['chart/songs']).length
                 dispatch(rootGetters['fixedplay/nameSpacedComponent'] + '/updateSongs', new Array(number).fill(false), { root: true })
-              }
-
+            }
+            dispatch('fixedplay/updateIndexSong', index, { root: true })
             dispatch('fixedplay/updateSongs', getters.listTop3, { root: true })
             dispatch('fixedplay/updateNameSpacedComponent', 'chart', { root: true })
             

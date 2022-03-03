@@ -12,8 +12,10 @@
             class="hoverImg"
           ></v-img>
           <Option/>
-          <v-card-title style="background-color: #170f23;padding: 0px"><h6>{{ eachDay.title }}</h6></v-card-title>
-          <v-card-text style="background-color: #170f23;padding: 0px;color:gray;width:218.5px;">{{eachDay.detail}}</v-card-text>
+        </v-card>
+        <v-card flat style="background-color: #170f23;">
+          <v-card-title style="padding: 0px"><h6>{{ eachDay.title }}</h6></v-card-title>
+          <v-card-text style="padding: 0px;color:gray;width:218.5px;">{{eachDay.detail}}</v-card-text>
         </v-card>
       </div>
     </v-row>
@@ -32,8 +34,3 @@ export default {
   }
 };
 </script>
-
-<style scope>
-
-
-</style>
