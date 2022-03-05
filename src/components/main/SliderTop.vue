@@ -15,7 +15,7 @@
                 class="card-img"
                 style="border-radius: 10px;"
                 >
-                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 384.675px;"></v-img>
+                    <v-img :src="slider.img" style="object-fit:cover;border-radius: 8px;width: 377px;"></v-img>
                 </v-card>
             </v-slide-item>
         </v-slide-group>

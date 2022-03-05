@@ -21,6 +21,7 @@
               color="white"
               background-color="#231b2e"
               rounded
+              v-model="txtSearch"
             >
             </v-text-field>
           </v-form>
@@ -65,14 +66,32 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-
-  methods:{
+  data() {
+    return{
+      timeout: null
+    }
+  }
+  ,methods:{
     chooseRecommended(){
 
-    }
+    },
+    // debounceInput: _.debounce(function() {
+    //   this.$store.dispatch('menu/updateTxtSearch', this.txtSearch)
+    // }, 500)
   },
   computed:{
-    ...mapGetters('menu',['Recommends','changeColorForm'])
+    ...mapGetters('menu',['Recommends','changeColorForm']),
+    txtSearch: {
+      get(){
+        return this.$store.getters['menu/txtSearch']
+      },
+      set(val){
+          if (this.timeout) clearTimeout(this.timeout)
+          this.timeout = setTimeout(() => {
+            this.$store.dispatch('menu/updateTxtSearch', val)
+          }, 300)
+      }
+    }
   }
 };
 </script>

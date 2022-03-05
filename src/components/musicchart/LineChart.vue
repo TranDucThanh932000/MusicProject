@@ -65,7 +65,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
     .chart-line {
       width: 100%;
       position: absolute;

@@ -1,5 +1,5 @@
 <template>
-  <v-col>
+  <div>
     <v-card height="100%" style="max-width: 1238.4px; margin: 0px auto;background-color: #170f23;">
       <line-chart
       />
@@ -68,15 +68,19 @@
         </v-row>
       </div>
     </v-card>
-  </v-col>
+    <weekly-rank style="padding-bottom: 50px;"/>
+  </div>
+
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import LineChart from "./LineChart.vue";
+import WeeklyRank from "./WeeklyRank.vue";
 export default {
   components: {
     LineChart,
+    WeeklyRank,
   },
   created(){
     this.$store.dispatch('updateBgImgGlobal', "url('https://vnmedia.vn/file/8a10a0d36ccebc89016ce0c6fa3e1b83/old_image/201809/original/images2228470_le.jpg')")

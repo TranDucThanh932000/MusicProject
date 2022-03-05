@@ -21,6 +21,7 @@ import Sidebar from "./modules/Sidebar";
 import Schedule from "./modules/Schedule";
 import Album from "./modules/Album";
 import SidebarRight from "./modules/SidebarRight";
+import WeeklyRank from "./modules/WeeklyRank";
 
 Vue.use(Vuex)
 
@@ -50,7 +51,8 @@ export const store = new Vuex.Store({
         sideBar: Sidebar,
         schedule: Schedule,
         album : Album,
-        sidebarRight: SidebarRight
+        sidebarRight: SidebarRight,
+        weeklyRank: WeeklyRank
 
     }
 })

@@ -214,7 +214,6 @@ export default {
         ],
         songs: [],
         playing: false,
-        borderRadius: '10%',
         height: 0,
         singers: [
             {img: 'https://i.ytimg.com/vi/oiikgEzTotg/maxresdefault.jpg',name: 'Đức Phúc',follow: '399K'},
@@ -236,7 +235,6 @@ export default {
         listTop100 : state => state.listTop100,
         songs : state => state.songs,
         playing : state => state.playing,
-        borderRadius : state => state.borderRadius,
         height : state => state.height,
         singers : state => state.singers,
         liveAlbum : state => state.liveAlbum,
@@ -293,27 +291,10 @@ export default {
             commit('updatePlay', false,  { root: true })
             dispatch('fixedplay/playAudio', false, { root: true })
         },
-        playingAction({commit, getters}){
-            let inc = 10
-            let dec = 50
-            var interval;
+        playingAction({getters}){
             if(getters.playing){
-                interval = setInterval(() => {
-                    commit('updateBorderRadius', (inc +'%'))
-                    if(inc == 50){
-                        clearInterval(interval)
-                    }
-                    inc += 5
-                }, 10)
                 document.getElementById("circleImg").classList.add('rotate')
             }else{
-                interval = setInterval(() => {
-                    commit('updateBorderRadius', (dec +'%'))
-                    if(dec == 10){
-                        clearInterval(interval)
-                    }
-                    dec -= 5
-                },10)
                 document.getElementById("circleImg").classList.remove('rotate')
             }
         },
@@ -330,9 +311,6 @@ export default {
         },
         updateSongs(state, payload){
             state.songs = payload
-        },
-        updateBorderRadius(state, payload){
-            state.borderRadius = payload
         },
         updateLiveAlbum(state, payload){
             state.liveAlbum = payload

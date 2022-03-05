@@ -3,7 +3,7 @@
     <v-row style="position: relative;">
         <v-col md="3" style="position: sticky; top: 0px;">
             <div class="text-center">
-                <v-img :src="liveAlbum.img" height="300px" width="300px" id="circleImg" :style="{borderRadius : borderRadius}"></v-img>
+                <v-img :src="liveAlbum.img" height="300px" width="300px" id="circleImg"></v-img>
                 <h3 style="margin-top: 10px;">{{ liveAlbum.name }}</h3>
                 <h5 style="opacity: 0.5;">Cập nhật: {{ liveAlbum.updatedTime }}</h5>
                 <h5 style="opacity: 0.5;">{{ liveAlbum.artists }}</h5>
@@ -102,14 +102,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import {mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     mounted(){
       this.$store.dispatch('album/updateHeight', window.innerHeight)
     },
     computed:{
-        ...mapGetters('album',['srcImg','listTop100','songs','playing','borderRadius','height','singers','liveAlbum'])
+        ...mapGetters('album',['srcImg','listTop100','songs','playing','height','singers','liveAlbum'])
     },
     methods: {
         ...mapActions('album',['checkPause','updateHeight','playingAction']),
@@ -149,8 +148,7 @@ export default {
     display: flex !important;
 }
 .rotate {
-  animation: rotation 15s infinite linear;
-  /* animation: borderRadius 1s 1 linear; */
+  animation: borderRadius 0.5s ease forwards, rotation 15s infinite linear;
 }
 @keyframes rotation {
   from {
@@ -160,12 +158,12 @@ export default {
     transform: rotate(359deg);
   }
 }
-/* @keyframes borderRadius {
+@keyframes borderRadius {
     from {
         border-radius: 10%;
     }
     to {
         border-radius: 50%;
     }
-} */
+}
 </style>

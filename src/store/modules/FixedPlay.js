@@ -370,8 +370,33 @@ export default {
                 var aud = document.getElementById("myAudio")
                 aud.load()
 
-                if(getters.nameSpacedComponent !== ''){
-                    dispatch(getters.nameSpacedComponent + '/updateSongs', getters.updateSongTrueFalse, { root: true })
+                if(getters.nameSpacedComponent.includes('weeklyRank')){
+                    let arrTemp = []
+                    switch(getters.nameSpacedComponent){
+                        case 'weeklyRankVietNam': {
+                            arrTemp = getters.updateSongTrueFalse
+                            arrTemp.push(...new Array(10).fill(false))
+                            dispatch('weeklyRank/updateSongs', arrTemp, { root: true })
+                            break
+                        } 
+                        case 'weeklyRankUsuk': {
+                            arrTemp.push(...new Array(5).fill(false))
+                            arrTemp.push(...getters.updateSongTrueFalse)
+                            arrTemp.push(...new Array(5).fill(false))
+                            dispatch('weeklyRank/updateSongs', arrTemp, { root: true })
+                            break
+                        } 
+                        case 'weeklyRankKpop': {
+                            arrTemp.push(...new Array(10).fill(false))
+                            arrTemp.push(...getters.updateSongTrueFalse)
+                            dispatch('weeklyRank/updateSongs', arrTemp, { root: true })
+                            break
+                        } 
+                    }
+                }else{
+                    if(getters.nameSpacedComponent !== ''){
+                        dispatch(getters.nameSpacedComponent + '/updateSongs', getters.updateSongTrueFalse, { root: true })
+                    }
                 }
 
                 dispatch('playAudio', false)
@@ -409,10 +434,37 @@ export default {
 
             var aud = document.getElementById("myAudio")
             aud.load()
-            
-            if(getters.nameSpacedComponent !== ''){
-                dispatch(getters.nameSpacedComponent + '/updateSongs', getters.updateSongTrueFalse, { root: true })
+
+            if(getters.nameSpacedComponent.includes('weeklyRank')){
+                let arrTemp = []
+                switch(getters.nameSpacedComponent){
+                    case 'weeklyRankVietNam': {
+                        arrTemp = getters.updateSongTrueFalse
+                        arrTemp.push(...new Array(10).fill(false))
+                        dispatch('weeklyRank/updateSongs', arrTemp, { root: true })
+                        break
+                    } 
+                    case 'weeklyRankUsuk': {
+                        arrTemp.push(...new Array(5).fill(false))
+                        arrTemp.push(...getters.updateSongTrueFalse)
+                        arrTemp.push(...new Array(5).fill(false))
+                        dispatch('weeklyRank/updateSongs', arrTemp, { root: true })
+                        break
+                    } 
+                    case 'weeklyRankKpop': {
+                        arrTemp.push(...new Array(10).fill(false))
+                        arrTemp.push(...getters.updateSongTrueFalse)
+                        dispatch('weeklyRank/updateSongs', arrTemp, { root: true })
+                        break
+                    } 
+                }
+            }else{
+                if(getters.nameSpacedComponent !== ''){
+                    dispatch(getters.nameSpacedComponent + '/updateSongs', getters.updateSongTrueFalse, { root: true })
+                }
             }
+            
+
             dispatch('playAudio', false)
         },
         updateIndexSong({ commit }, payload) {
