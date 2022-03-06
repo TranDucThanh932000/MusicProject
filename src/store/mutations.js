@@ -13,6 +13,5 @@ export const mutations = {
     },
     updateLoadingAlbum(state, payload){
         state.loadingAlbum = payload
-        console.log(payload)
     }
 }

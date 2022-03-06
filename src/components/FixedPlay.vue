@@ -201,10 +201,10 @@
     </div>
     
     <audio style="visibility: hidden;" controls ref="player" id="myAudio" preload="metadata">
-      <source :src="require('../assets/audio/' + src)" type="audio/mpeg" />
+      <source :src="src" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
-    
+
   </v-row>
 </template>
 

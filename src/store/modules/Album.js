@@ -4,213 +4,389 @@ export default {
         // srcImg: 'https://httl.com.vn/wiki/wp-content/uploads/2021/07/imager_1_13161_700.jpg',
         listTop100: [
             {
-            img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-            title: "Nếu ngày ấy",
-            singer: "Soobin",
-            album: "Playah (Album)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
             },
             {
-            img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-            title: "Thay mọi cô gái yêu anh",
-            singer: "AMEE",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'thay-moi-co-gai-yeu-anh.mp3'
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'thay-moi-co-gai-yeu-anh.mp3'
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "thay mọi cô gái yêu anh (Single)",
-            time: "03:44",
-            src: 'thay-moi-co-gai-yeu-anh.mp3'
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
             },
             {
-            img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-            title: "Chạy Về Khóc Với Anh",
-            singer: "Erik",
-            album: "Chạy Về Khóc Với Anh (Single)",
-            time: "03:44",
-            src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
             },
+            {
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
+            },
+            {
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
+            },
+            {
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
+            },
+            {
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
+            },
+            {
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
+            },
+            {
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
+            },
+            {
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
+            },
+            {
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
+            },
+            {
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
+            },
+            {
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
+            },
+            {
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
+            },
+            {
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
+            },
+            {
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
+            },
+            {
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
+            },
+            {
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
+            },
+            {
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
+            },
+            {
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
+            },
+            {
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
+            },
+            {
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Erik",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
+            },
+            {
+                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                title: "Như anh mơ",
+                singer: "PC",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
+            },
+            {
+                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                title: "24h",
+                singer: "Lyly",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
+            },
+            {
+                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                title: "Ghé qua",
+                singer: "PC",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
+            }
         ],
         songs: [],
         playing: false,
@@ -246,7 +422,12 @@ export default {
         checkPause({dispatch,commit, getters, rootGetters}, payload) {
             if(rootGetters['fixedplay/nameSpacedComponent'] !== 'album' && rootGetters['fixedplay/nameSpacedComponent'] !== ''){
                 var number = (rootGetters['chart/songs']).length
-                dispatch(getters.nameSpacedComponent + '/updateSongs', new Array(number).fill(false), { root: true })
+                // dispatch(getters.nameSpacedComponent + '/updateSongs', new Array(number).fill(false), { root: true })
+                if((rootGetters['fixedplay/nameSpacedComponent']).includes('weeklyRank')){
+                    dispatch('weeklyRank/updateSongs', new Array((rootGetters['weeklyRank/songs']).length).fill(false), { root: true })
+                }else{
+                    dispatch(rootGetters['fixedplay/nameSpacedComponent'] + '/updateSongs', new Array(number).fill(false), { root: true })
+                }
             }
             dispatch('fixedplay/updateIndexSong', payload, { root: true })
             dispatch('fixedplay/updateSongs', getters.listTop100, { root: true })

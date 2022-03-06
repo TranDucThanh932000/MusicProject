@@ -9,89 +9,7 @@ export default {
         timeEnd: 0,
         timeCurrent: 0,
         timeViewDuration: '0:00',
-        songs: [
-            {
-                img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                title: "Nếu ngày ấy",
-                singer: "Soobin",
-                album: "Playah (Album)",
-                time: "03:44",
-                src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
-            },
-            {
-                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-                title: "Thay mọi cô gái yêu anh",
-                singer: "AMEE",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'thay-moi-co-gai-yeu-anh.mp3'
-            },
-            {
-                img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                title: "Chạy Về Khóc Với Anh",
-                singer: "Erik",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
-            },
-            {
-                img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                title: "Nếu ngày ấy",
-                singer: "Soobin",
-                album: "Playah (Album)",
-                time: "03:44",
-                src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
-            },
-            {
-                img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                title: "Nếu ngày ấy",
-                singer: "Soobin",
-                album: "Playah (Album)",
-                time: "03:44",
-                src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
-            },
-            {
-                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-                title: "Thay mọi cô gái yêu anh",
-                singer: "AMEE",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'thay-moi-co-gai-yeu-anh.mp3'
-            },
-            {
-                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-                title: "Thay mọi cô gái yêu anh",
-                singer: "AMEE",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'thay-moi-co-gai-yeu-anh.mp3'
-            },
-            {
-                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-                title: "Thay mọi cô gái yêu anh",
-                singer: "AMEE",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'thay-moi-co-gai-yeu-anh.mp3'
-            },
-            {
-                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-                title: "Thay mọi cô gái yêu anh",
-                singer: "AMEE",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'thay-moi-co-gai-yeu-anh.mp3'
-            },
-            {
-                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-                title: "Thay mọi cô gái yêu anh",
-                singer: "AMEE",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'thay-moi-co-gai-yeu-anh.mp3'
-            },
-            
-        ],
+        songs: [],
         songTrueFalse: [],
         src: '',
         firstInteval: null,
@@ -484,7 +402,3 @@ export default {
         }
     }
 }
-
-// export default {
-//     state, getters, mutations, actions
-// }

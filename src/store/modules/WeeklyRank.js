@@ -4,129 +4,129 @@ export default {
         listSong: {
             vietnam: [
                 {
-                    img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
+                    img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
                     title: "Nếu ngày ấy",
                     singer: "Soobin",
                     album: "Playah (Album)",
                     time: "03:44",
-                    src: 'thay-moi-co-gai-yeu-anh.mp3'
+                    src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
                 },
                 {
-                    img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                    title: "Nếu ngày ấy",
-                    singer: "Soobin",
-                    album: "Playah (Album)",
+                    img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                    title: "Thay mọi cô gái yêu anh",
+                    singer: "AMEE",
+                    album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
                 },
                 {
-                    img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                    title: "Nếu ngày ấy",
-                    singer: "Soobin",
-                    album: "Playah (Album)",
+                    img: "https://vtimes.com.au/up/images/11-21/3689716-gducky-hoang-dung-lam-moi-0.jpg",
+                    title: "Thói quen",
+                    singer: "G-Ducky",
+                    album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'thay-moi-co-gai-yeu-anh.mp3'
+                    src: 'https://docs.google.com/uc?id=1M70gkE9pOrvt41-IJNf1hdOgnbYtBmWm'
                 },
                 {
-                    img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                    title: "Nếu ngày ấy",
-                    singer: "Soobin",
+                    img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                    title: "Như anh mơ",
+                    singer: "PC",
                     album: "Playah (Album)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
                 },
                 {
-                    img: "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/cover/5/c/b/2/5cb27fd4c536a2274d267a53ac417b01.jpg",
-                    title: "Nếu ngày ấy",
-                    singer: "Soobin",
+                    img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                    title: "24h",
+                    singer: "Lyly",
                     album: "Playah (Album)",
                     time: "03:44",
-                    src: 'thay-moi-co-gai-yeu-anh.mp3'
-                }
+                    src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
+                },
             ],
             usuk: [
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
-                    album: "Chạy Về Khóc Với Anh (Single)",
+                    img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                    title: "Nếu ngày ấy",
+                    singer: "Soobin",
+                    album: "Playah (Album)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
+                    img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                    title: "Thay mọi cô gái yêu anh",
+                    singer: "AMEE",
                     album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
+                    img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                    title: "Em bỏ hút thuốc chưa",
                     singer: "Erik",
                     album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
-                    album: "Chạy Về Khóc Với Anh (Single)",
+                    img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                    title: "24h",
+                    singer: "Lyly",
+                    album: "Playah (Album)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
+                    img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                    title: "Ghé qua",
+                    singer: "PC",
                     album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
-                },
+                    src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
+                }
             ],
             kpop: [
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
-                    album: "Chạy Về Khóc Với Anh (Single)",
+                    img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                    title: "Nếu ngày ấy",
+                    singer: "Soobin",
+                    album: "Playah (Album)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
+                    img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                    title: "Em bỏ hút thuốc chưa",
                     singer: "Erik",
                     album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
-                    album: "Chạy Về Khóc Với Anh (Single)",
+                    img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+                    title: "Như anh mơ",
+                    singer: "PC",
+                    album: "Playah (Album)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
-                    album: "Chạy Về Khóc Với Anh (Single)",
+                    img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
+                    title: "24h",
+                    singer: "Lyly",
+                    album: "Playah (Album)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
+                    src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
                 },
                 {
-                    img: "https://i.ytimg.com/vi/EBpp2VTSI2Q/maxresdefault.jpg",
-                    title: "Chạy Về Khóc Với Anh",
-                    singer: "Erik",
+                    img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
+                    title: "Ghé qua",
+                    singer: "PC",
                     album: "Chạy Về Khóc Với Anh (Single)",
                     time: "03:44",
-                    src: 'em-bo-hut-thuoc-chua-liu-riu-Bich-Phuong.mp3'
-                },
+                    src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
+                }
             ]
         },
         songs: [],
@@ -147,7 +147,11 @@ export default {
         updateSongs({ commit }, payload) {
             commit('updateSongs', payload)
         },
-        checkPause({commit, getters, dispatch}, payload){
+        checkPause({commit, getters, dispatch, rootGetters}, payload){
+            if (!(rootGetters['fixedplay/nameSpacedComponent']).includes('weeklyRank') && rootGetters['fixedplay/nameSpacedComponent'] !== '') {
+                var number = (rootGetters['chart/songs']).length
+                dispatch(rootGetters['fixedplay/nameSpacedComponent'] + '/updateSongs', new Array(number).fill(false), { root: true })
+            }
             if(getters.songs[payload]){
                 commit('updateSongs', new Array(getters.songs.length).fill(false))
                 commit('updatePause', false)
@@ -176,12 +180,13 @@ export default {
                     dispatch('sidebarRight/updateSongPlayed', temp, { root: true })
                     dispatch('fixedplay/updateNameSpacedComponent', 'weeklyRankVietNam', { root: true})
                     dispatch('fixedplay/updateIndexSong', payload, { root: true })
+                    dispatch('fixedplay/updateSrc', getters.listSong.vietnam[payload].src, { root: true})
                 }else if(payload >= 5 && payload < 10){
                     if(!(indexBeforeChange >= 5 && indexBeforeChange < 10)){
                         dispatch('fixedplay/updateSongs', getters.listSong.usuk, { root: true })
                     }
                     dispatch('fixedplay/updateLiveSong', getters.listSong.usuk[payload - 5], { root: true })
-                    for(let i = payload - 5; i < getters.listSong.vietnam.length; i++){
+                    for(let i = payload - 5; i < getters.listSong.usuk.length; i++){
                         temp.push(getters.listSong.usuk[i])
                     }
                     dispatch('sidebarRight/updateItems', temp, { root: true })
@@ -193,12 +198,13 @@ export default {
                     dispatch('sidebarRight/updateSongPlayed', temp, { root: true })
                     dispatch('fixedplay/updateNameSpacedComponent', 'weeklyRankUsuk', { root: true})
                     dispatch('fixedplay/updateIndexSong', payload - 5, { root: true })
+                    dispatch('fixedplay/updateSrc', getters.listSong.usuk[payload - 5].src, { root: true})
                 }else if(payload >= 10 && payload <= 14){
                     if(!(indexBeforeChange >= 10 && indexBeforeChange < 14)){
                         dispatch('fixedplay/updateSongs', getters.listSong.kpop, { root: true })
                     }
                     dispatch('fixedplay/updateLiveSong', getters.listSong.kpop[payload - 10], { root: true })
-                    for(let i = payload - 10; i < getters.listSong.vietnam.length; i++){
+                    for(let i = payload - 10; i < getters.listSong.kpop.length; i++){
                         temp.push(getters.listSong.kpop[i])
                     }
                     dispatch('sidebarRight/updateItems', temp, { root: true })
@@ -210,6 +216,7 @@ export default {
                     dispatch('sidebarRight/updateSongPlayed', temp, { root: true })
                     dispatch('fixedplay/updateNameSpacedComponent', 'weeklyRankKpop', { root: true})
                     dispatch('fixedplay/updateIndexSong', payload - 10, { root: true })
+                    dispatch('fixedplay/updateSrc', getters.listSong.kpop[payload - 10].src, { root: true})
                 }
                 commit('index_weekly_rank', payload)
     
