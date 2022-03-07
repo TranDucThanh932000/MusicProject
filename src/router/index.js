@@ -4,6 +4,7 @@ import Main from '../components/main/Main'
 import MusicChart from '../components/musicchart/MusicChart'
 import Radio from '../components/radio/Radio'
 import Album from '../components/album/Album'
+import NewSongs from '../components/newsongs/NewSongs'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ export const routes = [
         component: Album, children: [
             {path: ':id', name: 'album-details', component: Album}
         ]
+    },
+    {
+        path: '/new-songs',
+        name: 'newsongs',
+        component: NewSongs
     },
 ]
 

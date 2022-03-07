@@ -9,19 +9,22 @@
     >
       <template v-slot:prepend>
         <h3 style="padding: 10px 16px;">Danh sách bài hát</h3>
-        <v-list-item two-line :style="index !== songPlayed.length - 1?'opacity:0.5':''" v-for="(song, index) in songPlayed" :key="index+'a'"> 
-          <v-list-item-avatar style="margin-top:0px;margin-bottom:0px;">
-            <img :src="song.img">
-          </v-list-item-avatar>
+        <div style="overflow-y: scroll;" :style="{'max-height': height/2 + 'px'}" class="customScrollBar">
+          <v-list-item two-line :style="index !== songPlayed.length - 1?'opacity:0.5':''" v-for="(song, index) in songPlayed" :key="index+'a'"> 
+            <v-list-item-avatar style="margin-top:0px;margin-bottom:0px;">
+              <img :src="song.img">
+            </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ song.title }}</v-list-item-title>
-            <v-list-item-subtitle style="color:white;opacity: 0.65;">{{ song.singer }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>{{ song.title }}</v-list-item-title>
+              <v-list-item-subtitle style="color:white;opacity: 0.65;">{{ song.singer }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </template>
 
       <v-divider style="background-color: white;"></v-divider>
+
       <div style="padding: 8px 16px 0px 16px;">
         <p style="margin:0px;"><b>Tiếp theo</b></p>
       </div>

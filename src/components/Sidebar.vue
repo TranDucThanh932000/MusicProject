@@ -7,7 +7,7 @@
             <v-list-item-content>
               <div style="width: 100%">
               <!-- <v-list-item-title class="text-h6"> <span style="font-size: 30px;"><b style="color:red;">C</b></span><span style="font-size: 30px"><b style="color: yellow;">O</b></span><span style="font-size: 30px"><b style="color: green;">C</b></span> MOUNTAIN </v-list-item-title> -->
-                <v-img class="logo-web" style="height: 30px; object-fit: cover;background-color: transparent" :src="require('../assets/' + logo)">
+                <v-img class="logo-web" style="height: 48px; object-fit: cover;background-color:transparent;" :src="require('../assets/' + logo)">
                 </v-img>
               </div>
             </v-list-item-content>
@@ -42,9 +42,11 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title>
-                  {{ item.title }}
-                </v-list-item-title>
+                <router-link :to="item.to" >
+                  <v-list-item-title>
+                    {{ item.title }}
+                  </v-list-item-title>
+                </router-link>
               </v-list-item-content>
             </v-list-item>
             <v-card class="rounded-pill" color="#7200a1" style="padding-bottom: 15px;">

@@ -9,12 +9,12 @@ export default {
             { title: "Theo Dõi", icon: "mdi-bell",to:'/' },
           ],
           itemBelowSideBars: [
-            { title: "Nhạc Mới", icon: "mdi-new-box" },
-            { title: "Thể Loại", icon: "mdi-shape" },
-            { title: "Top 100", icon: "mdi-star" },
-            { title: "MV", icon: "mdi-shopping-music" },
+            { title: "Nhạc Mới", icon: "mdi-new-box", to:'/new-songs'},
+            { title: "Thể Loại", icon: "mdi-shape", to:'/'},
+            { title: "Top 100", icon: "mdi-star", to:'/'},
+            { title: "MV", icon: "mdi-shopping-music", to:'/'},
           ],
-          logo:'logo-coc-mountain.png',
+          logo:'logo-mountain.png',
     }),
     getters: {
         itemSideBars : state => state.itemSideBars,

@@ -28,12 +28,19 @@
                   style="height: 173px; width: 173px; margin: 0px"
                 >
                   <v-scale-transition>
+                  <v-progress-circular
+                    rotate="270"
+                    value="35"
+                    size="173"
+                    width="8"
+                    style="background-color: #170f23;"
+                  >
                     <v-img
                       :src="radio.img"
                       style="
                         object-fit: cover;
-                        height: 173px;
-                        width: 173px;
+                        height: 165px;
+                        width: 165px;
                         border-radius: 50%;
                         position: relative;
                       "
@@ -73,6 +80,7 @@
                         </v-btn>
                       </div>
                     </v-img>
+                  </v-progress-circular> 
                   </v-scale-transition>
                   <p class="live">LIVE</p>
                 </v-row>

@@ -190,7 +190,11 @@ export default {
 
             commit('ended', aud.ended)
             aud.onloadedmetadata = () => {
+                if(Math.floor(aud.duration % 60) < 10){
+                    commit('duration', Math.floor(aud.duration / 60) + ':0' + Math.floor(aud.duration % 60))
+                }else{
                 commit('duration', Math.floor(aud.duration / 60) + ':' + Math.floor(aud.duration % 60))
+                }
                 commit('timeEnd', Math.floor(aud.duration))
             }
             commit('updateLiveSong', getters.songs[0])
