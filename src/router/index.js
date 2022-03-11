@@ -5,6 +5,8 @@ import MusicChart from '../components/musicchart/MusicChart'
 import Radio from '../components/radio/Radio'
 import Album from '../components/album/Album'
 import NewSongs from '../components/newsongs/NewSongs'
+import Login from '../components/Login.vue'
+import Register from '../components/Register.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +37,21 @@ export const routes = [
         path: '/new-songs',
         name: 'newsongs',
         component: NewSongs
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
+    },
+    {
+        path: '/:catchAll(.*)*',
+        name: "PageNotFound",
+        component: Main,
     },
 ]
 

@@ -13,5 +13,30 @@ export const getters = {
     },
     loadingAlbum(state){
         return state.loadingAlbum
+    },
+    itemSideBars(state){
+        return state.itemSideBars
+    },
+    itemBelowSideBars(state){
+        return state.itemBelowSideBars
+    },
+    right(state){
+        return state.right
+    },
+    nameCom(state){
+        return state.nameCom
+    },
+    showSidebarLeft(state){
+        return state.showSidebarLeft
+    },
+    showMenu(state){
+        return state.showMenu
+    },
+    showFixedPlay(state){
+        return state.showFixedPlay
+    },
+    user(state){
+        return state.user
     }
+    
 }

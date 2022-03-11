@@ -23,16 +23,38 @@ import Album from "./modules/Album";
 import SidebarRight from "./modules/SidebarRight";
 import WeeklyRank from "./modules/WeeklyRank";
 import NewSongs from "./modules/NewSongs";
+import Login from "./modules/Login";
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
         play: true,
-        bgImgGlobal : '',
+        bgImgGlobal: '',
         srcPlay: null,
         navRight: false,
-        loadingAlbum: false
+        loadingAlbum: false,
+        itemSideBars: [
+            { title: "Cá Nhân", icon: "mdi-view-dashboard" },
+            { title: "Khám Phá", icon: "mdi-image" },
+            { title: "#musicchart", icon: "mdi-help-box" },
+            { title: "#Radio", icon: "mdi-help-box" },
+            { title: "Theo Dõi", icon: "mdi-help-box" },
+        ],
+        itemBelowSideBars: [
+            { title: "Cá Nhân", icon: "mdi-view-dashboard" },
+            { title: "Khám Phá", icon: "mdi-image" },
+            { title: "#zingchart", icon: "mdi-help-box" },
+            { title: "#Radio", icon: "mdi-help-box" },
+            { title: "Theo Dõi", icon: "mdi-help-box" },
+            { title: "Theo Dõi", icon: "mdi-help-box" },
+        ],
+        right: null,
+        nameCom: "SidebarRight",
+        showSidebarLeft: true,
+        showMenu: true,
+        showFixedPlay: true,
+        user: {}
     },
     getters,
     mutations,
@@ -40,21 +62,22 @@ export const store = new Vuex.Store({
     modules: {
         fixedplay: FixedPlay,
         menu: Menu,
-        sliderTop : SliderTop,
-        justNow : JustNow,
+        sliderTop: SliderTop,
+        justNow: JustNow,
         selectedToday: SelectedToday,
-        xonerConer : XonerConer,
+        xonerConer: XonerConer,
         radio: Radio,
-        newSongEachDay : NewSongEachDay,
+        newSongEachDay: NewSongEachDay,
         chart: Chart,
-        lineChart : LineChart,
-        musicChart : MusicChart,
+        lineChart: LineChart,
+        musicChart: MusicChart,
         sideBar: Sidebar,
         schedule: Schedule,
-        album : Album,
+        album: Album,
         sidebarRight: SidebarRight,
         weeklyRank: WeeklyRank,
-        newSongs: NewSongs
+        newSongs: NewSongs,
+        login: Login
 
     }
 })

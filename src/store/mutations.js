@@ -13,5 +13,17 @@ export const mutations = {
     },
     updateLoadingAlbum(state, payload){
         state.loadingAlbum = payload
+    },
+    updateShowSidebarLeft(state, payload){
+        state.showSidebarLeft = payload
+    },
+    updateShowMenu(state, payload){
+        state.showMenu = payload
+    },
+    updateShowFixedPlay(state, payload){
+        state.showFixedPlay = payload
+    },
+    updateUser(state , payload){
+        state.user = payload
     }
 }

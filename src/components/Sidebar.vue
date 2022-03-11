@@ -51,7 +51,7 @@
             </v-list-item>
             <v-card class="rounded-pill" color="#7200a1" style="padding-bottom: 15px;">
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Đăng nhập để khám phá playlist riêng của bạn</v-card-text>
-              <v-btn plain outlined rounded color="white" class="d-flex justify-center" style="margin: 0px auto;" >ĐĂNG NHẬP</v-btn>
+              <v-btn plain outlined rounded color="white" class="d-flex justify-center"  style="margin: 0px auto;" ><router-link style="color:white" to="/login">ĐĂNG NHẬP</router-link></v-btn>
             </v-card>
             <v-card class="rounded-pill" style="margin-top: 10px;padding-bottom: 15px;background-image: linear-gradient(117deg,#5a4be7,#c86dd7 102%);">
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Nghe nhạc không quảng cáo cùng kho nhạc VIP</v-card-text>
@@ -59,7 +59,7 @@
             </v-card>
           </v-list>
         </v-row>
-        <v-row style="margin-top: 25px;">
+        <v-row style="margin-top:0px;">
           <!-- Tao playlist moi -->
           <v-card color="#231b2e"  width="100%">
             <v-btn plain color="white" width="100%" style="padding: 0px">
