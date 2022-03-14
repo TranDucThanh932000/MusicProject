@@ -85,7 +85,7 @@ export default {
             email: '',
             rules: [
                 value => !!value || 'Chưa nhập ký tự',
-                value => (value && value.length >= 8) || 'Ít nhất 8 ký tự',
+                value => (value && value.length >= 6) || 'Ít nhất 6 ký tự',
             ],
             emailRules: [
                 v => !!v || 'Chưa nhập ký tự',
@@ -113,7 +113,7 @@ export default {
         },
         register(){
             if(this.$refs.form.validate()){
-                if(this.password !== this.repassword){
+                if(this.password === this.repassword){
                     axios.post('http://127.0.0.1:8000/api/v1/user/createUser',{
                         fullname: this.fullname,
                         username: this.username,

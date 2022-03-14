@@ -60,7 +60,7 @@ export default {
             password: '',
             rules: [
                 value => !!value || 'Chưa nhập ký tự',
-                value => (value && value.length >= 8) || 'Ít nhất 8 ký tự',
+                value => (value && value.length >= 6) || 'Ít nhất 6 ký tự',
             ],
             type: 'password',
             message: ''
