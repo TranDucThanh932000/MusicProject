@@ -1,4 +1,4 @@
-# clone-zing-mp3
+# Music project
 
 ## Project setup
 ```
