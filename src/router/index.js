@@ -7,6 +7,7 @@ import Album from '../components/album/Album'
 import NewSongs from '../components/newsongs/NewSongs'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import PublicChat from '../components/chat/PublicChat'
 
 Vue.use(VueRouter)
 
@@ -49,10 +50,16 @@ export const routes = [
         component: Register
     },
     {
+        path: '/public-chat',
+        name: "public-chat",
+        component: PublicChat,
+    },
+    {
         path: '/:catchAll(.*)*',
         name: "PageNotFound",
         component: Main,
     },
+    
 ]
 
 const router = new VueRouter({

@@ -114,7 +114,7 @@ export default {
         register(){
             if(this.$refs.form.validate()){
                 if(this.password === this.repassword){
-                    axios.post('http://127.0.0.1:8000/api/v1/user/createUser',{
+                    axios.post('/user/createUser',{
                         fullname: this.fullname,
                         username: this.username,
                         email: this.email,

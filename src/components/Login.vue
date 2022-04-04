@@ -87,7 +87,7 @@ export default {
         },
         login(){
             if(this.$refs.form.validate()){
-                axios.post('http://127.0.0.1:8000/api/v1/user/login',{
+                axios.post('/user/login',{
                     username : this.username,
                     password: this.password
                 })

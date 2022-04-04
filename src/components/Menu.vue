@@ -254,7 +254,7 @@ export default {
           formData.append("avatar", this.image);
         }
         axios
-          .post("http://127.0.0.1:8000/api/v1/user/update-user", formData, {
+          .post("/user/update-user", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
