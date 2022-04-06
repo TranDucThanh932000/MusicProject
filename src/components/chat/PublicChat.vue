@@ -134,6 +134,7 @@ export default {
       typingUserId: null,
       deleteMessage: false,
       roomName: "Tâm sự tuổi hồng",
+      room: {}
     };
   },
   components: {
@@ -146,12 +147,14 @@ export default {
       }
       axios.post("/public-chat/messages", {
         message: this.message,
+        room_id: this.$route.params.id
       });
       this.message = "";
     },
     fetchMessage() {
-      axios.get("/public-chat/messages", this.message).then((response) => {
-        this.allMessages = response.data.message;
+      axios.get("/public-chat/messages/" + this.$route.params.id)
+      .then((response) => {
+        this.allMessages = response.data.messages;
         setTimeout(this.scrollToEnd, 0);
       });
     },

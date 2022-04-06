@@ -21,14 +21,14 @@
         </div>
       </transition>
     </v-row>
-    <fixed-play v-if="showFixedPlay"></fixed-play>
+    <!-- <fixed-play v-if="showFixedPlay"></fixed-play> -->
   </v-app>
 </template>
 
 <script>
 import Sidebar from "./components/Sidebar.vue";
 import SidebarRight from "./components/SidebarRight.vue";
-import FixedPlay from "./components/FixedPlay.vue";
+// import FixedPlay from "./components/FixedPlay.vue";
 import Menu from "./components/Menu.vue";
 import { mapGetters } from "vuex";
 import axios from "axios";
@@ -38,7 +38,7 @@ export default {
     Sidebar,
     SidebarRight,
     Menu,
-    FixedPlay,
+    // FixedPlay,
   },
   computed: {
     ...mapGetters(["navRight","itemSideBars","itemBelowSideBars","right","nameCom","showSidebarLeft","showMenu","showFixedPlay","user"]),

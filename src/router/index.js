@@ -50,9 +50,9 @@ export const routes = [
         component: Register
     },
     {
-        path: '/public-chat',
+        path: '/public-chat/:id',
         name: "public-chat",
-        component: PublicChat,
+        component: PublicChat
     },
     {
         path: '/:catchAll(.*)*',
