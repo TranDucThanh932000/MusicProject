@@ -29,9 +29,9 @@ export const actions = {
         commit('updateUser', payload)
     },
     getUser({commit}){
-        axios.get("http://127.0.0.1:8000/api/v1/user/current")
+        axios.get("/user/current")
         .then( res => {
-            commit("updateUser", res.data)
+            commit("updateUser", res.data.user)
         })
     }
 }

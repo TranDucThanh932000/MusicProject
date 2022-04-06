@@ -21,14 +21,14 @@
         </div>
       </transition>
     </v-row>
-    <!-- <fixed-play v-if="showFixedPlay"></fixed-play> -->
+    <fixed-play v-if="showFixedPlay"></fixed-play>
   </v-app>
 </template>
 
 <script>
 import Sidebar from "./components/Sidebar.vue";
 import SidebarRight from "./components/SidebarRight.vue";
-// import FixedPlay from "./components/FixedPlay.vue";
+import FixedPlay from "./components/FixedPlay.vue";
 import Menu from "./components/Menu.vue";
 import { mapGetters } from "vuex";
 import axios from "axios";
@@ -38,7 +38,7 @@ export default {
     Sidebar,
     SidebarRight,
     Menu,
-    // FixedPlay,
+    FixedPlay,
   },
   computed: {
     ...mapGetters(["navRight","itemSideBars","itemBelowSideBars","right","nameCom","showSidebarLeft","showMenu","showFixedPlay","user"]),
@@ -50,9 +50,9 @@ export default {
   },
   created() {
     axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
-    axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("music_token")
     let songWhenCreate = []
     if(localStorage.getItem("music_token")){
+      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("music_token")
       this.$store.dispatch("getUser", {root: true})
       console.log('call api favorite playlist')
       songWhenCreate = [
