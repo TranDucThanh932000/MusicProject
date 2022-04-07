@@ -1,7 +1,7 @@
 <template>
   <div class="header-box-chat">
     <v-subheader style="border-bottom: 2px solid black">
-      <h2 style="color: white">{{ roomName }}</h2>
+      <h2 style="color: white">{{ room.name }}</h2>
       <v-divider></v-divider>
       <h3 style="color: white" v-if="userId">{{ numberOfUser }} thành viên</h3>
       <v-icon v-if="userId" color="green">mdi-circle</v-icon>
@@ -75,7 +75,7 @@
                 </v-layout>
               </v-list-item>
               <v-list-item v-if="typingUserId !== null">
-                {{ typingUserId }} đang nhập...
+                {{ typingFullname }} đang nhập...
               </v-list-item>
             </v-list>
           </v-card>
@@ -128,12 +128,12 @@ export default {
     return {
       message: null,
       allMessages: [],
-      username: "",
+      fullname: null,
       userId: null,
       numberOfUser: 0,
       typingUserId: null,
+      typingFullname: null,
       deleteMessage: false,
-      roomName: "Tâm sự tuổi hồng",
       room: {}
     };
   },
@@ -160,7 +160,8 @@ export default {
     },
     getUserCurrent() {
       axios.get("/user/current").then((response) => {
-        this.userId = response.data.user.id;
+        this.userId = response.data.user.id
+        this.fullname = response.data.user.fullname
       });
     },
     scrollToEnd() {
@@ -168,8 +169,9 @@ export default {
       chatbox.scrollTop = chatbox.scrollHeight;
     },
     onTyping() {
-      this.$echo.private("lchat").whisper("typing", {
+      this.$echo.private("chat-" + this.$route.params.id).whisper("typing", {
         user: this.userId,
+        fullname: this.fullname
       });
     },
     onInputEmoji(e) {
@@ -187,7 +189,7 @@ export default {
         await this.getUserCurrent()
         await this.fetchMessage()
         this.$echo
-          .join("join-chat")
+          .join("chat-" + this.$route.params.id)
           .here((users) => {
             this.numberOfUser = users.length;
           })
@@ -224,13 +226,14 @@ export default {
     userEvent(){
       if(localStorage.getItem('music_token')){
         this.$echo
-          .private("lchat")
+          .private("chat-" + this.$route.params.id)
           .listenForWhisper("typing", (e) => {
             if (this.deleteMessage) {
               this.typingUserId = null;
               this.deleteMessage = false;
             } else {
               this.typingUserId = e.user;
+              this.typingFullname = e.fullname
             }
           })
           .listenForWhisper("untyping", (e) => {
@@ -246,10 +249,22 @@ export default {
             this.deleteMessage = false;
           });
       }
+    },
+    getRoomChat(){
+      axios.get("/public-chat/room-chat/" + this.$route.params.id)
+      .then((response) => {
+        if(response.data.room === null){
+          //xử lý lỗi khi không tồn tại phòng này
+          this.$router.push('/')
+        }else{
+          this.room = response.data.room
+          this.firstLoad()
+        }
+      })
     }
   },
   created() {
-    this.firstLoad()
+    this.getRoomChat()
   },
   mounted() {
     this.userEvent()
@@ -257,7 +272,7 @@ export default {
   watch: {
     message() {
       if (this.message === "") {
-        this.$echo.private("lchat").whisper("untyping", {
+        this.$echo.private("chat-" + this.$route.params.id).whisper("untyping", {
           user: null,
         });
       }
