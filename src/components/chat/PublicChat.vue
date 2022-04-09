@@ -82,8 +82,8 @@
         </v-flex>
       </v-layout>
     </div>
-    <div class="d-flex py-2" style="border-top: 2px black solid;justify-content: center;height: 50vh;align-items:center;" v-else>
-      <v-btn to="/login" color="primary">Đăng nhập để chat cùng mọi người nàoooo</v-btn>
+    <div class="d-flex py-2" style="border-top: 2px black solid;justify-content: center;height: 63.8vh;align-items:center;" v-else>
+      <v-btn to="/login" :loading="loading" color="primary">Đăng nhập để chat cùng mọi người nàoooo</v-btn>
     </div>
     <div style="border-top: 2px black solid" v-if="userId">
       <v-row class="txt-message">
@@ -93,6 +93,7 @@
           v-model="message"
           label="Nhập tin nhắn"
           single-line
+          color="white"
           @keyup="onTyping"
           @keyup.enter="sendMessage"
         >
@@ -100,7 +101,7 @@
         <v-menu bottom>
           <template v-slot:activator="{ on, attrs }">
             <v-btn v-bind="attrs" v-on="on" text style="margin: auto 0px">
-              <v-icon>mdi-emoticon-excited-outline</v-icon>
+              <v-icon color="white">mdi-emoticon-excited-outline</v-icon>
             </v-btn>
           </template>
           <picker set="facebook" title="Chọn biểu cảm" @select="onInputEmoji">
@@ -134,7 +135,8 @@ export default {
       typingUserId: null,
       typingFullname: null,
       deleteMessage: false,
-      room: {}
+      room: {},
+      loading: true
     };
   },
   components: {
@@ -156,6 +158,7 @@ export default {
       .then((response) => {
         this.allMessages = response.data.messages;
         setTimeout(this.scrollToEnd, 0);
+        this.loading = false
       });
     },
     getUserCurrent() {
@@ -221,7 +224,10 @@ export default {
             };
             this.allMessages.unshift(defaultMessage);
           })
+      }else{
+        this.loading = false
       }
+      
     },
     userEvent(){
       if(localStorage.getItem('music_token')){

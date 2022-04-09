@@ -8,6 +8,7 @@ import NewSongs from '../components/newsongs/NewSongs'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import PublicChat from '../components/chat/PublicChat'
+import CreateSong from '../components/admin/song/CreateSong'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,11 @@ export const routes = [
         path: '/public-chat/:id',
         name: "public-chat",
         component: PublicChat
+    },
+    {
+        path: '/admin/song/create',
+        name: "create-song",
+        component: CreateSong
     },
     {
         path: '/:catchAll(.*)*',
