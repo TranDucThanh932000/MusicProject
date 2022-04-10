@@ -49,6 +49,57 @@
         </v-col>
 
         <v-col sm="12">
+            <v-menu offset-y>
+                <template v-slot:activator="{attrs, on}">
+                    <v-text-field label="Chọn thể loại nhạc" v-bind="attrs" v-on="on" v-model="nameGenreChoose" readonly :rules="selectRules"></v-text-field>
+                </template>
+                <v-list-item-group
+                    style="background-color: #231b2e;height: 200px;"
+                    class="overflow-y-auto"
+                    multiple
+                    v-model="choosedGenres"
+                >
+                    <v-list-item
+                    v-for="(genre, i) in genres"
+                    :key="i"
+                    >
+                    <v-list-item-content>
+                        <v-list-item-title v-text="genre.name"></v-list-item-title>
+                    </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-menu>
+        </v-col>
+
+        <v-col sm="12">
+            <v-menu offset-y>
+                <template v-slot:activator="{attrs, on}">
+                    <v-text-field label="Chọn album" v-bind="attrs" v-on="on" v-model="nameAlbumChoose" readonly :rules="selectRules"></v-text-field>
+                </template>
+                <v-list-item-group
+                    style="background-color: #231b2e;height: 200px;"
+                    class="overflow-y-auto"
+                    multiple
+                    v-model="choosedAlbums"
+                >
+                    <v-list-item>
+                      <v-list-item-content @click="noAlbum()">
+                        <v-list-item-title>Không thuộc Album nào</v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item
+                    v-for="(album, i) in albums"
+                    :key="i"
+                    >
+                    <v-list-item-content @click="hasAlbum()">
+                        <v-list-item-title v-text="album.name"></v-list-item-title>
+                    </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-menu>
+        </v-col>
+
+        <v-col sm="12">
           <v-text-field
             v-model="name"
             label="Tên bài hát"
@@ -153,17 +204,29 @@ import axios from 'axios'
         choosedSingers: [],
         choosedComposers: [],
         objectSingers : [],
-        objectComposers : []
+        objectComposers : [],
+        objectGenres: [],
+        nameGenreChoose: null,
+        choosedGenres: [],
+        genres: null,
+        objectAlbums: [],
+        nameAlbumChoose: null,
+        choosedAlbums: [],
+        albums: null
       }
     },
     created(){
         this.getAllSinger()
         this.getAllComposer()
+        this.getAllGenre()
+        this.getAllAlbum()
     },
     methods:{
         createSong(){
             if(this.$refs.form_create_song.validate()){
                 axios.post('/song/store',{
+                    albums: this.objectAlbums,
+                    genres: this.objectGenres,
                     singers: this.objectSingers,
                     composers: this.objectComposers,
                     name: this.name,
@@ -176,7 +239,25 @@ import axios from 'axios'
                 .then((response) => {
                     if(response.data.status === 'success'){
                         this.$refs.form_create_song.reset()
+                        this.objectAlbums = []
+                        this.nameAlbumChoose = null
+                        this.choosedAlbums = []
+                        this.choosedSingers = []
+                        this.choosedComposers = []
+                        this.objectSingers = []
+                        this.objectComposers = []
+                        this.objectGenres = []
+                        this.nameGenreChoose = null
+                        this.choosedGenres = []
                         this.showUpdated = true
+                        this.nameComposerChoose = null
+                        this.nameSingerChoose = null
+                        this.name = null
+                        this.lyrics = null
+                        this.releaseDate = null
+                        this.src = null
+                        this.image = null
+                        this.timeDuration = null
                         setTimeout(() => {
                             this.showUpdated = false
                         }, 2000)
@@ -206,6 +287,36 @@ import axios from 'axios'
             .catch(() => {
                 console.log('fail')
             })
+        },
+        getAllGenre(){
+            axios.get('/genre/get-all-genre')
+            .then( (response) => {
+                this.genres = response.data.genres
+            })
+            .catch(() => {
+                console.log('fail')
+            })
+        },
+        getAllAlbum(){
+            axios.get('/album/get-all-album')
+            .then( (response) => {
+                this.albums = response.data.albums
+            })
+            .catch(() => {
+                console.log('fail')
+            })
+        },
+        noAlbum(){
+          this.nameAlbumChoose = ''
+          this.objectAlbums = []
+          this.choosedAlbums = []
+        },
+        hasAlbum(){
+          if(this.choosedAlbums.includes(0)){
+            this.choosedAlbums = this.choosedAlbums.filter( (album) =>{
+              return album !== 0
+            })
+          }
         }
     },
     watch:{
@@ -224,6 +335,26 @@ import axios from 'axios'
                 this.nameComposerChoose += this.composers[this.choosedComposers[i]].nickname + ', '
                 this.objectComposers.push(this.composers[this.choosedComposers[i]].id)
             }
+        },
+        choosedGenres(){
+            this.nameGenreChoose = ''
+            this.objectGenres = []
+            for(let i = 0; i < this.choosedGenres.length; i++){
+                this.nameGenreChoose += this.genres[this.choosedGenres[i]].name + ', '
+                this.objectGenres.push(this.genres[this.choosedGenres[i]].id)
+            }
+        },
+        choosedAlbums(){
+            this.nameAlbumChoose = ''
+            this.objectAlbums = []
+            if(!this.choosedAlbums.includes(0)){
+              for(let i = 0; i < this.choosedAlbums.length; i++){
+                  this.nameAlbumChoose += this.albums[this.choosedAlbums[i] - 1].name + ', '
+                  this.objectAlbums.push(this.albums[this.choosedAlbums[i] - 1].id)
+              }
+            }else{
+              this.nameAlbumChoose = "Không thuộc Album nào"
+            }  
         }
     }
   }

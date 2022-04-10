@@ -1,7 +1,7 @@
 <template>
-  <v-col style="padding-top: 10px;" md="2" offset-md="0">
+  <v-col md="2" offset-md="0">
     <v-card flat>
-      <v-navigation-drawer permanent fixed style="background-color:#231b2e;padding: 16px 5px 0px 0px">
+      <v-navigation-drawer permanent fixed :expand-on-hover="$route.path.includes('admin')" style="background-color:#231b2e;">
         <v-row class="pl-2">
           <v-list-item>
             <v-list-item-content>
@@ -28,9 +28,9 @@
           </v-list>
         </v-row>
 
-        <v-divider class="pl-2" style="background-color:#FFFAF0;margin: 15px 10px 15px 0px;box-shadow: 0px 3px 5px white;"></v-divider>
+        <v-divider class="pl-2" style="background-color:#FFFAF0;margin: 15px 0px 15px 0px;box-shadow: 0px 3px 5px white;"></v-divider>
 
-        <v-row class="pl-2">
+        <v-row v-if="!$route.path.includes('admin')" class="pl-2">
           <v-list dense nav style="height: 300px; overflow: scroll;" class="customScrollBar">
             <v-list-item
               v-for="item in itemBelowSideBars"
@@ -59,7 +59,7 @@
             </v-card>
           </v-list>
         </v-row>
-        <v-row style="margin-top:0px;">
+        <v-row v-if="!$route.path.includes('admin')" style="margin-top:0px;">
           <!-- Tao playlist moi -->
           <v-card color="#231b2e"  width="100%">
             <v-btn plain color="white" width="100%" style="padding: 0px">

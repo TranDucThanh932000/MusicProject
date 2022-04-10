@@ -20,5 +20,21 @@ export default {
         itemSideBars : state => state.itemSideBars,
         itemBelowSideBars : state => state.itemBelowSideBars,
         logo : state => state.logo
+    },
+    actions: {
+      updateItemSideBars({commit}, payload){
+        commit('updateItemSideBars', payload)
+      },
+      updateItemBelowSideBars({commit}, payload){
+        commit('updateItemBelowSideBars', payload)
+      },
+    },
+    mutations: {
+      updateItemSideBars(state, payload) {
+        state.itemSideBars = payload
+      },
+      updateItemBelowSideBars(state, payload) {
+        state.itemBelowSideBars = payload
+      },
     }
 }
