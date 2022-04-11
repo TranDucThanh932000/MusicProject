@@ -2,6 +2,10 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
+    :items-per-page="10"
+    :footer-props="{
+      'items-per-page-text': 'Số dòng mỗi trang:',
+    }"
     class="elevation-1"
     style="background-color: #170f23"
   >
@@ -10,7 +14,7 @@
         flat
         color="success"
       >
-        <v-toolbar-title>Danh sách bài hát</v-toolbar-title>
+        <v-toolbar-title>Danh sách</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -28,97 +32,15 @@
               class="mb-2"
               v-bind="attrs"
               v-on="on"
-              to="/admin/song/create"
+              :to="'/admin/'+nameRouter+'/create'"
             >
-              Thêm bài hát
+              Thêm mới
             </v-btn>
           </template>
-          <v-card style="z-index: 9999999999">
-            <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
-            </v-card-title>
-
-            <v-card-text>
-              <v-container id="input-edit-form">
-                <v-row>
-                  <v-col
-                    sm="12"
-                  >
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Tên bài hát"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    sm="12"
-                  >
-                    <v-textarea
-                      v-model="editedItem.lyrics"
-                      label="Lời bài hát"
-                    ></v-textarea>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.timeDuration"
-                      label="Thời lượng"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.image"
-                      label="Ảnh"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.src"
-                      label="Link source"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col>
-                    <v-text-field
-                      v-model="editedItem.releaseDate"
-                      label="Ngày ra mắt"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="close"
-              >
-                Cancel
-              </v-btn>
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="save"
-              >
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">Bạn đã chắc chắn xóa bài hát này chưa?</v-card-title>
+            <v-card-title class="text-h5">Bạn đã chắc chắn xóa chưa?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete">Hủy bỏ</v-btn>
@@ -153,47 +75,25 @@
   export default {
     props:['desserts', 'headers'],
     data: () => ({
-      dialog: false,
       dialogDelete: false,
       editedIndex: -1,
-      editedItem: {
-        name: '',
-        lyrics: '',
-        timeDuration: '',
-        image: '',
-        src: '',
-        releaseDate: ''
-      },
-      defaultItem: {
-        name: '',
-        lyrics: '',
-        timeDuration: '',
-        image: '',
-        src: '',
-        releaseDate: ''
-      },
+      dialog: false,
+      nameRouter : null
     }),
 
-    computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? 'Thêm bài hát mới' : 'Chỉnh sửa bài hát'
-      },
-    },
-
     watch: {
-      dialog (val) {
-        val || this.close()
-      },
       dialogDelete (val) {
         val || this.closeDelete()
       },
     },
+    created(){
+      var split = this.$route.path.split('/')
+      this.nameRouter = split[split.length - 1]
+    },
 
     methods: {
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
+          this.$router.push('/admin/'+ this.nameRouter +'/edit/' + item.id)
       },
 
       deleteItem (item) {
@@ -205,14 +105,6 @@
       deleteItemConfirm () {
         this.desserts.splice(this.editedIndex, 1)
         this.closeDelete()
-      },
-
-      close () {
-        this.dialog = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
       },
 
       closeDelete () {

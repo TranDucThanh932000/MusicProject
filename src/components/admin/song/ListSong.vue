@@ -1,5 +1,11 @@
 <template>
-    <data-table :desserts="songs" :headers="headers"></data-table>
+    <div>
+        <data-table 
+        :desserts="songs" 
+        :headers="headers"
+        >
+        </data-table>
+    </div>
 </template>
 
 <script>
@@ -20,17 +26,11 @@ export default {
                 { text: 'Link source', value: 'src' },
                 { text: 'Ngày ra mắt', value: 'releaseDate'},
                 { text: 'Actions', value: 'actions' },
-            ],
+            ]
         }
     },
     created(){
-        this.getAllSong(),
-        this.$store.dispatch('sideBar/updateItemSideBars', [
-            { title: "Bài hát", icon: "mdi-account-music" ,to:'/admin/song'},
-            { title: "Album", icon: "mdi-album",to:'/admin/album' },
-            { title: "Thể loại", icon: "mdi-format-list-bulleted-type",to:'/admin/genre' },
-            { title: "Ca sỹ", icon: "mdi-account-star",to:'/admin/singer' },
-        ])
+        this.getAllSong()
     },
     methods:{
         getAllSong(){

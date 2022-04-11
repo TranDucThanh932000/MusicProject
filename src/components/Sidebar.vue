@@ -1,7 +1,7 @@
 <template>
   <v-col md="2" offset-md="0">
     <v-card flat>
-      <v-navigation-drawer permanent fixed :expand-on-hover="$route.path.includes('admin')" style="background-color:#231b2e;">
+      <v-navigation-drawer permanent fixed style="background-color:#231b2e;">
         <v-row class="pl-2">
           <v-list-item>
             <v-list-item-content>

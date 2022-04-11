@@ -159,7 +159,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row justify="center" align="center">
+      <v-row v-if="$route.path.includes('create')" justify="center" align="center">
                     <v-alert
                       dense
                       type="success"
@@ -171,6 +171,19 @@
                       Thêm thành công
                     </v-alert>
             <v-btn @click="createSong()">Tạo bài hát</v-btn>
+      </v-row>
+      <v-row v-else justify="center" align="center">
+                    <v-alert
+                      dense
+                      type="success"
+                      width="50%"
+                      style="position: absolute; bottom: 30%; left: 25%;z-index: 1000;"
+                      v-model="showUpdated"
+                      transition="fab-transition"
+                    >
+                      Chỉnh sửa thành công
+                    </v-alert>
+            <v-btn @click="editSong()">Sửa bài hát</v-btn>
       </v-row>
     </v-container>
   </v-form>
@@ -191,7 +204,7 @@ import axios from 'axios'
         txtComposer: null,
         rules: [
             (value) => !!value || "Chưa nhập ký tự",
-            (value) => (value && value.length >= 4) || "Ít nhất 4 ký tự",
+            (value) => (value && value.length >= 2) || "Ít nhất 2 ký tự",
         ],
         selectRules: [
             (value) => !!value || "Chưa chọn người",
@@ -220,6 +233,9 @@ import axios from 'axios'
         this.getAllComposer()
         this.getAllGenre()
         this.getAllAlbum()
+    },
+    mounted(){
+      this.loadInforEdit()
     },
     methods:{
         createSong(){
@@ -315,6 +331,98 @@ import axios from 'axios'
           if(this.choosedAlbums.includes(0)){
             this.choosedAlbums = this.choosedAlbums.filter( (album) =>{
               return album !== 0
+            })
+          }
+        },
+        editSong(){
+          axios.post('/song/store-edit',{
+            songId: this.$route.params.id,
+            albums: this.objectAlbums,
+            genres: this.objectGenres,
+            singers: this.objectSingers,
+            composers: this.objectComposers,
+            name: this.name,
+            lyrics: this.lyrics,
+            src: this.src,
+            image: this.image,
+            timeDuration: this.timeDuration,
+            releaseDate: this.releaseDate
+          })
+          .then( (response) => {
+            if(response.data.status === 'success'){
+              this.showUpdated = true
+              setTimeout(() => {
+                this.showUpdated = false
+              }, 2000)
+            }
+          })
+          .catch( () => {
+            console.log('fail to edit')
+          })
+        },
+        loadInforEdit(){
+          if(this.$route.params.id){
+            axios.get('/song/get-full-infor-song/' + this.$route.params.id)
+            .then( (response) => {
+              var res = response.data.song
+              this.name = res.songFinded.name
+              this.lyrics = res.songFinded.lyrics
+              this.releaseDate = res.songFinded.releaseDate
+              this.src = res.songFinded.src
+              this.image = res.songFinded.image
+              this.timeDuration = res.songFinded.timeDuration
+              for(let i = 0;i < res.singers.length; i++){
+                this.objectSingers.push(res.singers[i].id)
+                for(let j = 0; j < this.singers.length; j++){
+                  if(this.objectSingers[i] === this.singers[j].id){
+                    if(this.nameSingerChoose === null){
+                      this.nameSingerChoose = ''
+                    }
+                    this.nameSingerChoose += this.singers[j].nickname + ', '
+                    this.choosedSingers.push(j)
+                  }
+                }
+              }
+              if(res.albums.length === 0){
+                this.choosedAlbums.push(0)
+              }else{
+                for(let i = 0;i < res.albums.length; i++){
+                  this.objectAlbums.push(res.albums[i].id)
+                  for(let j = 0; j < this.albums.length; j++){
+                    if(this.objectAlbums[i] === this.albums[j].id){
+                      if(this.nameAlbumChoose === null){
+                        this.nameAlbumChoose = ''
+                      }
+                      this.nameAlbumChoose += this.albums[j].name + ', '
+                      this.choosedAlbums.push(j + 1)
+                    }
+                  }
+                }
+              }
+              for(let i = 0;i < res.genres.length; i++){
+                this.objectGenres.push(res.genres[i].id)
+                for(let j = 0; j < this.genres.length; j++){
+                  if(this.objectGenres[i] === this.genres[j].id){
+                    if(this.nameGenreChoose === null){
+                      this.nameGenreChoose = ''
+                    }
+                    this.nameGenreChoose += this.genres[j].name + ', '
+                    this.choosedGenres.push(j)
+                  }
+                }
+              }
+              for(let i = 0;i < res.composers.length; i++){
+                this.objectComposers.push(res.composers[i].id)
+                for(let j = 0; j < this.composers.length; j++){
+                  if(this.objectComposers[i] === this.composers[j].id){
+                    if(this.nameComposerChoose === null){
+                      this.nameComposerChoose = ''
+                    }
+                    this.nameComposerChoose += this.composers[j].nickname + ', '
+                    this.choosedComposers.push(j)
+                  }
+                }
+              }
             })
           }
         }

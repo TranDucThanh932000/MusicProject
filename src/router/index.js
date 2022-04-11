@@ -15,6 +15,7 @@ import DashBoard from '../components/admin/DashBoard'
 import AlbumAdmin from '../components/admin/album/Album'
 import ListAlbum from '../components/admin/album/ListAlbum'
 import CreateAlbum from '../components/admin/album/CreateAlbum'
+import SetupAccount from '../components/admin/setup_account/SetupAccount'
 
 Vue.use(VueRouter)
 
@@ -79,6 +80,11 @@ export const routes = [
                         path: 'create', 
                         name: 'create-song', 
                         component: CreateSong
+                    },
+                    {
+                        path: 'edit/:id', 
+                        name: 'edit-song', 
+                        component: CreateSong
                     }
                 ] 
             },
@@ -95,8 +101,18 @@ export const routes = [
                         path: 'create', 
                         name: 'create-album', 
                         component: CreateAlbum
+                    },
+                    {
+                        path: 'edit/:id', 
+                        name: 'edit-album', 
+                        component: CreateAlbum
                     }
                 ] 
+            },
+            {
+                path: 'setup-account',
+                name: 'setup-account',
+                component: SetupAccount
             }
         ]
     },
