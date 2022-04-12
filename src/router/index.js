@@ -16,6 +16,9 @@ import AlbumAdmin from '../components/admin/album/Album'
 import ListAlbum from '../components/admin/album/ListAlbum'
 import CreateAlbum from '../components/admin/album/CreateAlbum'
 import SetupAccount from '../components/admin/setup_account/SetupAccount'
+import ListGenre from '../components/admin/genre/ListGenre'
+import CreateGenre from '../components/admin/genre/CreateGenre'
+import GenreAdmin from '../components/admin/genre/Genre'
 
 Vue.use(VueRouter)
 
@@ -106,6 +109,27 @@ export const routes = [
                         path: 'edit/:id', 
                         name: 'edit-album', 
                         component: CreateAlbum
+                    }
+                ] 
+            },
+            {
+                path: 'genre', 
+                component: GenreAdmin,
+                children: [
+                    {
+                        path: '', 
+                        name: 'list-genre', 
+                        component: ListGenre
+                    },
+                    {
+                        path: 'create', 
+                        name: 'create-genre', 
+                        component: CreateGenre
+                    },
+                    {
+                        path: 'edit/:id', 
+                        name: 'edit-genre', 
+                        component: CreateGenre
                     }
                 ] 
             },

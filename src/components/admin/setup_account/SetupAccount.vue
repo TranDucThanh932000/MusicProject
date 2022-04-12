@@ -24,30 +24,34 @@
             </v-menu>
         </v-col>
         <v-col sm="12">
-            <v-checkbox
-            v-model="chbSinger"
-            :label="`Ca sỹ`" 
-            class="input-chx"
-            ></v-checkbox>
-            <v-text-field 
-            v-if="chbSinger"
-            v-model="nicknameSinger"
-            label="Nhập biệt danh của ca sỹ"
-            :rules="rules"
-            ></v-text-field>
+            <div v-if="!alreadySinger">
+                <v-checkbox
+                v-model="chbSinger"
+                :label="`Ca sỹ`" 
+                class="input-chx"
+                ></v-checkbox>
+                <v-text-field 
+                v-if="chbSinger"
+                v-model="nicknameSinger"
+                label="Nhập biệt danh của ca sỹ"
+                :rules="rules"
+                ></v-text-field>
+            </div>
         </v-col>
         <v-col sm="12">
-            <v-checkbox
-            v-model="chbComposer"
-            :label="`Người sáng tác`"
-            class="input-chx"
-            ></v-checkbox>
-            <v-text-field 
-            v-if="chbComposer"
-            v-model="nicknameComposer"
-            label="Nhập biệt danh của người sáng tác"
-            :rules="rules"
-            ></v-text-field>
+            <div v-if="!alreadyComposer">
+                <v-checkbox
+                v-model="chbComposer"
+                :label="`Người sáng tác`"
+                class="input-chx"
+                ></v-checkbox>
+                <v-text-field 
+                v-if="chbComposer"
+                v-model="nicknameComposer"
+                label="Nhập biệt danh của người sáng tác"
+                :rules="rules"
+                ></v-text-field>
+            </div>
         </v-col>
       </v-row>
       <v-row justify="center" align="center">
@@ -73,7 +77,6 @@ export default {
     data(){
         return{
             users: [],
-            userIdChoosed: null,
             showUpdated : false,
             nameUserChoose: null,
             choosedUsers: null,
@@ -88,7 +91,9 @@ export default {
             chbComposer: false,
             nicknameComposer: null,
             nicknameSinger: null,
-            objectUsers: null
+            objectUsers: null,
+            alreadySinger: false,
+            alreadyComposer: false
         }
     },
     methods:{
@@ -129,8 +134,26 @@ export default {
     },
     watch:{
         choosedUsers(){
-            this.nameUserChoose = this.users[this.choosedUsers].fullname
-            this.objectUsers = this.users[this.choosedUsers].id
+            this.nicknameComposer = null
+            this.nicknameSinger = null
+            this.chbSinger = false
+            this.chbComposer = false
+            this.alreadySinger = false
+            this.alreadyComposer = false
+            this.objectUsers = null
+            this.nameUserChoose = null
+            if(this.choosedUsers || this.choosedUsers === 0){
+                this.nameUserChoose = this.users[this.choosedUsers].fullname
+                this.objectUsers = this.users[this.choosedUsers].id
+                axios.get('/user/already-singer-composer/' + this.objectUsers)
+                .then( (response) => {
+                    this.alreadySinger = response.data.already.singer 
+                    this.alreadyComposer = response.data.already.composer
+                })
+                .catch( () =>{
+                    console.log('fail to get already singer or composer')
+                })
+            }
         }
     }
 }
