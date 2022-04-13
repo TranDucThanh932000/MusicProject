@@ -19,6 +19,10 @@ import SetupAccount from '../components/admin/setup_account/SetupAccount'
 import ListGenre from '../components/admin/genre/ListGenre'
 import CreateGenre from '../components/admin/genre/CreateGenre'
 import GenreAdmin from '../components/admin/genre/Genre'
+import UserAdmin from '../components/admin/user/UserAdmin'
+import ListSinger from '../components/admin/user/ListSinger'
+import ListUser from '../components/admin/user/ListUser'
+import ListComposer from '../components/admin/user/ListComposer'
 
 Vue.use(VueRouter)
 
@@ -137,7 +141,28 @@ export const routes = [
                 path: 'setup-account',
                 name: 'setup-account',
                 component: SetupAccount
-            }
+            },
+            {
+                path: 'user', 
+                component: UserAdmin,
+                children: [
+                    {
+                        path: '', 
+                        name: 'list-user', 
+                        component: ListUser
+                    },
+                    {
+                        path: 'singer', 
+                        name: 'list-singer', 
+                        component: ListSinger
+                    },
+                    {
+                        path: 'composer', 
+                        name: 'list-composer', 
+                        component: ListComposer
+                    }
+                ] 
+            },
         ]
     },
     {

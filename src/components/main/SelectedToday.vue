@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 import Option from './Option.vue'
 
@@ -31,8 +32,33 @@ export default {
   components:{
     Option
   },
+  created(){
+    this.getFiveSelectedToday()
+  },
   computed:{
     ...mapGetters('selectedToday',['listSelectedToday'])
+  },
+  methods:{
+    getFiveSelectedToday(){
+      axios.get('/play-list/get-top-five-selected-today')
+      .then( (response) => {
+        var res = response.data.playlist
+        var listSelectedToday = []
+        for(let i = 0; i < res.length; i++){
+          var data = {
+            img: 'https://docs.google.com/uc?id=' + res[i].image,
+            category: res[i].name,
+            to: '/playlist/' + res[i].id,
+            detail: 'Trong thơ có nhạc, trong nhạc có thơ'
+          }
+          listSelectedToday[i] = data
+        }
+        this.$store.dispatch('selectedToday/updateListSelectedToday', listSelectedToday)
+      })
+      .catch(() => {
+        console.log('fail to get five selected today')
+      })
+    }
   }
 };
 </script>
