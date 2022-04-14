@@ -19,7 +19,7 @@ Vue.use(VueEcho, {
   cluster: "ap1",
   forceTLS: true,
   encrypted: true,
-  authEndpoint: "http://127.0.0.1:8000/api/v1/broadcasting/auth",
+  authEndpoint: "https://cocmusic.herokuapp.com/api/v1/broadcasting/auth",
   auth: {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('music_token')
