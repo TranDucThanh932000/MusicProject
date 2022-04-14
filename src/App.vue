@@ -49,8 +49,8 @@ export default {
       }
   },
   created() {
-    axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
-    // axios.defaults.baseURL = 'https://backend-coc-music.herokuapp.com/api/v1'
+    // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
+    axios.defaults.baseURL = 'https://backend-coc-music.herokuapp.com/api/v1'
     let songWhenCreate = []
     if(localStorage.getItem("music_token")){
       axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("music_token")
