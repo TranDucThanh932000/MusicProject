@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #170f23;padding-bottom: 15px">
-    <h3 style="padding: 15px 0px">XONE's CORNER</h3>
+    <h3 style="padding: 15px 0px">COC's CORNER</h3>
     <v-row>
       <div style="width: 218.5px;margin: 0px 12px;" v-for="(justNow, index) in listJustNow" :key="index">
         <v-card flat style="background-color: #170f23;" :href="justNow.to" class="opa">
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 import Option from './Option.vue'
 export default {
@@ -32,6 +33,31 @@ export default {
   },
   computed:{
     ...mapGetters('xonerConer',['listJustNow'])
+  },
+  created(){
+    this.getCornerPlaylist()
+  },
+  methods:{
+    getCornerPlaylist(){
+      axios.get('/playlist/get-corner')
+      .then((response) => {
+        var res = response.data.playlistCorner
+        var listJustNow = []
+        for(let i = 0; i < res.length; i++){
+          var data = {
+            img: 'https://docs.google.com/uc?id=' + res[i].image,
+            category: res[i].name,
+            to: '/playlist/' + res[i].id,
+            detail: 'Mãi sau này anh mới biết'
+          }
+          listJustNow[i] = data
+        }
+        this.$store.dispatch('xonerConer/updateListJustNow', listJustNow)
+      })
+      .catch(() => {
+        console.log('fail to get corner')
+      })
+    }
   }
 };
 </script>

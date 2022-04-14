@@ -118,6 +118,9 @@ export default {
         },
         updateSongs({commit}, payload){
             commit('updateSongs', payload)
+        },
+        updateListTop3({commit}, payload){
+            commit('updateListTop3', payload)
         }
     },
     mutations: {
@@ -129,6 +132,9 @@ export default {
         },
         updateSongs(state, payload){
             state.songs = payload
+        },
+        updateListTop3(state, payload){
+            state.listTop3 = payload
         }
     }
 }

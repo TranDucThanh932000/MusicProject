@@ -75,6 +75,7 @@
                             width: 50px;
                             border-radius: 50px;
                           "
+                          :to='radio.link'
                         >
                           <v-icon>mdi-play</v-icon>
                         </v-btn>
@@ -85,8 +86,8 @@
                   <p class="live">LIVE</p>
                 </v-row>
               </v-card>
-              <div style="text-align: center; margin-top: 10px">
-                <h4>{{ radio.channel }}</h4>
+              <div style="text-align: center; margin-top: 10px;">
+                <h4 class="truncate">{{ radio.channel }}</h4>
                 <h5>{{ radio.view }}</h5>
               </div>
             </div>
@@ -99,10 +100,36 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from 'axios'
 export default {
   computed: {
     ...mapGetters("radio", ["radios"]),
   },
+  created(){
+    this.getPublicChatRoom()
+  },
+  methods: {
+    getPublicChatRoom(){
+      axios.get('/public-chat/get-rooms')
+      .then((response) => {
+        var res = response.data.rooms
+        var radio = []
+        for(let i = 0; i < res.length; i++){
+          var data = {
+            img: 'https://docs.google.com/uc?id=' + res[i].background_image,
+            channel: res[i].name,
+            link: '/public-chat/' + res[i].id,
+            view: '1k đang nghe'
+          }
+          radio[i] = data
+        }
+        this.$store.dispatch('radio/updateRadios', radio)
+      })
+      .catch(() => {
+        console.log('fail to get corner')
+      })
+    }
+  }
 };
 </script>
 
@@ -186,6 +213,12 @@ export default {
 }
 .list-radio .mg {
   margin: 0px 15px;
+}
+.truncate {
+  width: 165px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @keyframes zoomIn {
   from {

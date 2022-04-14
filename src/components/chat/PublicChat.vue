@@ -283,6 +283,11 @@ export default {
         });
       }
     },
+    '$route.params.id'(){
+      if(this.$route.params.id){
+        this.getRoomChat()
+      }
+    }
   },
 };
 </script>

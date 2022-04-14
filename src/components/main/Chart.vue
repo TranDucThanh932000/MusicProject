@@ -73,16 +73,43 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 import LineChart from "../musicchart/LineChart.vue";
 
 export default {
   components: { LineChart },
   created(){
+    this.getTop3()
     this.$store.dispatch('updateBgImgGlobal',"url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')")
   },
   methods: {
-    ...mapActions('chart',['checkPause','updateFill','updateSongs'])
+    ...mapActions('chart',['checkPause','updateFill','updateSongs']),
+    getTop3(){
+      axios.get('/song/get-top3')
+      .then((response) => {
+        var res = response.data.top3
+        var top3 = []
+        for(let i = 0; i < res.length; i++){
+          var singers = ''
+          for(let j = 0; j < res[i].singer.length; j++){
+            singers += res[i].singer[j].nickname + ', '
+          }
+          singers = singers.substring(0, singers.length - 2)
+          var data = {
+            img: 'https://docs.google.com/uc?id=' + res[i].image,
+            title: res[i].name,
+            singer: singers,
+            src: 'https://docs.google.com/uc?id=' + res[i].src
+          }
+          top3[i] = data
+        }
+        this.$store.dispatch('chart/updateListTop3', top3)
+      })
+      .catch(() => {
+        console.log('fail to get top 3')
+      })
+    }
   },
   computed:{
     ...mapGetters('chart',['icons','listTop3','gradient','color','fill','bg_img','songs']),

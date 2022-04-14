@@ -1,15 +1,19 @@
 export default {
     namespaced: true,
     state : () => ({
-        listJustNow: [
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Nhạc Mới Mỗi Ngày', to: '...', detail:'Trong thơ có nhạc, trong nhạc có thơ'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...', detail:'Trong thơ có nhạc, trong nhạc có thơ'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...', detail:'Trong thơ có nhạc, trong nhạc có thơ'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...', detail:'Trong thơ có nhạc, trong nhạc có thơ'},
-            { img:'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg', category: 'Top Hits V-Pop', to: '...', detail:'Trong thơ có nhạc, trong nhạc có thơ'},
-        ]
+        listJustNow: []
     }),
     getters: {
         listJustNow : state => state.listJustNow,
+    },
+    actions: {
+        updateListJustNow({commit}, payload){
+            commit('updateListJustNow', payload)
+        }
+    },
+    mutations: {
+        updateListJustNow(state, payload){
+            state.listJustNow = payload
+        }
     }
 }

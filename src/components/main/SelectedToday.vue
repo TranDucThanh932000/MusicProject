@@ -40,7 +40,7 @@ export default {
   },
   methods:{
     getFiveSelectedToday(){
-      axios.get('/play-list/get-top-five-selected-today')
+      axios.get('/playlist/get-top-five-selected-today')
       .then( (response) => {
         var res = response.data.playlist
         var listSelectedToday = []
