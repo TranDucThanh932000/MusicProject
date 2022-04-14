@@ -100,8 +100,8 @@ export default {
               this.description = null
             }
           })
-          .catch( () => {
-            console.log('fail to create album')
+          .catch( (response) => {
+            console.log(response)
           })
         },
         getFullInforGenre(){
