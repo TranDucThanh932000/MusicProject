@@ -76,6 +76,11 @@ export default {
             showUpdated: false
         }
     },
+    created(){
+      if(this.$route.params.id){
+        this.getFullInforGenre()
+      }
+    },
     methods: {
         createGenre(){
           axios.post('/genre/store',{
@@ -131,9 +136,6 @@ export default {
                 })
             }
         }
-    },
-    mounted(){
-        this.getFullInforGenre()
     }
 }
 </script>

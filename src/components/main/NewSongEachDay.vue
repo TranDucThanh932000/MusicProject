@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #170f23;padding-bottom: 15px;margin-bottom: 20px;">
-    <h3 style="padding: 15px 0px">Nhạc Mới Hằng Ngày</h3>
+    <h3 style="padding: 15px 0px">Nhạc Mới Mỗi Ngày</h3>
     <v-row>
       <div style="width: 218.5px;margin: 0px 12px;" v-for="(eachDay, index) in listEachDay" :key="index">
         <v-card flat style="background-color: #170f23;" :href="eachDay.to" class="opa">
