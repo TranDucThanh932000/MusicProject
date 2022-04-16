@@ -43,6 +43,13 @@ export const routes = [
         component: Radio
     },
     {
+        path: '/playlist',
+        name: 'playlist-main',
+        component: Album, children: [
+            {path: ':id', name: 'playlist-details', component: Album}
+        ]
+    },
+    {
         path: '/album',
         name: 'album',
         component: Album, children: [

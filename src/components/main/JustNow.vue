@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 import Option from './Option.vue'
 export default {
@@ -31,6 +32,31 @@ export default {
   },
   computed:{
     ...mapGetters('justNow',['listJustNow'])
+  },
+  created(){
+    if(localStorage.getItem('music_token')){
+      this.getPlaylistJustNow()
+    }
+  },
+  methods:{
+    getPlaylistJustNow(){
+      axios.get('/playlist/justnow')
+      .then((response) => {
+        var res = response.data.playlist
+        var data = []
+        for(let i = 0; i < res.length; i++){
+          var obj = {}
+          obj.img = 'https://docs.google.com/uc?id=' + res[i].image
+          obj.category = res[i].name
+          obj.to = '/playlist/' + res[i].id
+          data.push(obj)
+        }
+        this.$store.dispatch('justNow/updateJustNow', data)
+      })
+      .catch(() => {
+        console.log('fail to get playlist justnow')
+      })
+    }
   }
 };
 </script>

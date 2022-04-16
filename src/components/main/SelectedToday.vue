@@ -3,7 +3,7 @@
     <h3 style="padding: 15px 0px">Lựa Chọn Hôm Nay</h3>
     <v-row>
       <div style="width: 218.5;margin: 0px 12px;" v-for="(selected, index) in listSelectedToday" :key="index">
-        <v-card flat style="background-color: #170f23;" :href="selected.to" class="opa"> 
+        <v-card flat style="background-color: #170f23;" class="opa"> 
           <v-img
             :src="selected.img"
             height="218.5px"
@@ -11,7 +11,7 @@
             style="object-fit: cover;margin : 0px;border-radius: 10px;"
             class="hoverImg"
           ></v-img>
-          <Option/>
+          <Option :to="selected.to"/>
         </v-card>
         <v-card flat style="background-color: #170f23;">
           <v-card-title style="background-color: #170f23;padding: 0px"><h6>{{ selected.category }}</h6></v-card-title>
@@ -48,7 +48,7 @@ export default {
           var data = {
             img: 'https://docs.google.com/uc?id=' + res[i].image,
             category: res[i].name,
-            to: '/playlist/' + res[i].id,
+            to: '/album/' + res[i].id,
             detail: 'Trong thơ có nhạc, trong nhạc có thơ'
           }
           listSelectedToday[i] = data

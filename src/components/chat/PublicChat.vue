@@ -157,7 +157,7 @@ export default {
       axios.get("/public-chat/messages/" + this.$route.params.id)
       .then((response) => {
         this.allMessages = response.data.messages;
-        setTimeout(this.scrollToEnd, 0);
+        setTimeout(this.scrollToEnd, 100);
         this.loading = false
       });
     },

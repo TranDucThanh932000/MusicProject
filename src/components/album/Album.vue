@@ -102,8 +102,12 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 export default {
+    created(){
+        this.getAllSongPlayList()
+    },
     mounted(){
       this.$store.dispatch('album/updateHeight', window.innerHeight)
     },
@@ -114,11 +118,61 @@ export default {
         ...mapActions('album',['checkPause','updateHeight','playingAction']),
         clickPlaying(payload){
             this.$store.dispatch('album/updatePlaying', payload)
+        },
+        getAllSongPlayList(){
+            let id = this.$route.params.id
+            if(this.$route.path.includes('album')){
+                axios.get('/song/get-all-song-album/' + id)
+                .then((response) => {
+                    var res = response.data.songs
+                    var songs = []
+                    for(let i = 0; i < res.length; i++){
+                        var obj = {}
+                        obj.img = 'https://docs.google.com/uc?id=' + res[i].image
+                        obj.title = res[i].name
+                        obj.singer = 'Test singer'
+                        obj.album = 'Test album'
+                        obj.time = res[i].timeDuration
+                        obj.src = 'https://docs.google.com/uc?id=' + res[i].src
+                        songs.push(obj)
+                    }
+                    this.$store.dispatch('album/updateListTop100', songs)
+                })
+                .catch((response) => {
+                    console.log(response)
+                })
+            }else{
+                axios.get('/song/get-all-song-playlist/' + id)
+                .then((response) => {
+                    var res = response.data.songs
+                    var songs = []
+                    for(let i = 0; i < res.length; i++){
+                        var obj = {}
+                        obj.img = 'https://docs.google.com/uc?id=' + res[i].image
+                        obj.title = res[i].name
+                        obj.singer = 'Test singer'
+                        obj.album = 'Test album'
+                        obj.time = res[i].timeDuration
+                        obj.src = 'https://docs.google.com/uc?id=' + res[i].src
+                        songs.push(obj)
+                    }
+                    this.$store.dispatch('album/updateListTop100', songs)
+                })
+                .catch((response) => {
+                    console.log(response)
+                })
+            }
+
         }
     },
     watch: {
         playing(){
             this.$store.dispatch('album/playingAction')
+        },
+        '$route.params.id'(){
+            if(this.$route.params.id){
+                this.getAllSongPlayList()
+            }
         }
     }
 }

@@ -11,5 +11,15 @@ export default {
     }),
     getters: {
         listJustNow : state => state.listJustNow,
+    },
+    actions: {
+        updateJustNow({commit}, payload){
+            commit('updateJustNow', payload)
+        }
+    },
+    mutations: {
+        updateJustNow(state, payload){
+            state.listJustNow = payload
+        }
     }
 }
