@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 import LineChart from "./LineChart.vue";
 import WeeklyRank from "./WeeklyRank.vue";
@@ -84,9 +85,35 @@ export default {
   },
   created(){
     this.$store.dispatch('updateBgImgGlobal', "url('https://vnmedia.vn/file/8a10a0d36ccebc89016ce0c6fa3e1b83/old_image/201809/original/images2228470_le.jpg')")
+    this.getTop100()
   },
   methods: {
     ...mapActions('musicChart', ['checkPause','updateAppearTop100']),
+    getTop100(){
+      axios.get('/song/get-top100')
+      .then( (response) => {
+        var res = response.data.songs
+        var top100 = []
+        for(let i = 0; i < res.length; i++){
+          var singers = ''
+          for(let j = 0; j < res[i].singer.length; j++){
+            singers += res[i].singer[j].nickname + ', '
+          }
+          singers = singers.substring(0, singers.length - 2)
+          var data = {
+            img: 'https://docs.google.com/uc?id=' + res[i].image,
+            title: res[i].name,
+            singer: singers,
+            src: 'https://docs.google.com/uc?id=' + res[i].src
+          }
+          top100[i] = data
+        }
+        this.$store.dispatch('musicChart/updateListTop100', top100)
+      })
+      .catch(() => {
+        console.log('fail to get top 100')
+      })
+    }
   },
   computed: {
     ...mapGetters('musicChart', ['listTop100','color','songs','appear_top100'])

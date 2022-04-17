@@ -6,8 +6,8 @@
       </v-navigation-drawer>
 
       <v-main>
-        <v-container fluid style="height: 100%;">
-          <Menu v-if="showMenu"/>
+        <v-container fluid style="height: 100%">
+          <Menu v-if="showMenu" />
           <keep-alive>
             <router-view />
           </keep-alive>
@@ -16,7 +16,6 @@
 
       <transition name="fade">
         <div v-show="navRight">
-          {{ currentUser }}
           <SidebarRight />
         </div>
       </transition>
@@ -41,21 +40,81 @@ export default {
     FixedPlay,
   },
   computed: {
-    ...mapGetters(["navRight","itemSideBars","itemBelowSideBars","right","nameCom","showSidebarLeft","showMenu","showFixedPlay","user"]),
-      currentUser: {
-        get(){
-          return this.$store.state.user;
-        }
-      }
+    ...mapGetters([
+      "navRight",
+      "itemSideBars",
+      "itemBelowSideBars",
+      "right",
+      "nameCom",
+      "showSidebarLeft",
+      "showMenu",
+      "showFixedPlay",
+      "user",
+    ]),
+    currentUser: {
+      get() {
+        return this.$store.state.user;
+      },
+    },
   },
   created() {
-    // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
-    axios.defaults.baseURL = 'https://backend-coc-music.herokuapp.com/api/v1'
-    let songWhenCreate = []
-    if(localStorage.getItem("music_token")){
-      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("music_token")
-      this.$store.dispatch("getUser", {root: true})
-      console.log('call api favorite playlist')
+    axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1";
+    // axios.defaults.baseURL = 'https://backend-coc-music.herokuapp.com/api/v1'
+    var songWhenCreate = [];
+    if (localStorage.getItem("music_token")) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + localStorage.getItem("music_token");
+      this.$store.dispatch("getUser", { root: true });
+      axios
+        .get("/song/get-songs-playlist-user")
+        .then((response) => {
+          var res = response.data.songs;
+          var songs = [];
+          if (res.length != 0) {
+            for (let i = 0; i < res.length; i++) {
+              var singers = "";
+              for (let j = 0; j < res[i].singer.length; j++) {
+                singers += res[i].singer[j].nickname + ", ";
+              }
+              singers = singers.substring(0, singers.length - 2);
+              var data = {
+                img: "https://docs.google.com/uc?id=" + res[i].image,
+                title: res[i].name,
+                singer: singers,
+                src: "https://docs.google.com/uc?id=" + res[i].src,
+              };
+              songs[i] = data;
+            }
+            songWhenCreate = songs;
+
+            this.$store.dispatch("fixedplay/updateSongs", songWhenCreate, {
+              root: true,
+            });
+            var temp = [];
+            for (let i = 0; i < songWhenCreate.length; i++) {
+              temp.push(songWhenCreate[i]);
+            }
+            this.$store.dispatch("sidebarRight/updateItems", temp, {
+              root: true,
+            });
+
+            //get list played
+            temp = [];
+            temp.push(songWhenCreate[0]);
+            this.$store.dispatch("sidebarRight/updateSongPlayed", temp, {
+              root: true,
+            });
+            this.$store.dispatch("updateShowFixedPlay", true);
+            this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
+          } else {
+            this.$store.dispatch("updateShowFixedPlay", false);
+          }
+        })
+        .catch(() => {
+          console.log("fail to load first playlist");
+        });
+    } else {
+      //Chưa login
       songWhenCreate = [
         {
           img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
@@ -81,120 +140,42 @@ export default {
           time: "03:44",
           src: "https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR",
         },
-        {
-          img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
-          title: "Như anh mơ",
-          singer: "PC",
-          album: "Playah (Album)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a",
-        },
-        {
-          img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
-          title: "24h",
-          singer: "Lyly",
-          album: "Playah (Album)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS",
-        },
-        {
-          img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
-          title: "Ghé qua",
-          singer: "PC",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL",
-        },
       ];
-    }else{
-      console.log('Chua dang nhap')
-      songWhenCreate = [
-        {
-          img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
-          title: "Nếu ngày ấy",
-          singer: "Soobin",
-          album: "Playah (Album)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL",
-        },
-        {
-          img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
-          title: "Thay mọi cô gái yêu anh",
-          singer: "AMEE",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69",
-        },
-        {
-          img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
-          title: "Em bỏ hút thuốc chưa",
-          singer: "Erik",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR",
-        },
-        {
-          img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
-          title: "Như anh mơ",
-          singer: "PC",
-          album: "Playah (Album)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a",
-        },
-        {
-          img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
-          title: "24h",
-          singer: "Lyly",
-          album: "Playah (Album)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS",
-        },
-        {
-          img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
-          title: "Ghé qua",
-          singer: "PC",
-          album: "Chạy Về Khóc Với Anh (Single)",
-          time: "03:44",
-          src: "https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL",
-        },
-      ];
-    }
-    this.$store.dispatch("fixedplay/updateSongs", songWhenCreate, {
-      root: true,
-    });
-
-    var temp = [];
-    for (let i = 0; i < songWhenCreate.length; i++) {
-      temp.push(songWhenCreate[i]);
-    }
-    this.$store.dispatch("sidebarRight/updateItems", temp, { root: true });
-
-    //get list played
-    temp = [];
-    for (let i = 0; i <= 0; i++) {
-      temp.push(songWhenCreate[i]);
-    }
-    this.$store.dispatch("sidebarRight/updateSongPlayed", temp, { root: true });
-  },
-  methods:{
-
-  },
-  watch:{
-    '$route.name': function() {
-      if(this.$route.name === 'login' || this.$route.name === 'register'){
-        this.$store.dispatch('updateShowSidebarLeft', false)
-        this.$store.dispatch('updateShowMenu', false)
-        this.$store.dispatch('updateShowFixedPlay', false)
-      }else{
-        this.$store.dispatch('updateShowSidebarLeft', true)
-        this.$store.dispatch('updateShowMenu', true)
-        this.$store.dispatch('updateShowFixedPlay', true)
+      this.$store.dispatch("fixedplay/updateSongs", songWhenCreate, {
+        root: true,
+      });
+      var temp = [];
+      for (let i = 0; i < songWhenCreate.length; i++) {
+        temp.push(songWhenCreate[i]);
       }
-      if(this.$route.name === 'login' && localStorage.getItem("music_token")){
+      this.$store.dispatch("sidebarRight/updateItems", temp, { root: true });
+
+      //get list played
+      temp = [];
+      temp.push(songWhenCreate[0]);
+      this.$store.dispatch("sidebarRight/updateSongPlayed", temp, {
+        root: true,
+      });
+      this.$store.dispatch("updateShowFixedPlay", true);
+      this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
+    }
+  },
+  watch: {
+    "$route.name": function () {
+      if (this.$route.name === "login" || this.$route.name === "register") {
+        this.$store.dispatch("updateShowSidebarLeft", false);
+        this.$store.dispatch("updateShowMenu", false);
+        this.$store.dispatch("updateShowFixedPlay", false);
+      } else {
+        this.$store.dispatch("updateShowSidebarLeft", true);
+        this.$store.dispatch("updateShowMenu", true);
+        this.$store.dispatch("updateShowFixedPlay", true);
+      }
+      if (this.$route.name === "login" && localStorage.getItem("music_token")) {
         this.$router.push("/");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

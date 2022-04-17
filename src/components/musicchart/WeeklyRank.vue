@@ -128,16 +128,81 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     created(){
         this.$store.dispatch('weeklyRank/updateSongs', new Array(15).fill(false))
+        this.getTop5All()
     },
     computed: {
         ...mapGetters('weeklyRank',['listSong','songs','pause','index_weekly_rank'])
     },
     methods: {
-        ...mapActions('weeklyRank',['updateListSong','updateSongs','checkPause'])
+        ...mapActions('weeklyRank',['updateListSong','updateSongs','checkPause']),
+        getTop5All(){
+          axios.get('/song/get-top5-all-genre')
+          .then( (response) => {
+            var res = response.data.songs.vietnam
+            var top5VN = []
+            for(let i = 0; i < res.length; i++){
+              var singers = ''
+              for(let j = 0; j < res[i].singer.length; j++){
+                singers += res[i].singer[j].nickname + ', '
+              }
+              singers = singers.substring(0, singers.length - 2)
+              var data = {
+                img: 'https://docs.google.com/uc?id=' + res[i].image,
+                title: res[i].name,
+                singer: singers,
+                src: 'https://docs.google.com/uc?id=' + res[i].src
+              }
+              top5VN[i] = data
+            }
+
+            res = response.data.songs.usuk
+            var top5Usuk = []
+            for(let i = 0; i < res.length; i++){
+              singers = ''
+              for(let j = 0; j < res[i].singer.length; j++){
+                singers += res[i].singer[j].nickname + ', '
+              }
+              singers = singers.substring(0, singers.length - 2)
+              data = {
+                img: 'https://docs.google.com/uc?id=' + res[i].image,
+                title: res[i].name,
+                singer: singers,
+                src: 'https://docs.google.com/uc?id=' + res[i].src
+              }
+              top5Usuk[i] = data
+            }
+
+            res = response.data.songs.kpop
+            var top5Kpop = []
+            for(let i = 0; i < res.length; i++){
+              singers = ''
+              for(let j = 0; j < res[i].singer.length; j++){
+                singers += res[i].singer[j].nickname + ', '
+              }
+              singers = singers.substring(0, singers.length - 2)
+              data = {
+                img: 'https://docs.google.com/uc?id=' + res[i].image,
+                title: res[i].name,
+                singer: singers,
+                src: 'https://docs.google.com/uc?id=' + res[i].src
+              }
+              top5Kpop[i] = data
+            }
+            var temp = {}
+            temp.vietnam = top5VN
+            temp.usuk = top5Usuk
+            temp.kpop = top5Kpop
+            this.$store.dispatch('weeklyRank/updateListSong', temp)
+          })
+          .catch(() => {
+            console.log('fail to get top 5 all')
+          })
+        }
     }
 }
 </script>

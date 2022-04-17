@@ -1,6 +1,6 @@
 <template>
-  <div style="background-color: #170f23;padding-bottom: 15px;width: 100%;">
-    <h3 style="padding: 15px 0px">Gần Đây 123</h3>
+  <div style="background-color: #170f23;padding-bottom: 15px;width: 100%;" v-if="isJustNow">
+    <h3 style="padding: 15px 0px">Nghe Gần Đây</h3>
     <v-row>
       <div style="width: 218.5px;margin: 0px 12px;" v-for="(justNow, index) in listJustNow" :key="index">
         <v-card flat style="background-color: #170f23;"  class="opa">
@@ -30,6 +30,11 @@ export default {
   components:{
     Option
   },
+  data(){
+    return{
+      isJustNow: false
+    }
+  },
   computed:{
     ...mapGetters('justNow',['listJustNow'])
   },
@@ -48,10 +53,11 @@ export default {
           var obj = {}
           obj.img = 'https://docs.google.com/uc?id=' + res[i].image
           obj.category = res[i].name
-          obj.to = '/playlist/' + res[i].id
+          obj.to = res[i].link
           data.push(obj)
         }
         this.$store.dispatch('justNow/updateJustNow', data)
+        if(data.length != 0) this.isJustNow = true
       })
       .catch(() => {
         console.log('fail to get playlist justnow')

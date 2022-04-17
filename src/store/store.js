@@ -53,7 +53,7 @@ export const store = new Vuex.Store({
         nameCom: "SidebarRight",
         showSidebarLeft: true,
         showMenu: true,
-        showFixedPlay: true,
+        showFixedPlay: false,
         user: {}
     },
     getters,

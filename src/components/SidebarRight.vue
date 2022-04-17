@@ -6,6 +6,7 @@
       style="z-index:9999999;background-color: #120822;position: fixed;right:0px; overflow: hidden;"
       :height="height+'px'"
       class="customScrollBar"
+      v-if="isTurnOn"
     >
       <template v-slot:prepend>
         <h3 style="padding: 10px 16px;">Danh sách bài hát</h3>
@@ -51,7 +52,7 @@
 import { mapActions, mapGetters } from 'vuex'
   export default {
     computed: {
-      ...mapGetters('sidebarRight',['items','height','songPlayed']),
+      ...mapGetters('sidebarRight',['items','height','songPlayed','isTurnOn']),
       index: {
         get(){
           return this.$store.getters['fixedplay/index_song']

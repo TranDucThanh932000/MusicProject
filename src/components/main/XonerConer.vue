@@ -3,7 +3,7 @@
     <h3 style="padding: 15px 0px">COC's CORNER</h3>
     <v-row>
       <div style="width: 218.5px;margin: 0px 12px;" v-for="(justNow, index) in listJustNow" :key="index">
-        <v-card flat style="background-color: #170f23;" :href="justNow.to" class="opa">
+        <v-card flat style="background-color: #170f23;" class="opa">
           <v-img
             :src="justNow.img"
             height="218.5px"
@@ -11,7 +11,7 @@
             style="object-fit: cover;margin : 0px;border-radius: 10px;"
             class="hoverImg"
           ></v-img>
-          <Option/>
+          <Option :to="justNow.to"/>
         </v-card>
         <v-card flat style="background-color: #170f23;">
           <v-card-title style="background-color: #170f23;padding: 0px"><h6>{{ justNow.category }}</h6></v-card-title>

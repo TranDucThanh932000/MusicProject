@@ -72,15 +72,43 @@
 </template>
 
 <script>
+import axios from 'axios'
 import {mapGetters, mapActions} from 'vuex'
 export default {
     computed: {
         ...mapGetters('newSongs', ['listTop100','color','songs'])
     },
-    methods: {
-        ...mapActions('newSongs', ['checkPause']),
+    created(){
+      this.getNewSongs()
     },
-
+    methods: {
+        ...mapActions('newSongs', ['checkPause','updateListTop100']),
+        getNewSongs(){
+          axios.get('/song/get-top-new-songs')
+          .then( (response) => {
+            var res = response.data.songs
+            var top = []
+            for(let i = 0; i < res.length; i++){
+              var singers = ''
+              for(let j = 0; j < res[i].singer.length; j++){
+                singers += res[i].singer[j].nickname + ', '
+              }
+              singers = singers.substring(0, singers.length - 2)
+              var data = {
+                img: 'https://docs.google.com/uc?id=' + res[i].image,
+                title: res[i].name,
+                singer: singers,
+                src: 'https://docs.google.com/uc?id=' + res[i].src
+              }
+              top[i] = data
+            }
+            this.$store.dispatch('newSongs/updateListTop100', top)
+          })
+          .catch(() => {
+            console.log('fail to load new songs')
+          })
+        }
+    },
 }
 </script>
 

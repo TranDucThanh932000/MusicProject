@@ -3,12 +3,14 @@ export default {
     state: () => ({
         items: [],
         height: 0,
-        songPlayed: []
+        songPlayed: [],
+        isTurnOn: false
     }),
     getters: {
         items: state => state.items,
         height: state => state.height,
         songPlayed: state => state.songPlayed,
+        isTurnOn: state => state.isTurnOn
     },
     actions: {
         updateHeight( {commit}, payload){
@@ -22,6 +24,9 @@ export default {
         },
         firstUpdateSongPlayed({commit}, payload){
             commit('updateSongPlayed', [payload])
+        },
+        updateIsTurnOn({commit}, payload){
+            commit('updateIsTurnOn', payload)
         }
     },
     mutations: {
@@ -33,6 +38,9 @@ export default {
         },
         updateSongPlayed(state, payload){
             state.songPlayed = payload
+        },
+        updateIsTurnOn(state, payload){
+            state.isTurnOn = payload
         }
     }
 }
