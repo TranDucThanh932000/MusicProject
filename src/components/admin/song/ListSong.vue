@@ -3,6 +3,7 @@
         <data-table 
         :desserts="songs" 
         :headers="headers"
+        to="/admin/song/create"
         >
         </data-table>
     </div>

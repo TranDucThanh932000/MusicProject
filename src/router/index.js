@@ -23,6 +23,9 @@ import UserAdmin from '../components/admin/user/UserAdmin'
 import ListSinger from '../components/admin/user/ListSinger'
 import ListUser from '../components/admin/user/ListUser'
 import ListComposer from '../components/admin/user/ListComposer'
+import CreatePlaylist from '../components/playlist/CreatePlaylist'
+import PlaylistHome from '../components/playlist/Playlist'
+import ListPlaylist from '../components/playlist/ListPlaylist'
 
 Vue.use(VueRouter)
 
@@ -44,8 +47,10 @@ export const routes = [
     },
     {
         path: '/playlist',
-        name: 'playlist-main',
-        component: Album, children: [
+        component: PlaylistHome, children: [
+            {path: '', name: 'playlist-list', component: ListPlaylist},
+            {path: 'create', name: 'playlist-create', component: CreatePlaylist},
+            {path: 'edit/:id', name: 'playlist-edit', component: CreatePlaylist},
             {path: ':id', name: 'playlist-details', component: Album}
         ]
     },
@@ -176,8 +181,7 @@ export const routes = [
         path: '/:catchAll(.*)*',
         name: "PageNotFound",
         component: Main,
-    },
-    
+    }
 ]
 
 const router = new VueRouter({

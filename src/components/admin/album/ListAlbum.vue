@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="albums" :headers="headers"></data-table>
+        <data-table :desserts="albums" :headers="headers" to="/admin/album/create"></data-table>
     </div>
 </template>
 

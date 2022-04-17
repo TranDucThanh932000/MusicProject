@@ -1,6 +1,6 @@
 <template>
   <v-app style="background-color: #170f23">
-    <v-row class="pa-4">
+    <v-row class="pa-4" style="background-color: #170f23">
       <v-navigation-drawer app v-if="showSidebarLeft">
         <sidebar />
       </v-navigation-drawer>

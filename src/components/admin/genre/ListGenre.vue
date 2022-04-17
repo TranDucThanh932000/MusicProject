@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="genres" :headers="headers"></data-table>
+        <data-table :desserts="genres" :headers="headers" to="/admin/genre/create"></data-table>
     </div>
 </template>
 

@@ -22,6 +22,7 @@
         ></v-divider>
         <v-spacer></v-spacer>
         <v-dialog
+          v-if="to"
           v-model="dialog"
           max-width="500px"
         >
@@ -32,7 +33,7 @@
               class="mb-2"
               v-bind="attrs"
               v-on="on"
-              :to="'/admin/'+nameRouter+'/create'"
+              :to="to"
             >
               Thêm mới
             </v-btn>
@@ -73,7 +74,7 @@
 
 <script>
   export default {
-    props:['desserts', 'headers'],
+    props:['desserts', 'headers','to'],
     data: () => ({
       dialogDelete: false,
       editedIndex: -1,
@@ -93,7 +94,11 @@
 
     methods: {
       editItem (item) {
-          this.$router.push('/admin/'+ this.nameRouter +'/edit/' + item.id)
+          if(this.$route.path.includes('admin')){
+            this.$router.push('/admin/'+ this.nameRouter +'/edit/' + item.id)
+          }else if(this.$route.path.includes('playlist')){
+            this.$router.push(this.nameRouter +'/edit/' + item.id)
+          }
       },
 
       deleteItem (item) {

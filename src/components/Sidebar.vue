@@ -49,7 +49,7 @@
                 </router-link>
               </v-list-item-content>
             </v-list-item>
-            <v-card class="rounded-pill" color="#7200a1" style="padding-bottom: 15px;">
+            <v-card class="rounded-pill" color="#7200a1" style="padding-bottom: 15px;" v-if="!login">
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Đăng nhập để khám phá playlist riêng của bạn</v-card-text>
               <v-btn plain outlined rounded color="white" class="d-flex justify-center"  style="margin: 0px auto;" ><router-link style="color:white" to="/login">ĐĂNG NHẬP</router-link></v-btn>
             </v-card>
@@ -62,9 +62,9 @@
         <v-row v-if="!$route.path.includes('admin')" style="margin-top:0px;">
           <!-- Tao playlist moi -->
           <v-card color="#231b2e"  width="100%">
-            <v-btn plain color="white" width="100%" style="padding: 0px">
+            <v-btn plain color="white" width="100%" style="padding: 0px" to="/playlist">
               <v-icon>mdi-plus</v-icon>
-              Tạo playlist mới
+              Danh sách playlist
             </v-btn>
           </v-card>
         </v-row>
@@ -76,6 +76,16 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+  data(){
+    return{
+      login : false
+    }
+  },
+  created(){
+    if(localStorage.getItem('music_token')){
+      this.login = true
+    }
+  },
   computed: {
     ...mapGetters('sideBar',['itemSideBars','itemBelowSideBars','logo'])
   }
