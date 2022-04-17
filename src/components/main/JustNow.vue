@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #170f23;padding-bottom: 15px;width: 100%;">
-    <h3 style="padding: 15px 0px">Gần Đây</h3>
+    <h3 style="padding: 15px 0px">Gần Đây 123</h3>
     <v-row>
       <div style="width: 218.5px;margin: 0px 12px;" v-for="(justNow, index) in listJustNow" :key="index">
         <v-card flat style="background-color: #170f23;"  class="opa">
