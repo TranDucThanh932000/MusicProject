@@ -30,8 +30,8 @@
 
         <v-divider class="pl-2" style="background-color:#FFFAF0;margin: 15px 0px 15px 0px;box-shadow: 0px 3px 5px white;"></v-divider>
 
-        <v-row v-if="!$route.path.includes('admin')" class="pl-2">
-          <v-list dense nav style="height: 300px; overflow: scroll;" class="customScrollBar">
+        <v-row class="pl-2">
+          <v-list dense nav style="height: 300px; width: 100%; overflow: scroll;" class="customScrollBar" >
             <v-list-item
               v-for="item in itemBelowSideBars"
               :key="item.title"
@@ -49,11 +49,20 @@
                 </router-link>
               </v-list-item-content>
             </v-list-item>
-            <v-card class="rounded-pill" color="#7200a1" style="padding-bottom: 15px;" v-if="!login">
+            <v-card 
+            class="rounded-pill" 
+            color="#7200a1" 
+            style="padding-bottom: 15px;" 
+            v-if="!login || !$route.path.includes('admin')"
+            >
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Đăng nhập để khám phá playlist riêng của bạn</v-card-text>
               <v-btn plain outlined rounded color="white" class="d-flex justify-center"  style="margin: 0px auto;" ><router-link style="color:white" to="/login">ĐĂNG NHẬP</router-link></v-btn>
             </v-card>
-            <v-card class="rounded-pill" style="margin-top: 10px;padding-bottom: 15px;background-image: linear-gradient(117deg,#5a4be7,#c86dd7 102%);">
+            <v-card 
+            class="rounded-pill" 
+            style="margin-top: 10px;padding-bottom: 15px;background-image: linear-gradient(117deg,#5a4be7,#c86dd7 102%);"
+            v-if="!$route.path.includes('admin')"
+            >
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Nghe nhạc không quảng cáo cùng kho nhạc VIP</v-card-text>
               <v-btn plain outlined rounded color="black" class="d-flex justify-center" style="margin: 0px auto;background-color:#ffdb00;" >NÂNG CẤP VIP</v-btn>
             </v-card>

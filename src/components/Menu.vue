@@ -9,11 +9,8 @@
     "
   >
     <v-col md="2" style="padding-left: 0px">
-      <v-btn plain class="btn-menu">
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-      <v-btn plain class="btn-menu">
-        <v-icon>mdi-arrow-right</v-icon>
+      <v-btn plain @click="closeSidebar()" class="btn-menu">
+        <v-icon color="white">mdi-book-open</v-icon>
       </v-btn>
     </v-col>
     <v-col md="5">
@@ -220,7 +217,8 @@ export default {
       // ],
       loading: false,
       imageChanged: false,
-      showUpdated: false
+      showUpdated: false,
+      showSideBarLeft: true
     };
   },
   methods: {
@@ -278,6 +276,9 @@ export default {
     showInputFile() {
       this.$refs.inputFile.$refs.input.click();
     },
+    closeSidebar(){
+      this.$store.dispatch('updateShowSidebarLeft', this.showSideBarLeft = !this.showSideBarLeft)
+    }
   },
   computed: {
     ...mapGetters("menu", ["Recommends", "changeColorForm"]),

@@ -26,6 +26,9 @@ import ListComposer from '../components/admin/user/ListComposer'
 import CreatePlaylist from '../components/playlist/CreatePlaylist'
 import PlaylistHome from '../components/playlist/Playlist'
 import ListPlaylist from '../components/playlist/ListPlaylist'
+import SlideAdmin from '../components/admin/slide/Slide'
+import ListSlide from '../components/admin/slide/ListSlide'
+import CreateSlide from '../components/admin/slide/CreateSlide'
 
 Vue.use(VueRouter)
 
@@ -172,6 +175,27 @@ export const routes = [
                         path: 'composer', 
                         name: 'list-composer', 
                         component: ListComposer
+                    }
+                ] 
+            },
+            {
+                path: 'slide', 
+                component: SlideAdmin,
+                children: [
+                    {
+                        path: '', 
+                        name: 'list-slide', 
+                        component: ListSlide
+                    },
+                    {
+                        path: 'create', 
+                        name: 'create-slide', 
+                        component: CreateSlide
+                    },
+                    {
+                        path: 'edit/:id', 
+                        name: 'edit-slide', 
+                        component: CreateSlide
                     }
                 ] 
             },

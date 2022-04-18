@@ -24,10 +24,32 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 export default {
+  created(){
+    this.getSlider()
+  },
   computed:{
     ...mapGetters('sliderTop',['sliders'])
+  },
+  methods:{
+    getSlider(){
+      axios.get('/slide/get-slide')
+      .then( (response) => {
+        var res = response.data.slides
+        var slides = []
+        for(let i = 0;i < res.length; i++){
+          var data = {}
+          data.img =  "https://docs.google.com/uc?id=" + res[i].link
+          slides.push(data)
+        }
+        this.$store.dispatch('sliderTop/updateSliders', slides)
+      })
+      .catch(()=>{
+        console.log('fail to load slides')
+      })
+    }
   }
 };
 </script>
