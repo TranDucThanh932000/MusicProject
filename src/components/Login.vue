@@ -14,6 +14,7 @@
                             required
                             prepend-icon="mdi-account"
                             color="black"
+                            @keyup.enter="login()"
                         ></v-text-field>
                         <v-text-field class="text_input_login_register"
                             v-model="password"
@@ -25,6 +26,7 @@
                             prepend-icon="mdi-lock"
                             append-icon="mdi-eye"
                             @click:append="showPassword()"
+                            @keyup.enter="login()"
                         >
                             <v-btn>
                                 <v-icon color="black">mdi-eye</v-icon>
@@ -97,7 +99,11 @@ export default {
                         res.data.access_token
                     )
                     this.$store.dispatch('login/updateLoggedIn', true)
-                    window.location.replace('/')
+                    if(res.data.isMemberAdmin){
+                        window.location.replace('/admin')
+                    }else{
+                        window.location.replace('/')
+                    }
                 })
                 .catch( ({response})  => {
                     this.message = response.data.message

@@ -39,8 +39,8 @@ export default {
             .then( (response) => {
                 this.songs = response.data.songs
             })
-            .catch( () => {
-                console.log('fail')
+            .catch( (response) => {
+                console.log(response)
             })
         }
     }

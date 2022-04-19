@@ -53,7 +53,7 @@
             class="rounded-pill" 
             color="#7200a1" 
             style="padding-bottom: 15px;" 
-            v-if="!login || !$route.path.includes('admin')"
+            v-if="!login && !$route.path.includes('admin')"
             >
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Đăng nhập để khám phá playlist riêng của bạn</v-card-text>
               <v-btn plain outlined rounded color="white" class="d-flex justify-center"  style="margin: 0px auto;" ><router-link style="color:white" to="/login">ĐĂNG NHẬP</router-link></v-btn>
@@ -90,7 +90,7 @@ export default {
       login : false
     }
   },
-  created(){
+  mounted(){
     if(localStorage.getItem('music_token')){
       this.login = true
     }

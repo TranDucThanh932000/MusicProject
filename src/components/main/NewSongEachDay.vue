@@ -23,14 +23,40 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 import Option from './Option.vue'
+import axios from 'axios'
 export default {
   components:{
     Option
   },
+  created(){
+    this.getAllNewSongInMonth()
+  },
   computed: {
     ...mapGetters('newSongEachDay',['listEachDay'])
+  },
+  methods: {
+    getAllNewSongInMonth(){
+      axios.get('/playlist/get-all-new-playlist-in-month')
+      .then( (response) => {
+        var res = response.data.playlists
+        var listEachDay = []
+        for(let i = 0; i < res.length; i++){
+          var data = {
+            img: 'https://docs.google.com/uc?id=' + res[i].image,
+            category: res[i].name,
+            to: '/playlist/' + res[i].id,
+            detail: 'Nhạc mới tháng 4'
+          }
+          listEachDay[i] = data
+        }
+        this.$store.dispatch('newSongEachDay/updateListEachDay', listEachDay)
+      })
+      .catch(() => {
+        console.log('fail to get five selected today')
+      })
+    }
   }
 };
 </script>

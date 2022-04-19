@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state : () => ({
         txtSearch: '',
-        Recommends: [{ title: "123" }, { title: "234" }, { title: "345" }],
+        Recommends: [],
         changeColorForm: true
     }),
     getters: {
@@ -13,11 +13,17 @@ export default {
     actions: {
         updateTxtSearch({commit}, payload){
             commit('updateTxtSearch', payload)
+        },
+        updateRecommends({commit}, payload){
+            commit('updateRecommends', payload)
         }
     },
     mutations: {
         updateTxtSearch(state, payload){
             state.txtSearch = payload
+        },
+        updateRecommends(state, payload){
+            state.Recommends = payload
         }
     }
 }

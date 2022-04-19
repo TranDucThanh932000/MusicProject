@@ -35,7 +35,7 @@
           <v-list-item
             v-for="(item, index) in Recommends"
             :key="index"
-            @click="chooseRecommended()"
+            @click="chooseRecommended(item)"
           >
             <v-list-item-icon>
               <v-icon style="color: white">mdi-chart-line-variant</v-icon>
@@ -221,8 +221,18 @@ export default {
       showSideBarLeft: true
     };
   },
+  created(){
+    this.getRecommends()
+  },
+  mounted(){
+
+  },
   methods: {
-    chooseRecommended() {},
+    chooseRecommended(song) {
+      var index_song_now = this.$store.getters['fixedplay/index_song']
+      this.$store.getters['fixedplay/songs'].splice(index_song_now + 1, 0, song)
+      this.$store.dispatch('fixedplay/nextSong')
+    },
     // debounceInput: _.debounce(function() {
     //   this.$store.dispatch('menu/updateTxtSearch', this.txtSearch)
     // }, 500)
@@ -278,6 +288,31 @@ export default {
     },
     closeSidebar(){
       this.$store.dispatch('updateShowSidebarLeft', this.showSideBarLeft = !this.showSideBarLeft)
+    },
+    getRecommends(){
+      axios.get('/song/get-top3')
+      .then( (response) => {
+        var res = response.data.top3 
+        var songs = []
+        for(let i = 0; i < 3; i++){
+          var song = {}
+          song.title = res[i].name
+          var singers = ''
+          for(let j = 0; j < res[i].singer.length; j++){
+            singers += res[i].singer[j].nickname + ', '
+          }
+          song.singer = singers
+          song.img = 'https://docs.google.com/uc?id=' + res[i].image
+          song.id = res[i].id
+          song.src = 'https://docs.google.com/uc?id=' + res[i].src
+          song.lyrics = res[i].lyrics
+          songs.push(song)
+        }
+        this.$store.dispatch('menu/updateRecommends', songs)
+      })
+      .catch( () => {
+        console.log('fail to get top 3 recommends')
+      })
     }
   },
   computed: {
@@ -289,8 +324,31 @@ export default {
       set(val) {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.$store.dispatch("menu/updateTxtSearch", val);
-        }, 300);
+          this.$store.dispatch("menu/updateTxtSearch", val)
+          axios.get('/song/search/' + val)
+          .then( (response) => {
+            var res = response.data.songs 
+            var songs = []
+            for(let i = 0; i < res.length; i++){
+              var song = {}
+              song.title = res[i].name
+              var singers = ''
+              for(let j = 0; j < res[i].singer.length; j++){
+                singers += res[i].singer[j].nickname + ', '
+              }
+              song.singer = singers
+              song.img = 'https://docs.google.com/uc?id=' + res[i].image
+              song.id = res[i].id
+              song.src = 'https://docs.google.com/uc?id=' + res[i].src
+              song.lyrics = res[i].lyrics
+              songs.push(song)
+            }
+            this.$store.dispatch('menu/updateRecommends', songs)
+          })
+          .catch(() => {
+            this.$store.dispatch('menu/updateRecommends', [])
+          })
+        }, 600);
       },
     },
     loggedIn() {

@@ -5,7 +5,23 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default { 
+    beforeCreate(){
+        if(localStorage.getItem('music_token')){
+            axios.get('/user/checkRole')
+            .then( (response) => {
+                if(!response.data.checkRole){
+                    this.$router.push('/');
+                }
+            })
+            .catch(() => {
+                console.log('Fail to go admin')
+            })
+        }else{
+            this.$router.push('/');
+        }
+    },
     mounted(){
         this.$store.dispatch('updateShowMenu', false)
         this.$store.dispatch('updateShowFixedPlay', false)
