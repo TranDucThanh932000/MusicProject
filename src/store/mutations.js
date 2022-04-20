@@ -25,5 +25,11 @@ export const mutations = {
     },
     updateUser(state , payload){
         state.user = payload
+    },
+    updateWidth(state, payload){
+        state.width = payload
+    },
+    updateIsShow(state, payload){
+        state.isShow = payload
     }
 }

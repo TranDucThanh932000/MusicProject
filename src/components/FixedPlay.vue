@@ -1,5 +1,5 @@
 <template>
-  <v-row style="height: 95px; z-index: 10000000;background-color: #170f23;padding: 0px;margin: 0px;">
+  <v-row style="height: 95px; z-index: 10000000;background-color: #170f23;padding: 0px;margin: 0px;" v-show="isShow">
     <div
     class="row"
       style="
@@ -13,14 +13,13 @@
         margin: 0px;
       "
     >
-      <div class="d-flex col-md-3">
-        <div>
+      <div class="d-flex col-sm-3 ">
+        <div class="d-flex align-center">
           <v-img
             :src="live_song.img"
-            width="88px"
-            height="88px"
+            :width="width + 'px'"
+            :height="width + 'px'"
             style="object-fit: cover; border-radius: 50%"
-            class="d-flex align-center"
           >
           </v-img>
         </div>
@@ -62,7 +61,7 @@
             </div>
           </div>
         </div>
-        <div class="d-flex" style="align-items: center">
+        <div class="d-flex" style="align-items: center" v-if="width === 88">
           <v-menu offset-x>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -133,8 +132,14 @@
             </v-list>
           </v-menu>
         </div>
+        <v-spacer></v-spacer>
+        <div v-if="width !== 88" class="d-flex" >
+          <v-btn text color="white" @click="emitParent()">
+            <v-icon>mdi-unfold-less-horizontal</v-icon>
+          </v-btn>
+        </div>
       </div>
-      <div class="col-md-6" style="padding-top: 20px;">
+      <div class="col-sm-6 " style="padding-top: 20px;">
         <div class="d-flex" style="align-items: center;justify-content: center;">
           <v-btn plain color="white" v-if="loop == true" @click="loopAudio()">
             <v-icon>mdi-repeat</v-icon>
@@ -170,9 +175,9 @@
           <span>{{duration}}</span>
         </div>
       </div>
-      <div class="d-flex col-md-3" style="align-items: center;">
+      <div class="d-flex col-sm-3 " style="align-items: center;">
         <v-btn plain color="white">
-          <v-icon>mdi-monitor</v-icon>
+          <v-icon>mdi-movie-open-play</v-icon>
         </v-btn>
         <v-btn class="speakers" plain color="white" v-if="vol >= 80 && sing == true" @click="updateSing(false)">
           <v-icon>mdi-volume-high</v-icon>
@@ -188,14 +193,12 @@
         </v-btn>
         <v-slider
           v-model="vol"
-          style="width:100px;margin-right: 15px;"
           class="volumns"
           @click="updateSing(true)"
         >
         </v-slider>
-        <v-btn style="background-color: #696969" v-if="live_song.singer" @click="showNavRight()">
-          <v-icon color="white" >mdi-playlist-music</v-icon>
-          <p style="color:white;margin-bottom:0px;">Danh sách phát</p>
+        <v-btn plain v-if="live_song.singer" @click="showNavRight()">
+          <v-icon  color="white" >mdi-playlist-music</v-icon>
         </v-btn>
       </div>
     </div>
@@ -212,6 +215,12 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  props: ['isShow'],
+  data(){
+    return{
+      width: 88,
+    }
+  },
   created(){
     this.$store.dispatch('fixedplay/updateSrc')
     
@@ -228,8 +237,21 @@ export default {
   mounted() {
     this.$store.dispatch('fixedplay/mounted')
   },
+  updated(){
+    this.firstLoadWidthImage()
+  },
   methods: {
     ...mapActions('fixedplay',['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing','prevSong','nextSong','updateIndexSong','showNavRight']),
+    firstLoadWidthImage(){
+      if(this.$vuetify.breakpoint.width < 1264){
+        this.width = 50
+      }else{
+        this.width = 88
+      }
+    },
+    emitParent(){
+      this.$store.dispatch('updateIsShow', false)
+    }
   },
   computed:{
     ...mapGetters('fixedplay',['loop','sing','ended','duration','timeEnd','timeViewDuration','songs','src','live_song','index_song']),
@@ -262,7 +284,10 @@ export default {
   watch: {
     sing(){
       this.$store.dispatch('fixedplay/updateSing', this.sing)
-    }
+    },
+    "$vuetify.breakpoint.width"(){
+      this.firstLoadWidthImage()
+    },
   }
 };
 </script>

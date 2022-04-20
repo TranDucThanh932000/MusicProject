@@ -33,5 +33,11 @@ export const actions = {
         .then( res => {
             commit("updateUser", res.data.user)
         })
+    },
+    updateWidth({commit}, payload){
+        commit('updateWidth', payload)
+    },
+    updateIsShow({commit}, payload){
+        commit('updateIsShow', payload)
     }
 }

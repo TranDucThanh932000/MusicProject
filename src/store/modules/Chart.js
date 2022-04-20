@@ -7,30 +7,14 @@ export default {
             "mdi-numeric-3-circle-outline",
         ],
         listTop3: [
-            {
-                img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
-                title: "Như anh mơ",
-                singer: "PC",
-                album: "Playah (Album)",
-                time: "03:44",
-                src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
-            },
-            {
-                img: "https://zmp3-photo-fbcrawler.zadn.vn/thumb_video/4/3/9/f/439f8b9d834adfe6b2b3cfa01bdb5355.jpg",
-                title: "24h",
-                singer: "Lyly",
-                album: "Playah (Album)",
-                time: "03:44",
-                src: 'https://docs.google.com/uc?id=1Mmxg-UXH0KwlFEMQxOzi2pKWRkU17rsS'
-            },
-            {
-                img: "https://i.ytimg.com/vi/zEWSSod0zTY/mqdefault.jpg",
-                title: "Ghé qua",
-                singer: "PC",
-                album: "Chạy Về Khóc Với Anh (Single)",
-                time: "03:44",
-                src: 'https://docs.google.com/uc?id=1W5bKTaMUi2BbYQCaS7EcDgtSRZWVgrzL'
-            }
+            // {
+            //     img: "https://avatar-nct.nixcdn.com/mv/2020/03/16/7/c/6/a/1584345171871_640.jpg",
+            //     title: "Như anh mơ",
+            //     singer: "PC",
+            //     album: "Playah (Album)",
+            //     time: "03:44",
+            //     src: 'https://docs.google.com/uc?id=13pxiViqy3jLIArC29Oufuf8FIMN38F1a'
+            // },
         ],
         songs: [false, false, false],
         gradient: [["#FF1744"], ["#1E88E5"], ["#C0CA33"]],

@@ -54,7 +54,9 @@ export const store = new Vuex.Store({
         showSidebarLeft: true,
         showMenu: true,
         showFixedPlay: false,
-        user: {}
+        user: {},
+        width: 218.5,
+        isShow: true
     },
     getters,
     mutations,

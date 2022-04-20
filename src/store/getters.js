@@ -37,6 +37,12 @@ export const getters = {
     },
     user(state){
         return state.user
+    },
+    width(state){
+        return state.width
+    },
+    isShow(state){
+        return state.isShow
     }
     
 }

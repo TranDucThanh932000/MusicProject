@@ -1,12 +1,10 @@
 <template>
-  <v-col md="2" offset-md="0">
+  <v-col md="12">
     <v-card flat>
-      <v-navigation-drawer permanent fixed style="background-color:#231b2e;">
-        <v-row class="pl-2">
+        <v-row style="background-color:#231b2e;">
           <v-list-item>
             <v-list-item-content>
               <div style="width: 100%">
-              <!-- <v-list-item-title class="text-h6"> <span style="font-size: 30px;"><b style="color:red;">C</b></span><span style="font-size: 30px"><b style="color: yellow;">O</b></span><span style="font-size: 30px"><b style="color: green;">C</b></span> MOUNTAIN </v-list-item-title> -->
                 <v-img class="logo-web" style="height: 48px; object-fit: cover;background-color:transparent;" :src="require('../assets/' + logo)">
                 </v-img>
               </div>
@@ -15,9 +13,11 @@
 
           <v-list dense nav>
             <v-list-item v-for="item in itemSideBars" :key="item.title" link>
+              <router-link :to="item.to" >
               <v-list-item-icon>
                 <v-icon style="color: white;">{{ item.icon }}</v-icon>
               </v-list-item-icon>
+              </router-link>
 
               <v-list-item-content>
                 <router-link :to="item.to" >
@@ -30,16 +30,19 @@
 
         <v-divider class="pl-2" style="background-color:#FFFAF0;margin: 15px 0px 15px 0px;box-shadow: 0px 3px 5px white;"></v-divider>
 
-        <v-row class="pl-2">
-          <v-list dense nav style="height: 300px; width: 100%; overflow: scroll;" class="customScrollBar" >
+        <v-row style="background-color:#231b2e;">
+          <v-list dense nav style="height: 310px; width: 100%; overflow: hidden scroll;" class="customScroll">
             <v-list-item
               v-for="item in itemBelowSideBars"
               :key="item.title"
               link
+              style="width: 100%"
             >
-              <v-list-item-icon>
-                <v-icon style="color: white;">{{ item.icon }}</v-icon>
-              </v-list-item-icon>
+              <router-link :to="item.to" >
+                <v-list-item-icon>
+                  <v-icon style="color: white;">{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+              </router-link>
 
               <v-list-item-content>
                 <router-link :to="item.to" >
@@ -53,7 +56,7 @@
             class="rounded-pill" 
             color="#7200a1" 
             style="padding-bottom: 15px;" 
-            v-if="!login && !$route.path.includes('admin')"
+            v-if="!login && !$route.path.includes('admin') && hideVip"
             >
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Đăng nhập để khám phá playlist riêng của bạn</v-card-text>
               <v-btn plain outlined rounded color="white" class="d-flex justify-center"  style="margin: 0px auto;" ><router-link style="color:white" to="/login">ĐĂNG NHẬP</router-link></v-btn>
@@ -61,23 +64,22 @@
             <v-card 
             class="rounded-pill" 
             style="margin-top: 10px;padding-bottom: 15px;background-image: linear-gradient(117deg,#5a4be7,#c86dd7 102%);"
-            v-if="!$route.path.includes('admin')"
+            v-if="!$route.path.includes('admin') && hideVip"
             >
               <v-card-text style="color:white;text-align:center;padding-bottom: 5px;">Nghe nhạc không quảng cáo cùng kho nhạc VIP</v-card-text>
               <v-btn plain outlined rounded color="black" class="d-flex justify-center" style="margin: 0px auto;background-color:#ffdb00;" >NÂNG CẤP VIP</v-btn>
             </v-card>
           </v-list>
         </v-row>
-        <v-row v-if="!$route.path.includes('admin')" style="margin-top:0px;">
+        <v-row v-if="!$route.path.includes('admin') && hideVip" style="margin-top:0px;">
           <!-- Tao playlist moi -->
           <v-card color="#231b2e"  width="100%">
             <v-btn plain color="white" width="100%" style="padding: 0px" to="/playlist">
-              <v-icon>mdi-plus</v-icon>
+              <v-icon>mdi-playlist-music</v-icon>
               Danh sách playlist
             </v-btn>
           </v-card>
         </v-row>
-      </v-navigation-drawer>
     </v-card>
   </v-col>
 </template>
@@ -87,16 +89,30 @@ import { mapGetters } from 'vuex';
 export default {
   data(){
     return{
-      login : false
+      login : false,
+      hideVip: true
     }
   },
   mounted(){
     if(localStorage.getItem('music_token')){
       this.login = true
     }
+    this.hideVip = this.$store.getters['showSidebarLeft']
   },
   computed: {
     ...mapGetters('sideBar',['itemSideBars','itemBelowSideBars','logo'])
+  },
+  watch:{
+    '$store.state.showSidebarLeft'(){
+      this.hideVip = this.$store.getters['showSidebarLeft']
+      if(!this.hideVip){
+        this.itemBelowSideBars.push(
+          { title: "Danh sách playlist", icon: "mdi-playlist-music", to:'/playlist'}
+        )
+      }else{
+        this.itemBelowSideBars.pop()
+      }
+    }
   }
 };
 </script>
@@ -110,6 +126,10 @@ a{
 }
 .logo-web .v-responsive__content{
   width: 0px !important;
+}
+
+.customScroll::-webkit-scrollbar {
+  background-color: #231b2e;
 }
 
 </style>

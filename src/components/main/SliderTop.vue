@@ -6,6 +6,7 @@
     >
         <v-slide-group
         show-arrows
+        @click:next="clickNext()"
         >
             <v-slide-item
                 v-for="(slider, index) in sliders"
@@ -27,8 +28,14 @@
 import axios from 'axios';
 import { mapGetters } from 'vuex';
 export default {
+  data(){
+    return{
+      right: true
+    }
+  },
   created(){
     this.getSlider()
+    this.autoMove()
   },
   computed:{
     ...mapGetters('sliderTop',['sliders'])
@@ -49,6 +56,25 @@ export default {
       .catch(()=>{
         console.log('fail to load slides')
       })
+    },
+    autoMove(){
+      var interval = setInterval(() => {
+        this.right = !this.right
+        if(this.right){
+          this.clickNext()
+        }else{
+          this.clickPrev()
+        }
+      }, 10000)
+      setTimeout(interval, 0)
+    },
+    clickNext(){
+      var next = document.getElementsByClassName("v-slide-group__next")[0]
+      next.click()
+    },
+    clickPrev(){
+      var prev = document.getElementsByClassName("v-slide-group__prev")[0]
+      prev.click()
     }
   }
 };

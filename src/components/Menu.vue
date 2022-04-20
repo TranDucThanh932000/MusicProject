@@ -10,7 +10,7 @@
   >
     <v-col md="2" style="padding-left: 0px">
       <v-btn plain @click="closeSidebar()" class="btn-menu">
-        <v-icon color="white">mdi-book-open</v-icon>
+        <v-icon color="white">mdi-menu-open</v-icon>
       </v-btn>
     </v-col>
     <v-col md="5">
@@ -49,8 +49,15 @@
     </v-col>
 
     <!-- <v-spacer></v-spacer> -->
+    <v-col md="5" v-if="!loggedIn">
+        <v-btn plain class="btn-menu secondary" v-if="!loggedIn">
+          <router-link to="/login">
+            <v-icon color="white"> mdi-account-circle-outline </v-icon>
+          </router-link>
+        </v-btn>
+    </v-col>
 
-    <v-col md="5" class="remove-pdr">
+    <v-col md="5" v-else-if="hideDropdownMenu" class="remove-pdr">
       <div class="float-right">
         <v-btn plain class="btn-menu secondary">
           <v-icon> mdi-shape </v-icon>
@@ -188,6 +195,160 @@
         </v-menu>
       </div>
     </v-col>
+
+    <v-col md="5" v-else class="remove-pdr">
+      <div class="float-right">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-on="on"
+            v-bind="attrs"
+            plain
+            color="white"
+            outlined
+            rounded
+            >
+              <v-icon>mdi-menu-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list style="background-color: #432275; color: white">
+            <v-list-item>
+              <v-list-item-icon>
+                  <v-icon color="white"> mdi-shape </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Thể loại</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                  <v-icon color="white"> mdi-tray-arrow-up </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Đăng tải</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                  <v-icon color="white"> mdi-cog-outline </v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Cài đặt</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-dialog
+              transition="dialog-bottom-transition"
+              max-width="600"
+              ref="dialogEditInfor"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-list-item v-on="on" v-bind="attrs" @click="getInformation()">
+                  <v-list-item-icon>
+                    <v-icon style="color: white">mdi-account-cog</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>Thông tin cá nhân</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </template>
+              <template v-slot:default="dialog">
+                <v-card>
+                  <v-toolbar color="primary" dark>Thông tin cá nhân </v-toolbar>
+                  <v-card-text class="enterInfor">
+                    <v-row v-if="message !== ''" class="mt-1">
+                      <p
+                        class="text-center ma-0"
+                        style="color: black; width: 100%"
+                      >
+                        {{ message }}
+                      </p>
+                    </v-row>
+                    <v-form ref="formEditInfor">
+                      <v-row class="mt-2">
+                        <v-text-field
+                          :rules="rules"
+                          label="Họ và tên"
+                          prepend-icon="mdi-account-cowboy-hat-outline"
+                          style="color: black"
+                          v-model="user.fullname"
+                        ></v-text-field>
+                      </v-row>
+                      <v-row>
+                        <v-text-field
+                          :rules="emailRules"
+                          label="Email"
+                          prepend-icon="mdi-email-outline"
+                          style="color: black"
+                          v-model="user.email"
+                        ></v-text-field>
+                      </v-row>
+                      <v-row class="mt-6">
+                        <v-icon style="margin-right: 9px"
+                          >mdi-camera-outline</v-icon
+                        >
+                        <span style="color: gray">Ảnh đại diện</span>
+                      </v-row>
+                      <v-row>
+                        <v-file-input
+                          @change="Preview_image"
+                          accept="image/png, image/jpeg, image/bmp"
+                          v-model="image"
+                          style="display: none"
+                          ref="inputFile"
+                        ></v-file-input>
+                      </v-row>
+                      <v-row>
+                        <v-img
+                          @click="showInputFile"
+                          :src="user.avatar"
+                          height="250px"
+                          style="object-fit: cover"
+                        ></v-img>
+                      </v-row>
+                      <v-row>
+                        <v-text-field
+                          label="Ngày tạo tài khoản"
+                          readonly
+                          prepend-icon="mdi-calendar-clock"
+                          style="color: black"
+                          :value="user.created_at"
+                        ></v-text-field>
+                      </v-row>
+                    </v-form>
+                  </v-card-text>
+
+                    <v-alert
+                      dense
+                      type="success"
+                      width="50%"
+                      style="position: absolute; bottom: 6%; left: 25%;"
+                      v-model="showUpdated"
+                      transition="fab-transition"
+                    >
+                      Cập nhật thành công
+                    </v-alert>
+                  <v-card-actions class="justify-end btn-loading-black">
+                    <v-btn text :loading="loading" @click="editInformation()"
+                      >Lưu</v-btn
+                    >
+                    <v-btn text @click="dialog.value = false">Đóng</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
+
+            <v-list-item @click="logout()">
+              <v-list-item-icon>
+                <v-icon style="color: white">mdi-logout-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Đăng xuất</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+    </v-col>
+
   </v-row>
 </template>
 <script>
@@ -218,14 +379,15 @@ export default {
       loading: false,
       imageChanged: false,
       showUpdated: false,
-      showSideBarLeft: true
+      showSideBarLeft: true,
+      hideDropdownMenu: true
     };
   },
   created(){
     this.getRecommends()
   },
-  mounted(){
-
+  updated(){
+    this.firstLoad()
   },
   methods: {
     chooseRecommended(song) {
@@ -313,6 +475,13 @@ export default {
       .catch( () => {
         console.log('fail to get top 3 recommends')
       })
+    },
+    firstLoad(){
+        if(this.$vuetify.breakpoint.width <= 1264){
+          this.hideDropdownMenu = false
+        }else{
+          this.hideDropdownMenu = true
+        }
     }
   },
   computed: {
@@ -358,6 +527,11 @@ export default {
       return false;
     },
   },
+  watch:{
+    "$vuetify.breakpoint.width"(){
+      this.firstLoad()
+    }
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <v-app style="background-color: #170f23">
-    <v-row class="pa-4" style="background-color: #170f23">
-      <v-navigation-drawer app v-if="showSidebarLeft">
+    <v-row class="pa-4" style="background-color: #170f23;padding-bottom:0px;">
+      <v-navigation-drawer permanent :mini-variant="!showSidebarLeft" fixed app style="background-color:#231b2e;">
         <sidebar />
       </v-navigation-drawer>
 
@@ -20,7 +20,12 @@
         </div>
       </transition>
     </v-row>
-    <fixed-play v-if="showFixedPlay"></fixed-play>
+    <fixed-play v-if="showFixedPlay" :isShow="isShow"></fixed-play>
+    <div style="position: fixed; bottom: 25px; right: 0px;">
+      <v-btn text @click="isShow = true">
+        <v-icon color="white">mdi-unfold-more-horizontal</v-icon>
+      </v-btn>
+    </div>
   </v-app>
 </template>
 
@@ -53,13 +58,21 @@ export default {
     ]),
     currentUser: {
       get() {
-        return this.$store.state.user;
+        return this.$store.state.user
       },
     },
+    isShow: {
+      get(){
+        return this.$store.state.isShow
+      },
+      set(){
+        return this.$store.dispatch('updateIsShow', true)
+      }
+    }
   },
   created() {
-    // axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1";
-    axios.defaults.baseURL = 'https://backend-coc-music.herokuapp.com/api/v1'
+    axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1";
+    // axios.defaults.baseURL = 'https://be-coc-music.herokuapp.com/api/v1'
     var songWhenCreate = [];
     if (localStorage.getItem("music_token")) {
       axios.defaults.headers.common["Authorization"] =
@@ -160,6 +173,19 @@ export default {
       this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
     }
   },
+  updated(){
+    this.firstLoadSidebarApp()
+  },
+  methods:{
+    firstLoadSidebarApp(){
+      if(this.$vuetify.breakpoint.width <= 1264){
+        this.$store.dispatch('updateShowSidebarLeft', false)
+      }else{
+        this.$store.dispatch('updateShowSidebarLeft', true)
+      }
+    },
+
+  },
   watch: {
     "$route.name": function () {
       if (this.$route.name === "login" || this.$route.name === "register") {
@@ -175,6 +201,9 @@ export default {
         this.$router.push("/");
       }
     },
+    "$vuetify.breakpoint.width"(){
+      this.firstLoadSidebarApp()
+    }
   },
 };
 </script>
