@@ -173,18 +173,17 @@ export default {
       this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
     }
   },
-  updated(){
+  mounted(){
     this.firstLoadSidebarApp()
   },
   methods:{
     firstLoadSidebarApp(){
-      if(this.$vuetify.breakpoint.width <= 1264){
+      if(this.$vuetify.breakpoint.mobile){
         this.$store.dispatch('updateShowSidebarLeft', false)
       }else{
         this.$store.dispatch('updateShowSidebarLeft', true)
       }
     },
-
   },
   watch: {
     "$route.name": function () {
@@ -201,9 +200,9 @@ export default {
         this.$router.push("/");
       }
     },
-    "$vuetify.breakpoint.width"(){
-      this.firstLoadSidebarApp()
-    }
+    // "$vuetify.breakpoint.width"(){
+    //   this.firstLoadSidebarApp()
+    // }
   },
 };
 </script>

@@ -379,14 +379,19 @@ export default {
       loading: false,
       imageChanged: false,
       showUpdated: false,
-      showSideBarLeft: true,
+      showSBLeft: null,
       hideDropdownMenu: true
     };
   },
   created(){
     this.getRecommends()
   },
-  updated(){
+  mounted(){
+      if(this.$vuetify.breakpoint.width >= 1264){
+        this.showSBLeft = true
+      }else{
+        this.showSBLeft = false
+      }
     this.firstLoad()
   },
   methods: {
@@ -449,7 +454,8 @@ export default {
       this.$refs.inputFile.$refs.input.click();
     },
     closeSidebar(){
-      this.$store.dispatch('updateShowSidebarLeft', this.showSideBarLeft = !this.showSideBarLeft)
+      this.$store.dispatch('updateShowSidebarLeft', !this.showSBLeft)
+      this.showSBLeft = !this.showSBLeft
     },
     getRecommends(){
       axios.get('/song/get-top3')

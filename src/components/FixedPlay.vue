@@ -243,7 +243,7 @@ export default {
   methods: {
     ...mapActions('fixedplay',['playAudio','loopAudio','playTimeCurrent','updateSrc','updateSing','prevSong','nextSong','updateIndexSong','showNavRight']),
     firstLoadWidthImage(){
-      if(this.$vuetify.breakpoint.width < 1264){
+      if(this.$vuetify.breakpoint.mobile){
         this.width = 50
       }else{
         this.width = 88
