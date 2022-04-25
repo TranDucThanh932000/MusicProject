@@ -8,7 +8,7 @@
       margin: 0px;
     "
   >
-    <v-col md="2" style="padding-left: 0px">
+    <v-col md="2">
       <v-btn plain @click="closeSidebar()" class="btn-menu">
         <v-icon color="white">mdi-menu-open</v-icon>
       </v-btn>
@@ -50,11 +50,13 @@
 
     <!-- <v-spacer></v-spacer> -->
     <v-col md="5" v-if="!loggedIn">
+      <div class="float-right">
         <v-btn plain class="btn-menu secondary" v-if="!loggedIn">
           <router-link to="/login">
             <v-icon color="white"> mdi-account-circle-outline </v-icon>
           </router-link>
         </v-btn>
+      </div>
     </v-col>
 
     <v-col md="5" v-else-if="hideDropdownMenu" class="remove-pdr">

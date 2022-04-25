@@ -131,6 +131,7 @@ export default {
     },
     created(){
         this.getAllUser()
+        this.$store.dispatch('updateShowMenu', false)
     },
     watch:{
         choosedUsers(){

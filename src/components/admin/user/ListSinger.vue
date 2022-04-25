@@ -23,6 +23,7 @@ export default {
     },
     created(){
         this.getAllSinger()
+        this.$store.dispatch('updateShowMenu', false)
     },
     methods: {
         getAllSinger(){

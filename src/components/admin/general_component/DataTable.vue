@@ -30,7 +30,6 @@
             <v-btn
               color="primary"
               dark
-              class="mb-2"
               v-bind="attrs"
               v-on="on"
               :to="to"

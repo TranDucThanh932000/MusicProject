@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-flex pa-3"
+    class="d-flex pa-3 mb-10"
     style="background-color: #ba68c8;border-radius: 10px;width: 100%;"
   >
     <div style="width: 33%; margin-right: 2%">

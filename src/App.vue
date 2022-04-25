@@ -1,7 +1,13 @@
 <template>
   <v-app style="background-color: #170f23">
-    <v-row class="pa-4" style="background-color: #170f23;padding-bottom:0px;">
-      <v-navigation-drawer permanent :mini-variant="!showSidebarLeft" fixed app style="background-color:#231b2e;">
+    <v-row  style="background-color: #170f23; padding-bottom: 0px">
+      <v-navigation-drawer
+        permanent
+        :mini-variant="!showSidebarLeft"
+        fixed
+        app
+        style="background-color: #231b2e; z-index: 9999999"
+      >
         <sidebar />
       </v-navigation-drawer>
 
@@ -21,7 +27,7 @@
       </transition>
     </v-row>
     <fixed-play v-if="showFixedPlay" :isShow="isShow"></fixed-play>
-    <div style="position: fixed; bottom: 25px; right: 0px;">
+    <div style="position: fixed; bottom: 25px; right: 0px">
       <v-btn text @click="isShow = true">
         <v-icon color="white">mdi-unfold-more-horizontal</v-icon>
       </v-btn>
@@ -58,21 +64,21 @@ export default {
     ]),
     currentUser: {
       get() {
-        return this.$store.state.user
+        return this.$store.state.user;
       },
     },
     isShow: {
-      get(){
-        return this.$store.state.isShow
+      get() {
+        return this.$store.state.isShow;
       },
-      set(){
-        return this.$store.dispatch('updateIsShow', true)
-      }
-    }
+      set() {
+        return this.$store.dispatch("updateIsShow", true);
+      },
+    },
   },
   created() {
-    axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1";
-    // axios.defaults.baseURL = 'https://be-coc-music.herokuapp.com/api/v1'
+    // axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1"
+    axios.defaults.baseURL = 'https://be-coc-music.herokuapp.com/api/v1'
     var songWhenCreate = [];
     if (localStorage.getItem("music_token")) {
       axios.defaults.headers.common["Authorization"] =
@@ -81,8 +87,8 @@ export default {
       axios
         .get("/song/get-songs-playlist-user")
         .then((response) => {
-          var res = response.data.songs;
-          var songs = [];
+          var res = response.data.songs
+          var songs = []
           if (res.length != 0) {
             for (let i = 0; i < res.length; i++) {
               var singers = "";
@@ -117,10 +123,39 @@ export default {
             this.$store.dispatch("sidebarRight/updateSongPlayed", temp, {
               root: true,
             });
-            this.$store.dispatch("updateShowFixedPlay", true);
+            if(this.$route.path.includes('admin') || this.$route.path.includes('public-chat')){
+              this.$store.dispatch("updateShowFixedPlay", false);
+            }else{
+              this.$store.dispatch("updateShowFixedPlay", true);
+            }
             this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
-          } else {
-            this.$store.dispatch("updateShowFixedPlay", false);
+          }else {
+            songWhenCreate = [
+              {
+                img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
+                title: "Nếu ngày ấy",
+                singer: "Soobin",
+                album: "Playah (Album)",
+                time: "03:44",
+                src: "https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL",
+              },
+              {
+                img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
+                title: "Thay mọi cô gái yêu anh",
+                singer: "AMEE",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: "https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69",
+              },
+              {
+                img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
+                title: "Em bỏ hút thuốc chưa",
+                singer: "Bích Phương",
+                album: "Chạy Về Khóc Với Anh (Single)",
+                time: "03:44",
+                src: "https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR",
+              },
+            ]
           }
         })
         .catch(() => {
@@ -148,7 +183,7 @@ export default {
         {
           img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
           title: "Em bỏ hút thuốc chưa",
-          singer: "Erik",
+          singer: "Bích Phương",
           album: "Chạy Về Khóc Với Anh (Single)",
           time: "03:44",
           src: "https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR",
@@ -173,15 +208,15 @@ export default {
       this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
     }
   },
-  mounted(){
-    this.firstLoadSidebarApp()
+  mounted() {
+    this.firstLoadSidebarApp();
   },
-  methods:{
-    firstLoadSidebarApp(){
-      if(this.$vuetify.breakpoint.mobile){
-        this.$store.dispatch('updateShowSidebarLeft', false)
-      }else{
-        this.$store.dispatch('updateShowSidebarLeft', true)
+  methods: {
+    firstLoadSidebarApp() {
+      if (this.$vuetify.breakpoint.mobile) {
+        this.$store.dispatch("updateShowSidebarLeft", false);
+      } else {
+        this.$store.dispatch("updateShowSidebarLeft", true);
       }
     },
   },
@@ -195,10 +230,14 @@ export default {
         this.$store.dispatch("updateShowSidebarLeft", true);
         this.$store.dispatch("updateShowMenu", true);
         this.$store.dispatch("updateShowFixedPlay", true);
+        if(this.$route.path.includes('public-chat') || this.$route.path.includes('admin')){
+          this.$store.dispatch('updateShowFixedPlay', false)
+        }
       }
       if (this.$route.name === "login" && localStorage.getItem("music_token")) {
         this.$router.push("/");
       }
+
     },
     // "$vuetify.breakpoint.width"(){
     //   this.firstLoadSidebarApp()

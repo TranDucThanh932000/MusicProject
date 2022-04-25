@@ -26,6 +26,7 @@ export default {
     },
     created(){
         this.getAllUser()
+        this.$store.dispatch('updateShowMenu', false)
     },
     methods:{
         getAllUser(){

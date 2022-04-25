@@ -58,15 +58,19 @@ export default {
       })
     },
     autoMove(){
-      var interval = setInterval(() => {
-        this.right = !this.right
-        if(this.right){
-          this.clickNext()
-        }else{
-          this.clickPrev()
-        }
-      }, 10000)
-      setTimeout(interval, 0)
+        var interval = setInterval(() => {
+          if(this.$route.name !== 'homepage'){
+            clearInterval(interval)
+            return
+          }
+          this.right = !this.right
+          if(this.right){
+            this.clickNext()
+          }else{
+            this.clickPrev()
+          }
+        }, 10000)
+        setTimeout(interval, 0)
     },
     clickNext(){
       var next = document.getElementsByClassName("v-slide-group__next")[0]

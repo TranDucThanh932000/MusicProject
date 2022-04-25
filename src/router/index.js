@@ -29,6 +29,14 @@ import ListPlaylist from '../components/playlist/ListPlaylist'
 import SlideAdmin from '../components/admin/slide/Slide'
 import ListSlide from '../components/admin/slide/ListSlide'
 import CreateSlide from '../components/admin/slide/CreateSlide'
+import RoleAdmin from '../components/admin/role/Role'
+import ListRole from '../components/admin/role/ListRole'
+import CreateRole from '../components/admin/role/CreateRole'
+import SetupRoleAdmin from '../components/admin/setup_role/SetupRole'
+import CreateUserRole from '../components/admin/setup_role/CreateUserRole'
+import ListUserRole from '../components/admin/setup_role/ListUserRole'
+
+
 
 Vue.use(VueRouter)
 
@@ -199,6 +207,48 @@ export const routes = [
                     }
                 ] 
             },
+            {
+                path: 'role', 
+                component: RoleAdmin,
+                children: [
+                    {
+                        path: '', 
+                        name: 'list-role', 
+                        component: ListRole
+                    },
+                    {
+                        path: 'create', 
+                        name: 'create-role', 
+                        component: CreateRole
+                    },
+                    {
+                        path: 'edit/:id', 
+                        name: 'edit-role', 
+                        component: CreateRole
+                    }
+                ] 
+            },
+            {
+                path: 'setup-role', 
+                component: SetupRoleAdmin,
+                children: [
+                    {
+                        path: '', 
+                        name: 'list-user-roles', 
+                        component: ListUserRole
+                    },
+                    {
+                        path: 'create', 
+                        name: 'create-user-roles', 
+                        component: CreateUserRole
+                    },
+                    {
+                        path: 'edit/:id', 
+                        name: 'edit-user-roles', 
+                        component: CreateUserRole
+                    }
+                ] 
+            }
         ]
     },
     {

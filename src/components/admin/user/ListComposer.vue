@@ -23,6 +23,7 @@ export default {
     },
     created(){
         this.getAllComposer()
+        this.$store.dispatch('updateShowMenu', false)
     },
     methods: {
         getAllComposer(){

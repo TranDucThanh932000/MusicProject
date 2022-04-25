@@ -1,5 +1,5 @@
 <template>
-  <v-col md="12">
+  <v-col md="12" class="px-2 py-0">
     <v-card flat>
         <v-row style="background-color:#231b2e;">
           <v-list-item>

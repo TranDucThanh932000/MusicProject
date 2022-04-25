@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 100vh">
+    <div>
         <router-view></router-view>
     </div>
 </template>
@@ -24,7 +24,6 @@ export default {
     },
     mounted(){
         this.$store.dispatch('updateShowMenu', false)
-        this.$store.dispatch('updateShowFixedPlay', false)
         this.$store.dispatch('sideBar/updateItemBelowSideBars', [
             { title: "Slide", icon: "mdi-image-area" ,to:'/admin/slide'},
         ])
@@ -35,7 +34,9 @@ export default {
             { title: "Người dùng", icon: "mdi-account-settings",to:'/admin/user' },
             { title: "Ca sỹ", icon: "mdi-account-star",to:'/admin/user/singer' },
             { title: "Người sáng tác", icon: "mdi-account-star",to:'/admin/user/composer' },
-            { title: "Thiết lập tài khoản", icon: "mdi-account-cog-outline",to:'/admin/setup-account' },
+            { title: "Vai trò", icon: "mdi-account-star", to: "/admin/role"},
+            { title: "Thiết lập quyền", icon: "mdi-account-star", to: "/admin/setup-role"},
+            { title: "Định dạng tài khoản", icon: "mdi-account-cog-outline",to:'/admin/setup-account' },
         ])
     }
 }
