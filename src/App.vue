@@ -77,8 +77,8 @@ export default {
     },
   },
   created() {
-    // axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1"
-    axios.defaults.baseURL = 'https://be-coc-music.herokuapp.com/api/v1'
+    axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1"
+    // axios.defaults.baseURL = 'https://be-coc-music.herokuapp.com/api/v1'
     var songWhenCreate = [];
     if (localStorage.getItem("music_token")) {
       axios.defaults.headers.common["Authorization"] =
@@ -210,6 +210,23 @@ export default {
   },
   mounted() {
     this.firstLoadSidebarApp();
+    if(!this.$route.path.includes('admin')){
+      var arr = [
+        { title: "Cá Nhân", icon: "mdi-account-music" ,to:'/'},
+        { title: "Khám Phá", icon: "mdi-sort-alphabetical-variant",to:'/' },
+        { title: "#musicchart", icon: "mdi-music",to:'/music-chart' },
+        { title: "#Radio", icon: "mdi-radio",to:'/radio' },
+        { title: "Theo Dõi", icon: "mdi-bell",to:'/' },
+      ]
+      var itemBelowSideBars = [
+        { title: "Nhạc Mới", icon: "mdi-new-box", to:'/new-songs'},
+        { title: "Thể Loại", icon: "mdi-shape", to:'/'},
+        { title: "Top 100", icon: "mdi-star", to:'/'},
+        { title: "MV", icon: "mdi-shopping-music", to:'/'},
+      ]
+      this.$store.dispatch('sideBar/updateItemSideBars', arr)
+      this.$store.dispatch('sideBar/updateItemBelowSideBars', itemBelowSideBars)
+    }
   },
   methods: {
     firstLoadSidebarApp() {

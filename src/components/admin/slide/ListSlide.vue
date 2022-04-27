@@ -3,6 +3,7 @@
         <data-table 
         :desserts="slides" 
         :headers="headers"
+        :loading="loading"
         to="/admin/slide/create"
         >
         </data-table>
@@ -22,7 +23,8 @@ export default {
             headers: [
                 { text: 'Link',value: 'link' },
                 { text: 'Actions', value: 'actions' },
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -33,6 +35,7 @@ export default {
             axios.get('/slide/get-all-slide')
             .then( (response) => {
                 this.slides = response.data.slides
+                this.loading = false
             })
             .catch( () => {
                 console.log('fail')

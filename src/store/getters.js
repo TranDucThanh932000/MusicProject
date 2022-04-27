@@ -43,6 +43,9 @@ export const getters = {
     },
     isShow(state){
         return state.isShow
+    },
+    permissions(state){
+        return state.permissions
     }
     
 }

@@ -132,6 +132,7 @@ export default {
     created(){
         this.getAllUser()
         this.$store.dispatch('updateShowMenu', false)
+        this.$store.dispatch('sideBar/updateItemSideBars', this.$store.getters['sideBar/itemSideBars'])
     },
     watch:{
         choosedUsers(){

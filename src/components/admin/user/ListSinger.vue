@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="singers" :headers="headers"></data-table>
+        <data-table :desserts="singers" :headers="headers" :loading="loading"></data-table>
     </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
                 { text: 'Code người dùng',value: 'user_id' },
                 { text: 'Biệt danh', value: 'nickname' },
                 { text: 'Actions', value: 'actions' }
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -30,6 +31,7 @@ export default {
             axios.get('/user/singer/get-all-singer')
             .then((response) => {
                 this.singers = response.data.singers
+                this.loading = false
             })
             .catch(() => {
                 console.log('fail to get singers')

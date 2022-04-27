@@ -34,21 +34,8 @@ export const store = new Vuex.Store({
         srcPlay: null,
         navRight: false,
         loadingAlbum: false,
-        itemSideBars: [
-            { title: "Cá Nhân", icon: "mdi-view-dashboard" },
-            { title: "Khám Phá", icon: "mdi-image" },
-            { title: "#musicchart", icon: "mdi-help-box" },
-            { title: "#Radio", icon: "mdi-help-box" },
-            { title: "Theo Dõi", icon: "mdi-help-box" },
-        ],
-        itemBelowSideBars: [
-            { title: "Cá Nhân", icon: "mdi-view-dashboard" },
-            { title: "Khám Phá", icon: "mdi-image" },
-            { title: "#zingchart", icon: "mdi-help-box" },
-            { title: "#Radio", icon: "mdi-help-box" },
-            { title: "Theo Dõi", icon: "mdi-help-box" },
-            { title: "Theo Dõi", icon: "mdi-help-box" },
-        ],
+        itemSideBars: [],
+        itemBelowSideBars: [],
         right: null,
         nameCom: "SidebarRight",
         showSidebarLeft: true,
@@ -56,7 +43,8 @@ export const store = new Vuex.Store({
         showFixedPlay: false,
         user: {},
         width: 218.5,
-        isShow: true
+        isShow: true,
+        permissions: []
     },
     getters,
     mutations,

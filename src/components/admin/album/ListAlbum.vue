@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="albums" :headers="headers" to="/admin/album/create"></data-table>
+        <data-table :desserts="albums" :headers="headers" :loading="loading" to="/admin/album/create"></data-table>
     </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
                 { text: 'Ảnh', value: 'image' },
                 { text: 'Ngày ra mắt', value: 'releaseDate'},
                 { text: 'Actions', value: 'actions' },
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -30,6 +31,7 @@ export default {
             axios.get('/album/get-all-album')
             .then( (response) => {
                 this.albums = response.data.albums
+                this.loading = false
             })
             .catch( () => {
                 console.log('fail')

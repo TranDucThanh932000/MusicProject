@@ -31,5 +31,8 @@ export const mutations = {
     },
     updateIsShow(state, payload){
         state.isShow = payload
+    },
+    updatePermissions(state, payload){
+        state.permissions = payload
     }
 }

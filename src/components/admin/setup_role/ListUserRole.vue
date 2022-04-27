@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="users" :headers="headers" to="/admin/setup-role/create"></data-table>
+        <data-table :desserts="users" :headers="headers" :loading="loading" to="/admin/setup-role/create"></data-table>
     </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
             headers: [
                 { text: 'Tên tài khoản',value: 'username' },
                 { text: 'Actions', value: 'actions' },
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -28,6 +29,7 @@ export default {
             axios.get('/user/role/get-all-user-has-role')
             .then( (response) => {
                 this.users = response.data.users
+                this.loading = false
             })
             .catch( () => {
                 console.log('fail')

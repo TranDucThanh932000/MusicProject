@@ -3,6 +3,7 @@
         <data-table 
         :desserts="songs" 
         :headers="headers"
+        :loading="loading"
         to="/admin/song/create"
         >
         </data-table>
@@ -27,7 +28,8 @@ export default {
                 { text: 'Link source', value: 'src' },
                 { text: 'Ngày ra mắt', value: 'releaseDate'},
                 { text: 'Actions', value: 'actions' },
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -38,6 +40,7 @@ export default {
             axios.get('/song/get-all-song')
             .then( (response) => {
                 this.songs = response.data.songs
+                this.loading = false
             })
             .catch( (response) => {
                 console.log(response)

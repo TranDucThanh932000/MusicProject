@@ -3,6 +3,8 @@
     :headers="headers"
     :items="desserts"
     :items-per-page="10"
+    :loading='loading'
+    loading-text="Đang lấy dữ liệu..."
     :footer-props="{
       'items-per-page-text': 'Số dòng mỗi trang:',
     }"
@@ -73,7 +75,7 @@
 
 <script>
   export default {
-    props:['desserts', 'headers','to'],
+    props:['desserts', 'headers','to', 'loading'],
     data: () => ({
       dialogDelete: false,
       editedIndex: -1,

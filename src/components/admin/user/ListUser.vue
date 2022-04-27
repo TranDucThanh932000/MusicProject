@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="users" :headers="headers"></data-table>
+        <data-table :desserts="users" :headers="headers" :loading="loading"></data-table>
     </div>
 </template>
 
@@ -21,7 +21,8 @@ export default {
                 { text: 'Email', value: 'email'},
                 { text: 'Ảnh đại diện', value: 'avatar' },
                 { text: 'Actions', value: 'actions' }
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -33,6 +34,7 @@ export default {
             axios.get('/user/get-all-user')
             .then( (response) => {
                 this.users = response.data.users
+                this.loading = false
             })
             .catch(() => {
                 console.log('fail to get users')

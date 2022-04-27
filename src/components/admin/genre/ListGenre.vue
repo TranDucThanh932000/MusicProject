@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="genres" :headers="headers" to="/admin/genre/create"></data-table>
+        <data-table :desserts="genres" :headers="headers" :loading="loading" to="/admin/genre/create"></data-table>
     </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
                 { text: 'Mô tả', value: 'description'},
                 { text: 'Ảnh', value: 'image' },
                 { text: 'Actions', value: 'actions' },
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -30,6 +31,7 @@ export default {
             axios.get('/genre/get-all-genre')
             .then( (response) => {
                 this.genres = response.data.genres
+                this.loading = false
             })
             .catch( () => {
                 console.log('fail')

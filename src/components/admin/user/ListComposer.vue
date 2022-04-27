@@ -1,6 +1,6 @@
 <template>
     <div>
-        <data-table :desserts="composers" :headers="headers"></data-table>
+        <data-table :desserts="composers" :headers="headers" :loading="loading"></data-table>
     </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
                 { text: 'Code người dùng',value: 'user_id' },
                 { text: 'Biệt danh', value: 'nickname' },
                 { text: 'Actions', value: 'actions' }
-            ]
+            ],
+            loading: true
         }
     },
     created(){
@@ -30,6 +31,7 @@ export default {
             axios.get('/user/composer/get-all-composer')
             .then((response) => {
                 this.composers = response.data.composers
+                this.loading = false
             })
             .catch(() => {
                 console.log('fail to get composers')

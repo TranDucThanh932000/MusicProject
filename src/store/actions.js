@@ -39,5 +39,8 @@ export const actions = {
     },
     updateIsShow({commit}, payload){
         commit('updateIsShow', payload)
+    },
+    updatePermissions({commit}, payload){
+        commit('updatePermissions', payload)
     }
 }
