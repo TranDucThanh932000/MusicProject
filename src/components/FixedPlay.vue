@@ -176,7 +176,7 @@
         </div>
       </div>
       <div class="d-flex col-sm-3 " style="align-items: center;">
-        <v-btn plain color="white">
+        <v-btn plain color="white" @click="goToMV(1)">
           <v-icon>mdi-movie-open-play</v-icon>
         </v-btn>
         <v-btn class="speakers" plain color="white" v-if="vol >= 80 && sing == true" @click="updateSing(false)">
@@ -251,6 +251,10 @@ export default {
     },
     emitParent(){
       this.$store.dispatch('updateIsShow', false)
+    },
+    goToMV(id){
+      this.$store.dispatch('updateIsHiddenSideBarLeft', true)
+      this.$router.push( '/mv/' + id )
     }
   },
   computed:{

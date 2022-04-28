@@ -1,18 +1,19 @@
 <template>
-  <v-app style="background-color: #170f23">
-    <v-row  style="background-color: #170f23; padding-bottom: 0px">
+  <v-app style="background-color: #170f23;">
+    <v-row  style="background-color: #170f23; padding-bottom: 0px;">
       <v-navigation-drawer
+        v-if="!isHiddenSideBarLeft"
         permanent
         :mini-variant="!showSidebarLeft"
         fixed
         app
         style="background-color: #231b2e; z-index: 9999999"
       >
-        <sidebar />
+        <sidebar/>
       </v-navigation-drawer>
 
       <v-main>
-        <v-container fluid style="height: 100%">
+        <v-container fluid class="py-0">
           <Menu v-if="showMenu" />
           <keep-alive>
             <router-view />
@@ -61,6 +62,7 @@ export default {
       "showMenu",
       "showFixedPlay",
       "user",
+      "isHiddenSideBarLeft"
     ]),
     currentUser: {
       get() {
@@ -206,6 +208,11 @@ export default {
       });
       this.$store.dispatch("updateShowFixedPlay", true);
       this.$store.dispatch("sidebarRight/updateIsTurnOn", true);
+    }
+    if(this.$route.name == 'show-mv'){
+      this.$store.dispatch('updateShowSidebarLeft', false)
+      this.$store.dispatch("updateShowFixedPlay", false)
+      this.$store.dispatch('updateIsHiddenSideBarLeft', true)
     }
   },
   mounted() {

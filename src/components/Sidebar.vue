@@ -1,6 +1,6 @@
 <template>
-  <v-col md="12" class="px-2 py-0">
-    <v-card flat>
+  <v-col md="12" class="px-2 py-0" >
+    <v-card flat >
         <v-row style="background-color:#231b2e;">
           <v-list-item>
             <v-list-item-content>

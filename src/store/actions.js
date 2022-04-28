@@ -42,5 +42,8 @@ export const actions = {
     },
     updatePermissions({commit}, payload){
         commit('updatePermissions', payload)
+    },
+    updateIsHiddenSideBarLeft({commit}, payload){
+        commit('updateIsHiddenSideBarLeft', payload)
     }
 }

@@ -39,6 +39,7 @@ export const store = new Vuex.Store({
         right: null,
         nameCom: "SidebarRight",
         showSidebarLeft: true,
+        isHiddenSideBarLeft: false,
         showMenu: true,
         showFixedPlay: false,
         user: {},

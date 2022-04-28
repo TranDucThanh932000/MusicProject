@@ -46,6 +46,9 @@ export const getters = {
     },
     permissions(state){
         return state.permissions
+    },
+    isHiddenSideBarLeft(state){
+        return state.isHiddenSideBarLeft
     }
     
 }

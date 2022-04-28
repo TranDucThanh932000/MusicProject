@@ -34,5 +34,8 @@ export const mutations = {
     },
     updatePermissions(state, payload){
         state.permissions = payload
+    },
+    updateIsHiddenSideBarLeft(state, payload){
+        state.isHiddenSideBarLeft = payload
     }
 }

@@ -35,7 +35,7 @@ import CreateRole from '../components/admin/role/CreateRole'
 import SetupRoleAdmin from '../components/admin/setup_role/SetupRole'
 import CreateUserRole from '../components/admin/setup_role/CreateUserRole'
 import ListUserRole from '../components/admin/setup_role/ListUserRole'
-
+import MV from '../components/mv/MV'
 
 
 Vue.use(VueRouter)
@@ -91,6 +91,11 @@ export const routes = [
         path: '/public-chat/:id',
         name: "public-chat",
         component: PublicChat
+    },
+    {
+        path: '/mv/:id',
+        name: "show-mv",
+        component: MV,
     },
     {
         path: '/admin',
