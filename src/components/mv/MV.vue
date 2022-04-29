@@ -1,187 +1,227 @@
 <template>
-  <transition name="goTop">
-    <div class="pa-8 show-mv">
-        <v-row class="pb-2">
-            <div class="d-flex">
-            <v-img
-                height="48px"
-                width="48px"
-                src="https://docs.google.com/uc?id=1R_FS4a_e2goeSEsSE04TqVsfVB3qrCkk"
-                style="border-radius: 100%"
-            >
-            </v-img>
-            <v-card
-                color="transparent"
-                class="d-flex px-3"
-                style="flex-direction: column; justify-content: space-between"
-                flat
-            >
-                <v-card-title class="pa-0"> Nếu ngày ấy </v-card-title>
-                <v-card-subtitle style="color: white" class="pa-0">
-                SOOBIN
-                </v-card-subtitle>
-            </v-card>
-            <v-card color="transparent" flat>
-                <v-toolbar dense dark flat color="transparent">
-                <v-btn icon>
-                    <v-icon>mdi-heart-outline</v-icon>
-                </v-btn>
-                <v-btn icon>
-                    <v-icon>mdi-music</v-icon>
-                </v-btn>
-                <v-btn icon>
-                    <v-icon>mdi-dots-horizontal</v-icon>
-                </v-btn>
-                </v-toolbar>
-            </v-card>
+    <div style="height: 100vh;">
+        <v-row class="d-flex pt-2 px-10" style="border-bottom: 2px solid white;">
+            <div>
+                <h2 class="pr-8" style="height: 40px;line-height: 48px;color:hotpink;border-right: 2px solid white;">MV</h2>
             </div>
-            <v-spacer></v-spacer>
-            <v-btn icon dark @click="close">
-            <v-icon>mdi-close</v-icon>
-            </v-btn>
+            <v-toolbar dense elevation="0" style="background-color: transparent">
+                <v-btn text dark>
+                    Việt Nam
+                </v-btn>
+                <v-btn text dark>
+                    US-UK
+                </v-btn>
+                <v-btn text dark>
+                    K-POP
+                </v-btn>
+            </v-toolbar>
         </v-row>
-        <v-row>
-            <v-col md="9" class="pa-0 pr-2">
-            <video width="100%" height="100%" controls>
-                <source :src="link" type="video/mp4" />
-            </video>
-            </v-col>
-            <v-col
-            md="3"
-            class="pa-0"
-            style="border-radius: 5px; position: relative"
-            >
-            <div class="bg-image"></div>
-            <div class="d-flex flex-column pa-3 bg-text">
-                <v-card
-                class="d-flex pb-2"
-                dark
-                flat
-                style="background: transparent"
-                >
-                <div>
-                    <v-img
-                    height="80px"
-                    width="120px"
-                    src="https://docs.google.com/uc?id=1R_FS4a_e2goeSEsSE04TqVsfVB3qrCkk"
-                    style="border-radius: 5px"
-                    >
-                    </v-img>
-                </div>
-                <div>
-                    <v-card-title class="pt-0">Nếu ngày ấy</v-card-title>
-                    <v-card-subtitle>Soobin</v-card-subtitle>
-                </div>
-                </v-card>
-                <v-card
-                class="d-flex pb-2"
-                dark
-                flat
-                style="background: transparent"
-                >
-                <div>
-                    <v-img
-                    height="80px"
-                    width="120px"
-                    src="https://docs.google.com/uc?id=1R_FS4a_e2goeSEsSE04TqVsfVB3qrCkk"
-                    style="border-radius: 5px"
-                    >
-                    </v-img>
-                </div>
-                <div>
-                    <v-card-title class="pt-0">Nếu ngày ấy</v-card-title>
-                    <v-card-subtitle>Soobin</v-card-subtitle>
-                </div>
-                </v-card>
-                <v-card
-                class="d-flex pb-2"
-                dark
-                flat
-                style="background: transparent"
-                >
-                <div>
-                    <v-img
-                    height="80px"
-                    width="120px"
-                    src="https://docs.google.com/uc?id=1R_FS4a_e2goeSEsSE04TqVsfVB3qrCkk"
-                    style="border-radius: 5px"
-                    >
-                    </v-img>
-                </div>
-                <div>
-                    <v-card-title class="pt-0">Nếu ngày ấy</v-card-title>
-                    <v-card-subtitle>Soobin</v-card-subtitle>
-                </div>
-                </v-card>
+        <v-row class="d-flex px-10">
+            <div class="py-4">
+                <v-menu offset-y>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                        color="rgb(35 27 46)"
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        >
+                            {{ textGenre }}
+                            <v-icon right>mdi-menu-down</v-icon>
+                        </v-btn>
+                    </template>
+                    <v-list color="#432275">
+                        <v-list-item @click="getGenreById(0)" class="bg-hover-item" dense>
+                            <v-list-item-title>Tất cả</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item
+                        v-for="(item, index) in listGenre"
+                        :key="index"
+                        dense
+                        class="bg-hover-item"
+                        @click="getGenreById(index + 1)"
+                        >
+                            <v-list-item-title>{{ item.name }}</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
             </div>
+            <div class="pa-4">
+                <v-menu offset-y>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                        color="rgb(35 27 46)"
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                        
+                        >
+                            <v-icon left>mdi-filter-variant</v-icon>
+                            {{ textStatus }}
+                            <v-icon right>mdi-menu-down</v-icon>
+                        </v-btn>
+                    </template>
+                    <v-list color="#432275">
+                        <v-list-item @click="statusMv(0)" class="bg-hover-item" dense>
+                            <v-list-item-title >Nghe nhiều</v-list-item-title>
+                        </v-list-item>
+                        <!-- <v-list-item class="bg-hover-item" dense>
+                            <v-list-item-title @click="statusMv(1)">Nổi bật</v-list-item-title>
+                        </v-list-item> -->
+                        <v-list-item @click="statusMv(1)" class="bg-hover-item" dense>
+                            <v-list-item-title >Mới nhất</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
+            </div>
+        </v-row>
+        <v-row class="px-10">
+            <v-col md="4" v-for="mv in listMVChoosed" :key="mv.id">
+                <div style="position: relative;">
+                    <div class="bg-btn-play">
+                        <div class="show-btn-play-mv" style="height: 100%;">
+                            <v-btn @click="goToMv(mv.id)" style="display: none;" dark class="absolute-btn" absolute icon>
+                                <v-icon size="48px">mdi-play-circle-outline</v-icon>
+                            </v-btn>
+                        </div>
+                    </div>
+                    <v-img style="border-radius: 6px;" :src='"https://docs.google.com/uc?id=" + mv.image'></v-img>
+                </div>
+                <v-card color="transparent" flat>
+                    <v-list-item three-line class="px-0">
+                        <v-list-item-avatar
+                            tile
+                            size="60"
+                        >
+                            <v-img style="border-radius: 100%;" :src='"https://docs.google.com/uc?id=" + mv.singerImg'></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                            <v-list-item-title class="text-h5 mb-1">
+                                {{ mv.songName }}
+                            </v-list-item-title>
+                            <v-list-item-subtitle>
+                                <span v-for="singer in mv.singers" :key='singer.id + "-singer"'>
+                                    <router-link :to='"/singer/" + singer.id'  class="link-singer">{{ singer.nickname }}</router-link>
+                                </span>
+                            </v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-card>
             </v-col>
         </v-row>
     </div>
-  </transition>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  data() {
-    return {
-      link: "https://drive.google.com/uc?export=download&id=1lXFwEZKChKYTYHHlrPhrznt86yHcByuy",
-    };
-  },
-  created() {
-    this.$store.dispatch("updateShowSidebarLeft", false);
-    this.$store.dispatch("updateShowFixedPlay", false);
-    this.$store.dispatch("updateIsHiddenSideBarLeft", true);
-  },
-  methods: {
-    close() {
-      this.$router.push("/");
-      this.$store.dispatch("updateIsHiddenSideBarLeft", false);
+    data() {
+        return{
+            listGenre: [],
+            listMVChoosed: [],
+            status: 0,
+            textStatus: 'Nghe nhiều',
+            textGenre: 'Tất cả',
+            indexGenre: 0,
+            indexStatus: 0
+        }
     },
-  },
-};
+    created(){
+        this.getAllGenre()
+        this.getGenreById(0)
+    },
+    methods:{
+        getAllGenre(){
+            axios.get('/genre/get-all-genre')
+            .then( (response) => {
+                this.listGenre = response.data.genres
+            })
+            .catch( () => {
+                console.log('fail to get all genre')
+            })
+        },
+        getGenreById(index){
+            this.indexGenre = index
+            if(this.indexGenre === 0){
+                this.textGenre = 'Tất cả'
+                axios.get('/mv/get-all-mv')
+                .then( (response) => {
+                    this.listMVChoosed = response.data.mvs
+                    this.sortByStatus(this.indexStatus)
+                })
+                .catch( () => {
+                    console.log('fail to load all mv')
+                })
+            }else{
+                this.textGenre = this.listGenre[index - 1].name
+                axios.get('/mv/get-by-genre/' + this.listGenre[index - 1].id)
+                .then( (response) => {
+                    this.listMVChoosed = response.data.mvs
+                    this.sortByStatus(this.indexStatus)
+                })
+                .catch(() => {
+                    console.log('fail to get by genre')
+                })
+            }
+        },
+        statusMv(id){
+            this.indexStatus = id
+            if(this.indexStatus === 0){
+                this.textStatus = 'Nghe nhiều'
+            // }else if(this.statusMv === 1){
+            //     this.textStatus = 'Nổi bật'
+            }else{
+                this.textStatus = 'Mới nhất'
+            }
+        },
+        sortByStatus(status){
+            if(status === 0){
+                this.listMVChoosed = this.listMVChoosed.sort( (a, b) => (a.view > b.view) ? -1 : 1 )
+            }else{
+                this.listMVChoosed = this.listMVChoosed.sort( (a, b) =>  (a.created_at > b.created_at) ? -1 : 1 )
+            }
+        },
+        goToMv(id){
+            this.$router.push('/mv/' + id)
+        }
+    },
+    watch:{
+        indexStatus(){
+            this.sortByStatus(this.indexStatus)
+        }
+    }
+}
 </script>
 
 <style>
-.bg-image {
-  background: linear-gradient(45deg, red, blue);
-  opacity: 0.4;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  height: 100%;
+.bg-hover-item:hover{
+    background: #767676;
 }
 
-.bg-text {
-  position: absolute;
-  top: 4px;
-  overflow-y: scroll;
-  max-height: 100vh;
-  width: 100%;
-  z-index: 2;
+.link-singer{
+    color: white !important;
+}
+.link-singer:hover{
+    color: #9198e5 !important;
+    text-decoration: underline;
 }
 
-.goTop-enter-active {
-  animation: goTop-in 2s;
-}
-.goTop-leave-active {
-  animation: goTop-in 2s reverse;
-}
-@keyframes goTop-in {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 10px;
-  }
+.bg-btn-play{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    z-index: 2;
 }
 
-.show-mv {
-  background: linear-gradient(#e66465, #9198e5);
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 10px;
-  bottom: 0;
-  right: 0;
-  z-index: 999999999999999;
+.absolute-btn{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.show-btn-play-mv:hover button{
+    display: block !important;
 }
 </style>

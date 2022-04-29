@@ -134,6 +134,7 @@ export default {
                         obj.album = 'Test album'
                         obj.time = res[i].timeDuration
                         obj.src = 'https://docs.google.com/uc?id=' + res[i].src
+                        obj.mvId = res[i].mv_id
                         songs.push(obj)
                     }
                     this.$store.dispatch('album/updateListTop100', songs)
@@ -154,6 +155,7 @@ export default {
                         obj.album = 'Test album'
                         obj.time = res[i].timeDuration
                         obj.src = 'https://docs.google.com/uc?id=' + res[i].src
+                        obj.mvId = res[i].mv_id
                         songs.push(obj)
                     }
                     this.$store.dispatch('album/updateListTop100', songs)

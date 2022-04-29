@@ -13,19 +13,19 @@
       </v-navigation-drawer>
 
       <v-main>
-        <v-container fluid class="py-0">
+        <v-container fluid>
           <Menu v-if="showMenu" />
-          <keep-alive>
+          <!-- <keep-alive> -->
             <router-view />
-          </keep-alive>
+          <!-- </keep-alive> -->
         </v-container>
       </v-main>
 
-      <transition name="fade">
+      
         <div v-show="navRight">
           <SidebarRight />
         </div>
-      </transition>
+      
     </v-row>
     <fixed-play v-if="showFixedPlay" :isShow="isShow"></fixed-play>
     <div style="position: fixed; bottom: 25px; right: 0px">
@@ -103,6 +103,7 @@ export default {
                 title: res[i].name,
                 singer: singers,
                 src: "https://docs.google.com/uc?id=" + res[i].src,
+                mvId: res[i].mv_id
               };
               songs[i] = data;
             }
@@ -140,6 +141,7 @@ export default {
                 album: "Playah (Album)",
                 time: "03:44",
                 src: "https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL",
+                mvId: 4
               },
               {
                 img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
@@ -148,6 +150,7 @@ export default {
                 album: "Chạy Về Khóc Với Anh (Single)",
                 time: "03:44",
                 src: "https://docs.google.com/uc?id=1_ds2_IIEpt_bhzBO9Sxtl6_xdZIbia69",
+                mvId: 4
               },
               {
                 img: "https://i.ytimg.com/vi/DYdMUzHwAMY/hqdefault.jpg",
@@ -156,6 +159,7 @@ export default {
                 album: "Chạy Về Khóc Với Anh (Single)",
                 time: "03:44",
                 src: "https://docs.google.com/uc?id=1a_dgCSHWj_AFd1-Gto6ogEByva5v-AMR",
+                mvId: 4
               },
             ]
           }
@@ -229,7 +233,7 @@ export default {
         { title: "Nhạc Mới", icon: "mdi-new-box", to:'/new-songs'},
         { title: "Thể Loại", icon: "mdi-shape", to:'/'},
         { title: "Top 100", icon: "mdi-star", to:'/'},
-        { title: "MV", icon: "mdi-shopping-music", to:'/'},
+        { title: "MV", icon: "mdi-shopping-music", to:'/mv'},
       ]
       this.$store.dispatch('sideBar/updateItemSideBars', arr)
       this.$store.dispatch('sideBar/updateItemBelowSideBars', itemBelowSideBars)
@@ -291,12 +295,13 @@ export default {
   background: grey;
 }
 
-.fade-active {
+
+/* .fade-active {
   transform: translate(0, 100%);
 }
 
 .fade-enter-active {
-  /* transition: all 0.3s ease-out; */
+  transition: all 0.3s ease-out;
   transform: translate(-100%, 100%);
 }
 
@@ -305,12 +310,12 @@ export default {
 }
 
 .fade-leave-active {
-  /* transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1); */
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   transform: translate(0, 100%);
 }
 .fade-enter-from,
 .fade-leave-to {
   transform: translateX(-300px);
   opacity: 0;
-}
+} */
 </style>

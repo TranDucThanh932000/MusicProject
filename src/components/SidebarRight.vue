@@ -1,9 +1,10 @@
 <template>
+  <transition name="goLeft">
     <v-navigation-drawer
       absolute
       permanent
       right
-      style="z-index:9999999;background-color: #120822;position: fixed;right:0px; overflow: hidden;"
+      style="z-index:9999999;background-color: #120822;position: fixed;right:0; overflow: hidden;"
       :height="height+'px'"
       class="customScrollBar"
       v-if="isTurnOn"
@@ -46,6 +47,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+  </transition>
 </template>
 
 <script>

@@ -176,7 +176,7 @@
         </div>
       </div>
       <div class="d-flex col-sm-3 " style="align-items: center;">
-        <v-btn plain color="white" @click="goToMV(1)">
+        <v-btn v-if="live_song.mvId != null" plain color="white" @click="goToMV(live_song.mvId)">
           <v-icon>mdi-movie-open-play</v-icon>
         </v-btn>
         <v-btn class="speakers" plain color="white" v-if="vol >= 80 && sing == true" @click="updateSing(false)">

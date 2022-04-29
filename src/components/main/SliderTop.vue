@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3" style="width: 100%">
+  <div style="width: 100%">
     <v-sheet
         class="slider-top"
         style="background-color:#170f23;"

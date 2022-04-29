@@ -98,7 +98,8 @@ export default {
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
                 singer: singers,
-                src: 'https://docs.google.com/uc?id=' + res[i].src
+                src: 'https://docs.google.com/uc?id=' + res[i].src,
+                mvId: res[i].mv_id
               }
               top[i] = data
             }
