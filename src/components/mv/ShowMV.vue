@@ -65,7 +65,17 @@
                 v-for="mv in listMV"
                 :key="mv.id"
                 >
-                <div>
+                <div style="position: relative">
+                    <div class="bg-btn-play">
+                        <div class="show-btn-play-mv" style="height: 100%;">
+                            <v-btn v-if="mvPlaying.id != mv.id" @click="goToMv(mv.id)" style="display: none;" dark class="absolute-btn" absolute icon>
+                                <v-icon size="48px">mdi-play-outline</v-icon>
+                            </v-btn>
+                            <v-btn v-else dark class="absolute-btn" disabled absolute icon>
+                                <span class="bg-dark">Đang phát</span>
+                            </v-btn>
+                        </div>
+                    </div>
                     <v-img
                     height="80px"
                     width="120px"
@@ -75,7 +85,12 @@
                     </v-img>
                 </div>
                 <div>
-                    <v-card-title class="pt-0">{{ mv.songName }}</v-card-title>
+                    <v-card-title class="pt-0">
+                      <router-link v-if="mvPlaying.id != mv.id" :to="'/mv/' + mv.id">
+                        <span>{{ mv.songName }}</span>
+                      </router-link>
+                      <span v-else>{{ mv.songName }}</span>
+                    </v-card-title>
                     <v-card-subtitle>
                       <span v-for="singer in mv.singers" :key="singer.id"> 
                           <router-link class="link-singer" :to='"/singer/" + singer.id'>
@@ -94,6 +109,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -110,10 +126,13 @@ export default {
     this.$store.dispatch("updateShowFixedPlay", false)
     this.$store.dispatch("updateIsHiddenSideBarLeft", true)
   },
+  destroyed(){
+    this.$store.dispatch("updateShowSidebarLeft", true)
+    this.$store.dispatch("updateIsHiddenSideBarLeft", false)
+  },
   methods: {
     close() {
-      this.$router.push("/")
-      this.$store.dispatch("updateIsHiddenSideBarLeft", false)
+      this.$router.go(-1)
     },
     getInforMv(){
         axios.get('/mv/get-full-infor-mv/' + this.$route.params.id)
@@ -140,6 +159,9 @@ export default {
       .catch( () => {
         console.log('fail to get list mv')
       })
+    },
+    goToMv(id){
+      this.$router.push('/mv/' + id)
     }
   },
   watch: {
@@ -159,6 +181,10 @@ export default {
   filter: blur(8px);
   -webkit-filter: blur(8px);
   height: 100%;
+}
+
+.bg-dark{
+  opacity: 0.69;
 }
 
 .bg-text {
@@ -203,4 +229,5 @@ export default {
     color: #9198e5 !important;
     text-decoration: underline;
 }
+
 </style>

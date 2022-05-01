@@ -149,8 +149,8 @@ export default {
                     this.listMVChoosed = response.data.mvs
                     this.sortByStatus(this.indexStatus)
                 })
-                .catch( () => {
-                    console.log('fail to load all mv')
+                .catch( response => {
+                    console.log(response)
                 })
             }else{
                 this.textGenre = this.listGenre[index - 1].name
