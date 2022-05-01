@@ -96,6 +96,11 @@ export const routes = [
         component: PublicChat
     },
     {
+        path: '/top-100',
+        name: "top-100",
+        component: NewSongs
+    },
+    {
         path: '/mv',
         component: RouteMV,
         children: [

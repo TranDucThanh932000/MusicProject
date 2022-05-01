@@ -232,7 +232,7 @@ export default {
       var itemBelowSideBars = [
         { title: "Nhạc Mới", icon: "mdi-new-box", to:'/new-songs'},
         { title: "Thể Loại", icon: "mdi-shape", to:'/'},
-        { title: "Top 100", icon: "mdi-star", to:'/'},
+        { title: "Top 100", icon: "mdi-star", to:'/top-100'},
         { title: "MV", icon: "mdi-shopping-music", to:'/mv'},
       ]
       this.$store.dispatch('sideBar/updateItemSideBars', arr)
