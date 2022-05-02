@@ -18,10 +18,20 @@
           >
             <v-card-title class="pa-0"> {{ mvPlaying.songName }} </v-card-title>
             <v-card-subtitle style="color: white" class="pa-0">
-              <span v-for="singer in mvPlaying.singers" :key="singer.id">
+              <span 
+              @mouseleave="leaveInforCard"
+              @mouseover="checkLoad(singer.user_id)"
+              style="position: relative"
+              v-for="singer in mvPlaying.singers" :key="singer.id">
                 <router-link class="link-singer" :to="'/singer/' + singer.id">
                   {{ singer.nickname }}
                 </router-link>
+                <div class="display-none">
+                  <SingerInfor
+                    v-if="!isHiddenInforCard"
+                    :singer="singerInfo"
+                  />
+                </div>
               </span>
             </v-card-subtitle>
           </v-card>
@@ -53,10 +63,10 @@
         <v-col
           md="3"
           class="pa-0"
-          style="border-radius: 5px; position: relative"
+          style="border-radius: 5px; position: relative;"
         >
           <div class="bg-image"></div>
-          <div class="d-flex flex-column pa-3 bg-text">
+          <div class="d-flex flex-column pa-3 bg-text" style="overflow-x: hidden; overflow-y: scroll;height: 100%;">
             <v-card
               class="d-flex pb-2"
               dark
@@ -154,26 +164,33 @@ export default {
       singerInfo: {},
       isHiddenInforCard: true,
       isHovering: false,
-      inforSingerLoaded: [],
+      inforSingerLoaded: []
     };
   },
   components: {
     SingerInfor,
   },
   created() {
+    this.$store.dispatch('fixedplay/playAudio', true)
     this.getInforMv();
     this.getListMVofSinger();
     this.$store.dispatch("updateShowSidebarLeft", false);
     this.$store.dispatch("updateShowFixedPlay", false);
     this.$store.dispatch("updateIsHiddenSideBarLeft", true);
   },
+  beforeRouteEnter(to, from, next) {
+    next(() => {
+      sessionStorage.setItem('back', from.fullPath)
+    })
+  },
   destroyed() {
     this.$store.dispatch("updateShowSidebarLeft", true);
     this.$store.dispatch("updateIsHiddenSideBarLeft", false);
+    sessionStorage.removeItem('back');
   },
   methods: {
     close() {
-      this.$router.go(-1);
+      this.$router.push(sessionStorage.getItem('back'))
     },
     getInforMv() {
       axios
@@ -263,7 +280,7 @@ export default {
   display: none;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 2;
 }
 
@@ -303,7 +320,7 @@ export default {
   top: 10px;
   bottom: 0;
   right: 0;
-  z-index: 999999999999;
+  z-index: 99999999;
 }
 
 .link-singer {
@@ -320,5 +337,20 @@ export default {
 
 .display-none:hover {
   display: block;
+}
+
+.bg-text::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+.bg-text::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+
+.bg-text::-webkit-scrollbar-thumb:hover {
+  background: grey;
 }
 </style>
