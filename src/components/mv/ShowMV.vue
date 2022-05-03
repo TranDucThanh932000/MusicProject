@@ -279,9 +279,9 @@ export default {
 .display-none {
   display: none;
   position: absolute;
-  top: 0;
+  top: 15px;
   left: 0;
-  z-index: 2;
+  z-index: 99999999999;
 }
 
 .bg-dark {

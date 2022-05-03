@@ -20,9 +20,8 @@
       </v-list-item-action>
     </v-list-item>
     <v-list-item>
-      <v-list-item-content>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis ipsam
-        laudantium quod consequatur
+      <v-list-item-content class="py-0" v-if="singer.description">
+        {{ singer.description }}
       </v-list-item-content>
     </v-list-item>
     <v-list-item class="removeAfter">
@@ -52,7 +51,7 @@
                   </v-btn>
                 </div>
               </div>
-              <v-img :src="'https://docs.google.com/uc?id=' + song.image">
+              <v-img style="border-radius: 5px" :src="'https://docs.google.com/uc?id=' + song.image">
               </v-img>
             </v-list-item-avatar>
             <v-list-item-content class="px-0 pb-0 float-left">
@@ -104,11 +103,15 @@ export default {
             };
             songs.splice(indexPlaying + 1, 0, song);
             this.$store.dispatch("fixedplay/updateSongs", songs);
-            this.$router.push(sessionStorage.getItem('back'))
-            sessionStorage.removeItem('back')
-            setTimeout(() => {
+            if(this.$route.fullPath.includes('/mv')){
+              this.$router.push(sessionStorage.getItem('back'))
+              sessionStorage.removeItem('back')
+              setTimeout(() => {
+                this.$store.dispatch("fixedplay/nextSong");
+              }, 1000)
+            }else{
               this.$store.dispatch("fixedplay/nextSong");
-            }, 1000)
+            }
           }catch(err){
             console.log(err)
           }

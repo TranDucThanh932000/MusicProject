@@ -31,7 +31,29 @@
                     <v-col md="8">
                         <v-card flat color="transparent" style="height: 100%;">
                             <v-card-subtitle style="padding: 0px;color:white;">{{ song.title }}</v-card-subtitle>
-                            <v-card-text style="padding: 0px;color: whitesmoke;opacity: 0.6;">{{ song.singer }}</v-card-text>
+                            <v-card-text style="padding: 0px;color: whitesmoke">
+                              <span
+                                @mouseleave="leaveInforCard"
+                                @mouseover="checkLoad(singer.user_id)"
+                                style="position: relative"
+                                v-for="singer in song.singer"
+                                :key="singer.id"
+                              >
+                                <router-link
+                                  class="link-singer"
+                                  :to="'/singer/' + singer.id"
+                                  style="opacity: 0.6"
+                                >
+                                  {{ singer.nickname }}
+                                </router-link>
+                                <div class="display-none">
+                                  <SingerInfor
+                                    v-if="!isHiddenInforCard"
+                                    :singer="singerInfo"
+                                  />
+                                </div>
+                              </span>
+                            </v-card-text>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -69,7 +91,29 @@
                     <v-col md="8">
                         <v-card flat color="transparent" style="height: 100%;">
                             <v-card-subtitle style="padding: 0px;color:white;">{{ song.title }}</v-card-subtitle>
-                            <v-card-text style="padding: 0px;color: whitesmoke;opacity: 0.6;">{{ song.singer }}</v-card-text>
+                            <v-card-text style="padding: 0px;color: whitesmoke;">
+                              <span
+                                @mouseleave="leaveInforCard"
+                                @mouseover="checkLoad(singer.user_id)"
+                                style="position: relative"
+                                v-for="singer in song.singer"
+                                :key="singer.id"
+                              >
+                                <router-link
+                                  class="link-singer"
+                                  :to="'/singer/' + singer.id"
+                                  style="opacity: 0.6"
+                                >
+                                  {{ singer.nickname }}
+                                </router-link>
+                                <div class="display-none">
+                                  <SingerInfor
+                                    v-if="!isHiddenInforCard"
+                                    :singer="singerInfo"
+                                  />
+                                </div>
+                              </span>
+                            </v-card-text>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -107,7 +151,29 @@
                     <v-col md="8">
                         <v-card flat color="transparent" style="height: 100%;">
                             <v-card-subtitle style="padding: 0px;color:white;">{{ song.title }}</v-card-subtitle>
-                            <v-card-text style="padding: 0px;color: whitesmoke;opacity: 0.6;">{{ song.singer }}</v-card-text>
+                            <v-card-text style="padding: 0px;color: whitesmoke">
+                              <span
+                                @mouseleave="leaveInforCard"
+                                @mouseover="checkLoad(singer.user_id)"
+                                style="position: relative"
+                                v-for="singer in song.singer"
+                                :key="singer.id"
+                              >
+                                <router-link
+                                  class="link-singer"
+                                  :to="'/singer/' + singer.id"
+                                  style="opacity: 0.6"
+                                >
+                                  {{ singer.nickname }}
+                                </router-link>
+                                <div class="display-none">
+                                  <SingerInfor
+                                    v-if="!isHiddenInforCard"
+                                    :singer="singerInfo"
+                                  />
+                                </div>
+                              </span>
+                            </v-card-text>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -130,7 +196,17 @@
 <script>
 import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
+import SingerInfor from "../general/SingerInfo.vue"
 export default {
+  components:{SingerInfor},
+    data(){
+      return{
+        singerInfo: {},
+        isHiddenInforCard: true,
+        isHovering: false,
+        inforSingerLoaded: []
+      }
+    },
     created(){
         this.$store.dispatch('weeklyRank/updateSongs', new Array(15).fill(false))
         this.getTop5All()
@@ -146,15 +222,10 @@ export default {
             var res = response.data.songs.vietnam
             var top5VN = []
             for(let i = 0; i < res.length; i++){
-              var singers = ''
-              for(let j = 0; j < res[i].singer.length; j++){
-                singers += res[i].singer[j].nickname + ', '
-              }
-              singers = singers.substring(0, singers.length - 2)
               var data = {
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
-                singer: singers,
+                singer: res[i].singer,
                 src: 'https://docs.google.com/uc?id=' + res[i].src,
                 mvId: res[i].mv_id
               }
@@ -164,15 +235,10 @@ export default {
             res = response.data.songs.usuk
             var top5Usuk = []
             for(let i = 0; i < res.length; i++){
-              singers = ''
-              for(let j = 0; j < res[i].singer.length; j++){
-                singers += res[i].singer[j].nickname + ', '
-              }
-              singers = singers.substring(0, singers.length - 2)
               data = {
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
-                singer: singers,
+                singer: res[i].singer,
                 src: 'https://docs.google.com/uc?id=' + res[i].src,
                 mvId: res[i].mv_id
               }
@@ -182,15 +248,10 @@ export default {
             res = response.data.songs.kpop
             var top5Kpop = []
             for(let i = 0; i < res.length; i++){
-              singers = ''
-              for(let j = 0; j < res[i].singer.length; j++){
-                singers += res[i].singer[j].nickname + ', '
-              }
-              singers = singers.substring(0, singers.length - 2)
               data = {
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
-                singer: singers,
+                singer: res[i].singer,
                 src: 'https://docs.google.com/uc?id=' + res[i].src,
                 mvId: res[i].mv_id
               }
@@ -205,7 +266,41 @@ export default {
           .catch(() => {
             console.log('fail to get top 5 all')
           })
-        }
+        },
+        getInforSinger(id) {
+          if (!this.isHovering) {
+            this.isHovering = true;
+            axios
+              .get("/user/singer/get-info-singer/" + id)
+              .then((response) => {
+                this.singerInfo = response.data.singer;
+                this.isHiddenInforCard = false;
+                if (this.inforSingerLoaded.findIndex((x) => x.id == id) < 0) {
+                  this.inforSingerLoaded.push({
+                    id: id,
+                    singer: this.singerInfo,
+                  });
+                }
+              })
+              .catch(() => {
+                console.log("fail to load infor singer");
+              });
+          }
+        },
+        leaveInforCard() {
+          this.isHiddenInforCard = true;
+          this.singerInfo = {};
+          this.isHovering = false;
+        },
+        checkLoad(id) {
+          var index = this.inforSingerLoaded.findIndex((x) => x.id == id);
+          if (index < 0) {
+            this.getInforSinger(id);
+          } else {
+            this.singerInfo = this.inforSingerLoaded[index].singer;
+            this.isHiddenInforCard = false;
+          }
+        },
     }
 }
 </script>

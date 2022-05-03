@@ -56,7 +56,11 @@
                   padding-left: 0px;
                 "
               >
-                {{ live_song.singer }}
+                <span v-for="singer in live_song.singer" :key="singer.id">
+                  <router-link class="link-singer" :to="'/singer/' + singer.id">
+                    <span>{{ singer.nickname }} </span>
+                  </router-link>
+                </span>
               </p>
             </div>
           </div>

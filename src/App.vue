@@ -93,15 +93,10 @@ export default {
           var songs = []
           if (res.length != 0) {
             for (let i = 0; i < res.length; i++) {
-              var singers = "";
-              for (let j = 0; j < res[i].singer.length; j++) {
-                singers += res[i].singer[j].nickname + ", ";
-              }
-              singers = singers.substring(0, singers.length - 2);
               var data = {
                 img: "https://docs.google.com/uc?id=" + res[i].image,
                 title: res[i].name,
-                singer: singers,
+                singer: res[i].singer,
                 src: "https://docs.google.com/uc?id=" + res[i].src,
                 mvId: res[i].mv_id
               };
@@ -137,7 +132,7 @@ export default {
               {
                 img: "https://i.ytimg.com/vi/HK31DrqpztM/maxresdefault.jpg",
                 title: "Nếu ngày ấy",
-                singer: "Soobin",
+                singer: 'Soobin',
                 album: "Playah (Album)",
                 time: "03:44",
                 src: "https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL",

@@ -52,7 +52,28 @@
             </div>
             <div>
               <v-card-title>{{ top3.title }}</v-card-title>
-              <v-card-text>{{ top3.singer }}</v-card-text>
+              <v-card-text>
+                  <span
+                    @mouseleave="leaveInforCard"
+                    @mouseover="checkLoad(singer.user_id)"
+                    style="position: relative"
+                    v-for="singer in top3.singer"
+                    :key="singer.id"
+                  >
+                    <router-link
+                      class="link-singer"
+                      :to="'/singer/' + singer.id"
+                    >
+                      {{ singer.nickname }}
+                    </router-link>
+                    <div class="display-none">
+                      <SingerInfor
+                        v-if="!isHiddenInforCard"
+                        :singer="singerInfo"
+                      />
+                    </div>
+                  </span>
+              </v-card-text>
             </div>
           </v-card>
         </div>
@@ -76,9 +97,17 @@
 import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 import LineChart from "../musicchart/LineChart.vue";
-
+import SingerInfor from "../general/SingerInfo.vue"
 export default {
-  components: { LineChart },
+  data(){
+    return{
+      singerInfo: {},
+      isHiddenInforCard: true,
+      isHovering: false,
+      inforSingerLoaded: []
+    }
+  },
+  components: { LineChart, SingerInfor},
   created(){
     this.getTop3()
     this.$store.dispatch('updateBgImgGlobal',"url('https://yt3.ggpht.com/wqnYLDZRw2-BzwdIVeh0xHSmdohneRlmhG4GC9Dkh-ZA5ok48bSenQDVuUU2OoH-GNgXMYbF0tQ=s900-c-k-c0x00ffffff-no-rj')")
@@ -91,15 +120,15 @@ export default {
         var res = response.data.top3
         var top3 = []
         for(let i = 0; i < res.length; i++){
-          var singers = ''
-          for(let j = 0; j < res[i].singer.length; j++){
-            singers += res[i].singer[j].nickname + ', '
-          }
-          singers = singers.substring(0, singers.length - 2)
+          // var singers = ''
+          // for(let j = 0; j < res[i].singer.length; j++){
+          //   singers += res[i].singer[j].nickname + ', '
+          // }
+          // singers = singers.substring(0, singers.length - 2)
           var data = {
             img: 'https://docs.google.com/uc?id=' + res[i].image,
             title: res[i].name,
-            singer: singers,
+            singer: res[i].singer,
             src: 'https://docs.google.com/uc?id=' + res[i].src
           }
           top3[i] = data
@@ -109,7 +138,41 @@ export default {
       .catch(() => {
         console.log('fail to get top 3')
       })
-    }
+    },
+    getInforSinger(id) {
+      if (!this.isHovering) {
+        this.isHovering = true;
+        axios
+          .get("/user/singer/get-info-singer/" + id)
+          .then((response) => {
+            this.singerInfo = response.data.singer;
+            this.isHiddenInforCard = false;
+            if (this.inforSingerLoaded.findIndex((x) => x.id == id) < 0) {
+              this.inforSingerLoaded.push({
+                id: id,
+                singer: this.singerInfo,
+              });
+            }
+          })
+          .catch(() => {
+            console.log("fail to load infor singer");
+          });
+      }
+    },
+    leaveInforCard() {
+      this.isHiddenInforCard = true;
+      this.singerInfo = {};
+      this.isHovering = false;
+    },
+    checkLoad(id) {
+      var index = this.inforSingerLoaded.findIndex((x) => x.id == id);
+      if (index < 0) {
+        this.getInforSinger(id);
+      } else {
+        this.singerInfo = this.inforSingerLoaded[index].singer;
+        this.isHiddenInforCard = false;
+      }
+    },
   },
   computed:{
     ...mapGetters('chart',['icons','listTop3','gradient','color','fill','bg_img','songs']),

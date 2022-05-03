@@ -87,7 +87,7 @@
                     </div>
                     <v-img style="border-radius: 6px;" :src='"https://docs.google.com/uc?id=" + mv.image'></v-img>
                 </div>
-                <v-card color="transparent" flat>
+                <v-card color="transparent" flat style="position: relative">
                     <v-list-item three-line class="px-0">
                         <v-list-item-avatar
                             tile
@@ -99,11 +99,24 @@
                             <v-list-item-title class="text-h5 mb-1">
                                 {{ mv.songName }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>
-                                <span v-for="singer in mv.singers" :key='singer.id + "-singer"'>
-                                    <router-link :to='"/singer/" + singer.id'  class="link-singer">{{ singer.nickname }}</router-link>
+                            <v-card-subtitle style="color: white" class="pa-0">
+                                <span 
+                                @mouseleave="leaveInforCard"
+                                @mouseover="checkLoad(singer.user_id)"
+                                style="position: relative"
+                                v-for="singer in mv.singers" 
+                                :key='singer.id + "-singer"'>
+                                    <router-link :to='"/singer/" + singer.id'  class="link-singer">
+                                        {{ singer.nickname }}
+                                    </router-link>
+                                    <div class="display-none">
+                                        <SingerInfor
+                                            v-if="!isHiddenInforCard"
+                                            :singer="singerInfo"
+                                        />
+                                    </div>
                                 </span>
-                            </v-list-item-subtitle>
+                            </v-card-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                 </v-card>
@@ -114,7 +127,11 @@
 
 <script>
 import axios from 'axios'
+import SingerInfor from "../general/SingerInfo.vue"
 export default {
+    components: {
+        SingerInfor
+    },
     data() {
         return{
             listGenre: [],
@@ -123,7 +140,12 @@ export default {
             textStatus: 'Nghe nhiều',
             textGenre: 'Tất cả',
             indexGenre: 0,
-            indexStatus: 0
+            indexStatus: 0,
+
+            singerInfo: {},
+            isHiddenInforCard: true,
+            isHovering: false,
+            inforSingerLoaded: []
         }
     },
     created(){
@@ -183,7 +205,41 @@ export default {
         },
         goToMv(id){
             this.$router.push('/mv/' + id)
-        }
+        },
+        getInforSinger(id) {
+            if (!this.isHovering) {
+                this.isHovering = true;
+                axios
+                .get("/user/singer/get-info-singer/" + id)
+                .then((response) => {
+                    this.singerInfo = response.data.singer;
+                    this.isHiddenInforCard = false;
+                    if (this.inforSingerLoaded.findIndex((x) => x.id == id) < 0) {
+                    this.inforSingerLoaded.push({
+                        id: id,
+                        singer: this.singerInfo,
+                    });
+                    }
+                })
+                .catch(() => {
+                    console.log("fail to load infor singer");
+                });
+            }
+        },
+        leaveInforCard() {
+            this.isHiddenInforCard = true;
+            this.singerInfo = {};
+            this.isHovering = false;
+        },
+        checkLoad(id) {
+            var index = this.inforSingerLoaded.findIndex((x) => x.id == id);
+            if (index < 0) {
+                this.getInforSinger(id);
+            } else {
+                this.singerInfo = this.inforSingerLoaded[index].singer;
+                this.isHiddenInforCard = false;
+            }
+        },
     },
     watch:{
         indexStatus(){

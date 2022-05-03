@@ -19,7 +19,11 @@
 
             <v-list-item-content>
               <v-list-item-title>{{ song.title }}</v-list-item-title>
-              <v-list-item-subtitle style="color:white;opacity: 0.65;">{{ song.singer }}</v-list-item-subtitle>
+              <v-list-item-subtitle style="color:white;opacity: 0.65;">
+                <span v-for="singer in song.singer" :key="singer.id">
+                  <router-link class="link-singer" :to="'/singer/' + singer.id">{{ singer.nickname }} </router-link>
+                </span>
+              </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </div>
