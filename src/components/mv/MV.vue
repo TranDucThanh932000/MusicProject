@@ -128,7 +128,10 @@
 <script>
 import axios from 'axios'
 import SingerInfor from "../general/SingerInfo.vue"
+import { singerInforMixin } from '@/mixin/SingerInforMixin.js'
+
 export default {
+    mixins: [singerInforMixin],
     components: {
         SingerInfor
     },
@@ -141,11 +144,6 @@ export default {
             textGenre: 'Tất cả',
             indexGenre: 0,
             indexStatus: 0,
-
-            singerInfo: {},
-            isHiddenInforCard: true,
-            isHovering: false,
-            inforSingerLoaded: []
         }
     },
     created(){
@@ -205,41 +203,7 @@ export default {
         },
         goToMv(id){
             this.$router.push('/mv/' + id)
-        },
-        getInforSinger(id) {
-            if (!this.isHovering) {
-                this.isHovering = true;
-                axios
-                .get("/user/singer/get-info-singer/" + id)
-                .then((response) => {
-                    this.singerInfo = response.data.singer;
-                    this.isHiddenInforCard = false;
-                    if (this.inforSingerLoaded.findIndex((x) => x.id == id) < 0) {
-                    this.inforSingerLoaded.push({
-                        id: id,
-                        singer: this.singerInfo,
-                    });
-                    }
-                })
-                .catch(() => {
-                    console.log("fail to load infor singer");
-                });
-            }
-        },
-        leaveInforCard() {
-            this.isHiddenInforCard = true;
-            this.singerInfo = {};
-            this.isHovering = false;
-        },
-        checkLoad(id) {
-            var index = this.inforSingerLoaded.findIndex((x) => x.id == id);
-            if (index < 0) {
-                this.getInforSinger(id);
-            } else {
-                this.singerInfo = this.inforSingerLoaded[index].singer;
-                this.isHiddenInforCard = false;
-            }
-        },
+        }
     },
     watch:{
         indexStatus(){

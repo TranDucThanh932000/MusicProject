@@ -57,9 +57,20 @@
           </v-col>
           <v-col md="3">
             <p class="my-0" style="position:relative;z-index: 100">{{ top100.title }}</p>
-            <v-btn text class="btn-name-singer" color="white">
-              {{ top100.singer }}
-            </v-btn>
+            <span
+              @mouseleave="leaveInforCard"
+              @mouseover="checkLoad(singer.user_id)"
+              style="position: relative"
+              v-for="singer in top100.singer"
+              :key="singer.id"
+            >
+              <router-link class="link-singer" :to="'/singer/' + singer.id">
+                {{ singer.nickname }}
+              </router-link>
+              <div class="display-none">
+                <SingerInfor v-if="!isHiddenInforCard" :singer="singerInfo" />
+              </div>
+            </span>
           </v-col>
           <v-col md="5">
             <p class="my-0" style="position:relative;z-index: 100">{{ top100.album }}</p>
@@ -74,7 +85,14 @@
 <script>
 import axios from 'axios'
 import {mapGetters, mapActions} from 'vuex'
+import SingerInfor from "../general/SingerInfo.vue"
+import { singerInforMixin } from '@/mixin/SingerInforMixin.js'
+
 export default {
+    mixins: [singerInforMixin],
+    components: {
+      SingerInfor
+    },
     computed: {
         ...mapGetters('newSongs', ['listTop100','color','songs'])
     },
@@ -93,15 +111,10 @@ export default {
             var res = response.data.songs
             var top = []
             for(let i = 0; i < res.length; i++){
-              var singers = ''
-              for(let j = 0; j < res[i].singer.length; j++){
-                singers += res[i].singer[j].nickname + ', '
-              }
-              singers = singers.substring(0, singers.length - 2)
               var data = {
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
-                singer: singers,
+                singer: res[i].singer,
                 src: 'https://docs.google.com/uc?id=' + res[i].src,
                 mvId: res[i].mv_id
               }
@@ -119,15 +132,10 @@ export default {
             var res = response.data.songs
             var top = []
             for(let i = 0; i < res.length; i++){
-              var singers = ''
-              for(let j = 0; j < res[i].singer.length; j++){
-                singers += res[i].singer[j].nickname + ', '
-              }
-              singers = singers.substring(0, singers.length - 2)
               var data = {
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
-                singer: singers,
+                singer: res[i].singer,
                 src: 'https://docs.google.com/uc?id=' + res[i].src,
                 mvId: res[i].mv_id
               }
@@ -139,7 +147,7 @@ export default {
             console.log('fail to load new songs')
           })
         }
-    },
+    }
 }
 </script>
 
