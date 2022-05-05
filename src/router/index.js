@@ -38,7 +38,8 @@ import ListUserRole from '../components/admin/setup_role/ListUserRole'
 import ShowMV from '../components/mv/ShowMV'
 import MV from '../components/mv/MV'
 import RouteMV from '../components/mv/RouteMV'
-
+import Post from '../components/post/Post'
+import ListPost from '../components/post/ListPost'
 
 
 Vue.use(VueRouter)
@@ -114,6 +115,22 @@ export const routes = [
                 name: "show-mv",
                 component: ShowMV,
             }
+        ]
+    },
+    {
+        path: '/post',
+        component: Post,
+        children: [
+            {
+                path: '',
+                name: "post",
+                component: ListPost,
+            },
+            // {
+            //     path: ':id',
+            //     name: "show-mv",
+            //     component: ShowMV,
+            // }
         ]
     },
     {

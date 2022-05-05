@@ -1,6 +1,6 @@
 <template>
   <v-col md="12" class="px-2 py-0" >
-    <v-card flat >
+    <v-card flat class="bg-hover-list-item">
         <v-row style="background-color:#231b2e;">
           <v-list-item>
             <v-list-item-content>
@@ -11,7 +11,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list dense nav>
+          <v-list dense nav width="100%">
             <v-list-item v-for="item in itemSideBars" :key="item.title" link>
               <router-link :to="item.to" >
               <v-list-item-icon>
@@ -132,4 +132,8 @@ a{
   background-color: #231b2e;
 }
 
+.bg-hover-list-item .theme--light.v-list-item:hover::before {
+    background-color: white;
+    opacity: 0.15;
+}
 </style>

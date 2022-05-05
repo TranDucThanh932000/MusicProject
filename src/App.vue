@@ -220,9 +220,9 @@ export default {
       var arr = [
         { title: "Cá Nhân", icon: "mdi-account-music" ,to:'/'},
         { title: "Khám Phá", icon: "mdi-sort-alphabetical-variant",to:'/' },
-        { title: "#musicchart", icon: "mdi-music",to:'/music-chart' },
-        { title: "#Radio", icon: "mdi-radio",to:'/radio' },
-        { title: "Theo Dõi", icon: "mdi-bell",to:'/' },
+        { title: "Xếp Hạng", icon: "mdi-music",to:'/music-chart' },
+        { title: "Radio", icon: "mdi-radio",to:'/radio' },
+        { title: "Theo Dõi", icon: "mdi-bell",to:'/post' },
       ]
       var itemBelowSideBars = [
         { title: "Nhạc Mới", icon: "mdi-new-box", to:'/new-songs'},
