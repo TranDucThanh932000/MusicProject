@@ -222,7 +222,7 @@ export default {
         { title: "Khám Phá", icon: "mdi-sort-alphabetical-variant",to:'/' },
         { title: "Xếp Hạng", icon: "mdi-music",to:'/music-chart' },
         { title: "Radio", icon: "mdi-radio",to:'/radio' },
-        { title: "Theo Dõi", icon: "mdi-bell",to:'/post' },
+        { title: "Tin Tức", icon: "mdi-bell",to:'/post' },
       ]
       var itemBelowSideBars = [
         { title: "Nhạc Mới", icon: "mdi-new-box", to:'/new-songs'},

@@ -4,6 +4,12 @@
             <v-col style="height: fit-content;" md="4" v-for="post in listPost" :key="post.id + '-post'">
                 <v-card class="pa-2" color="#231b2e">
                     <v-card-title class="pa-0">
+                        <v-list-item-avatar size="50">
+                            <v-img 
+                                style="border-radius: 100%" 
+                                :src="'https://docs.google.com/uc?id=' + post.user.avatar">
+                            </v-img>
+                        </v-list-item-avatar>
                         {{ post.user.fullname }}
                         <v-spacer></v-spacer> 
                         <div v-if="post.user.id != currentUser.id">
