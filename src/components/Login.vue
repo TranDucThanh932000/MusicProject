@@ -102,7 +102,12 @@ export default {
                     if(res.data.isMemberAdmin){
                         window.location.replace('/admin')
                     }else{
-                        window.location.replace('/')
+                        if(sessionStorage.getItem('backLogin')){
+                            window.location.replace(sessionStorage.getItem('backLogin'))
+                            sessionStorage.removeItem('backLogin')
+                        }else{
+                            this.$router.push('/')
+                        }
                     }
                 })
                 .catch( ({response})  => {

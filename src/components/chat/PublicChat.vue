@@ -167,7 +167,7 @@
         "
         v-else
       >
-        <v-btn to="/login" :loading="loading" color="primary"
+        <v-btn @click="login" :loading="loading" color="primary"
           >Đăng nhập để chat cùng mọi người nàoooo</v-btn
         >
       </div>
@@ -371,6 +371,10 @@ export default {
         document.getElementById("circleImg").classList.remove("rotate")
       }
     },
+    login(){
+      sessionStorage.setItem('backLogin', this.$route.path)
+      this.$router.push('/login')
+    }
   },
   created() {
     this.getRoomChat()

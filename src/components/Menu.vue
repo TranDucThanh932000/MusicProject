@@ -408,7 +408,7 @@ export default {
     logout() {
       localStorage.removeItem("music_token");
       this.$store.dispatch("login/updateLoggedIn", false);
-      this.$router.push("/login");
+      window.location.replace("/login");
     },
     getInformation() {
       this.user = this.$store.getters["user"];

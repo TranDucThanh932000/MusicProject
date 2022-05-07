@@ -17,33 +17,43 @@ export const postMixin = {
             })
         },
         following(user){
-            axios.post('/following/following', {
-                user_id: user.id,
-                follower: this.currentUser.id
-            })
-            .then( (response) => {
-                if(response.data.message == 'success'){
-                    this.followings.push(response.data.following)
-                }
-            })
-            .catch( (err) => {
-                console.log(err)
-            })
+            if(localStorage.getItem('music_token')){
+                axios.post('/following/following', {
+                    user_id: user.id,
+                    follower: this.currentUser.id
+                })
+                .then( (response) => {
+                    if(response.data.message == 'success'){
+                        this.followings.push(response.data.following)
+                    }
+                })
+                .catch( (err) => {
+                    console.log(err)
+                })
+            }else{
+                sessionStorage.setItem('backLogin', '/post')
+                this.$router.push('/login')
+            }
         },
         like(post){
-            axios.post('/post/like', {
-                postId : post.id,
-                userId: this.currentUser.id
-            })
-            .then( (response) => {
-                if(response.data.message == 'success'){
-                    var indexPost = this.listPost.findIndex(x => x.id == post.id)
-                    this.listPost[indexPost].likes.push(response.data.postlike)
-                }
-            })
-            .catch( () => {
-                console.log('fail to like')
-            })
+            if(localStorage.getItem('music_token')){
+                axios.post('/post/like', {
+                    postId : post.id,
+                    userId: this.currentUser.id
+                })
+                .then( (response) => {
+                    if(response.data.message == 'success'){
+                        var indexPost = this.listPost.findIndex(x => x.id == post.id)
+                        this.listPost[indexPost].likes.push(response.data.postlike)
+                    }
+                })
+                .catch( () => {
+                    console.log('fail to like')
+                })
+            }else{
+                sessionStorage.setItem('backLogin', '/post')
+                this.$router.push('/login')
+            }
         },
         unlike(post){
             axios.post('/post/unlike', {
