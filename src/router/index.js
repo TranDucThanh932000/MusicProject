@@ -40,6 +40,8 @@ import MV from '../components/mv/MV'
 import RouteMV from '../components/mv/RouteMV'
 import Post from '../components/post/Post'
 import ListPost from '../components/post/ListPost'
+import Category from '../components/category/Category'
+import ListCategory from '../components/category/ListCategory'
 
 
 Vue.use(VueRouter)
@@ -125,6 +127,22 @@ export const routes = [
                 path: '',
                 name: "post",
                 component: ListPost,
+            },
+            // {
+            //     path: ':id',
+            //     name: "show-mv",
+            //     component: ShowMV,
+            // }
+        ]
+    },
+    {
+        path: '/hub',
+        component: Category,
+        children: [
+            {
+                path: '',
+                name: "category",
+                component: ListCategory,
             },
             // {
             //     path: ':id',

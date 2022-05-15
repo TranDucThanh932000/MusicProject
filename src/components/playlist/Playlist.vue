@@ -1,5 +1,5 @@
 <template>
-    <div class="px-6" style="height: 72vh">
+    <div class="px-6 py-10" style="height: 100%">
         <router-view></router-view>
     </div>
 </template>

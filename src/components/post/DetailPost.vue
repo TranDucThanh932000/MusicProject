@@ -129,7 +129,7 @@ export default {
   methods: {
     comment() {
       axios
-        .post("/comment/", {
+        .post("/comment", {
           comment: this.txtComment,
           postId: this.post.id,
         })

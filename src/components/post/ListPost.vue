@@ -23,7 +23,7 @@
             style="height: fit-content"
             md="4"
             v-for="(post, index) in listPost"
-            :key="post.id + '-post'"
+            :key="index"
         >
             <v-card class="pa-2" color="#231b2e">
             <v-card-title class="pa-0">

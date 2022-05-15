@@ -109,7 +109,11 @@ export default {
         this.getAllSongPlayList()
     },
     mounted(){
-      this.$store.dispatch('album/updateHeight', window.innerHeight)
+        this.$store.dispatch('album/updateHeight', window.innerHeight)
+        // if(this.$store.getters['fixedplay/index_song'] == 0){
+        //     this.$store.dispatch('fixedplay/playAudio', true)
+        // }
+
     },
     computed:{
         ...mapGetters('album',['srcImg','listTop100','songs','playing','height','singers','liveAlbum'])
@@ -138,6 +142,12 @@ export default {
                         songs.push(obj)
                     }
                     this.$store.dispatch('album/updateListTop100', songs)
+                    if((this.$store.getters['fixedplay/updateSongTrueFalse'])[0]){
+                        (this.$store.getters['fixedplay/updateSongTrueFalse'])[0] = false
+                    }
+                    setTimeout(() => {
+                        this.checkPause(0)
+                    }, 500);
                 })
                 .catch((response) => {
                     console.log(response)
@@ -159,12 +169,17 @@ export default {
                         songs.push(obj)
                     }
                     this.$store.dispatch('album/updateListTop100', songs)
+                    if((this.$store.getters['fixedplay/updateSongTrueFalse'])[0]){
+                        (this.$store.getters['fixedplay/updateSongTrueFalse'])[0] = false
+                    }
+                    setTimeout(() => {
+                        this.checkPause(0)
+                    }, 500);
                 })
                 .catch((response) => {
                     console.log(response)
                 })
             }
-
         }
     },
     watch: {
