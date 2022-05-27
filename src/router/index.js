@@ -42,6 +42,7 @@ import Post from '../components/post/Post'
 import ListPost from '../components/post/ListPost'
 import Category from '../components/category/Category'
 import ListCategory from '../components/category/ListCategory'
+// import Top100 from '../components/top100/Top100'
 
 
 Vue.use(VueRouter)
@@ -66,6 +67,7 @@ export const routes = [
         path: '/playlist',
         component: PlaylistHome, children: [
             {path: '', name: 'playlist-list', component: ListPlaylist},
+            {path: 'singer/:singer_id/genre/:genre_id', name: 'playlist-genre-details', component: Album},
             {path: 'create', name: 'playlist-create', component: CreatePlaylist},
             {path: 'edit/:id', name: 'playlist-edit', component: CreatePlaylist},
             {path: ':id', name: 'playlist-details', component: Album}

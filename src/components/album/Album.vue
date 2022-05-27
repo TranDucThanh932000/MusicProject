@@ -153,32 +153,62 @@ export default {
                     console.log(response)
                 })
             }else{
-                axios.get('/song/get-all-song-playlist/' + id)
-                .then((response) => {
-                    var res = response.data.songs
-                    var songs = []
-                    for(let i = 0; i < res.length; i++){
-                        var obj = {}
-                        obj.img = 'https://docs.google.com/uc?id=' + res[i].image
-                        obj.title = res[i].name
-                        obj.singer = 'Test singer'
-                        obj.album = 'Test album'
-                        obj.time = res[i].timeDuration
-                        obj.src = 'https://docs.google.com/uc?id=' + res[i].src
-                        obj.mvId = res[i].mv_id
-                        songs.push(obj)
-                    }
-                    this.$store.dispatch('album/updateListTop100', songs)
-                    if((this.$store.getters['fixedplay/updateSongTrueFalse'])[0]){
-                        (this.$store.getters['fixedplay/updateSongTrueFalse'])[0] = false
-                    }
-                    setTimeout(() => {
-                        this.checkPause(0)
-                    }, 500);
-                })
-                .catch((response) => {
-                    console.log(response)
-                })
+                if(this.$route.path.includes('genre')){
+                    axios.get('/song/get-song-by-genre/'+ this.$route.params.genre_id + '/singer/' + this.$route.params.singer_id)
+                    .then( (response) => {
+                        var res = response.data.data
+                        var songs = []
+                        for(let i = 0; i < res.length; i++){
+                            var obj = {}
+                            obj.img = 'https://docs.google.com/uc?id=' + res[i].image
+                            obj.title = res[i].name
+                            obj.singer = 'Test singer'
+                            obj.album = 'Test album'
+                            obj.time = res[i].timeDuration
+                            obj.src = 'https://docs.google.com/uc?id=' + res[i].src
+                            obj.mvId = res[i].mv_id
+                            songs.push(obj)
+                        }
+                        this.$store.dispatch('album/updateListTop100', songs)
+                        if((this.$store.getters['fixedplay/updateSongTrueFalse'])[0]){
+                            (this.$store.getters['fixedplay/updateSongTrueFalse'])[0] = false
+                        }
+                        setTimeout(() => {
+                            this.checkPause(0)
+                        }, 500);
+                    })
+                    .catch((response) => {
+                        console.log(response)
+                    })
+                }else{
+                    axios.get('/song/get-all-song-playlist/' + id)
+                    .then((response) => {
+                        var res = response.data.songs
+                        var songs = []
+                        for(let i = 0; i < res.length; i++){
+                            var obj = {}
+                            obj.img = 'https://docs.google.com/uc?id=' + res[i].image
+                            obj.title = res[i].name
+                            obj.singer = 'Test singer'
+                            obj.album = 'Test album'
+                            obj.time = res[i].timeDuration
+                            obj.src = 'https://docs.google.com/uc?id=' + res[i].src
+                            obj.mvId = res[i].mv_id
+                            songs.push(obj)
+                        }
+                        this.$store.dispatch('album/updateListTop100', songs)
+                        if((this.$store.getters['fixedplay/updateSongTrueFalse'])[0]){
+                            (this.$store.getters['fixedplay/updateSongTrueFalse'])[0] = false
+                        }
+                        setTimeout(() => {
+                            this.checkPause(0)
+                        }, 500);
+                    })
+                    .catch((response) => {
+                        console.log(response)
+                    })
+                }
+
             }
         }
     },
