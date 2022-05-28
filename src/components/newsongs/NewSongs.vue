@@ -112,6 +112,7 @@ export default {
             var top = []
             for(let i = 0; i < res.length; i++){
               var data = {
+                id: res[i].id,
                 img: 'https://docs.google.com/uc?id=' + res[i].image,
                 title: res[i].name,
                 singer: res[i].singer,

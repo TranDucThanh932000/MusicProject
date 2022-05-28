@@ -95,6 +95,7 @@ export default {
               singers += data[j].nickname + ", ";
             }
             var song = {
+              id: item.id,
               img: "https://docs.google.com/uc?id=" + item.image,
               title: item.name,
               singer: singers,

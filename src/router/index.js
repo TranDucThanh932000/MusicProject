@@ -43,6 +43,11 @@ import ListPost from '../components/post/ListPost'
 import Category from '../components/category/Category'
 import ListCategory from '../components/category/ListCategory'
 // import Top100 from '../components/top100/Top100'
+import Individual from '../components/individual/Individual'
+import MyMusicSong from '../components/individual/MyMusicSong'
+import MyMusicPlaylist from '../components/individual/MyMusicPlaylist'
+import MyMusicAlbum from '../components/individual/MyMusicAlbum'
+import MyMusicMv from '../components/individual/MyMusicMv'
 
 
 Vue.use(VueRouter)
@@ -84,6 +89,32 @@ export const routes = [
         path: '/new-songs',
         name: 'newsongs',
         component: NewSongs
+    },
+    {
+        path: '/mymusic',
+        component: Individual,
+        children: [
+            {
+                path: '',
+                name: "mymusic-song",
+                component: MyMusicSong,
+            },
+            {
+                path: 'playlist',
+                name: "mymusic-playlist",
+                component: MyMusicPlaylist,
+            },
+            {
+                path: 'album',
+                name: "mymusic-album",
+                component: MyMusicAlbum,
+            },
+            {
+                path: 'mv',
+                name: "mymusic-mv",
+                component: MyMusicMv,
+            }
+        ]
     },
     {
         path: '/login',

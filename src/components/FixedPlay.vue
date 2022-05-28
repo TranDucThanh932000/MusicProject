@@ -71,10 +71,10 @@
               <v-btn
                 v-bind="attrs"
                 v-on="on"
-                @click.prevent=""
-                style="width: 100%; padding: 0px"
+                class="mx-1"
                 color="#432275"
                 text
+                icon
               >
                 <v-icon style="color: white">mdi-dots-horizontal</v-icon>
               </v-btn>
@@ -135,6 +135,14 @@
               </v-list-item>
             </v-list>
           </v-menu>
+          <v-btn
+            class="mx-1"
+            color="#432275"
+            icon
+            >
+              <v-icon v-if="liked" @click="unlikeSong(live_song.id)" style="color: hotpink">mdi-heart</v-icon>
+              <v-icon v-else @click="likeSong(live_song.id)" style="color: hotpink">mdi-heart-outline</v-icon>
+          </v-btn>
         </div>
         <v-spacer></v-spacer>
         <div v-if="width !== 88" class="d-flex" >
@@ -216,13 +224,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
+import axios from 'axios'
 
 export default {
   props: ['isShow'],
   data(){
     return{
       width: 88,
+      liked: false
     }
   },
   created(){
@@ -259,6 +269,26 @@ export default {
     goToMV(id){
       this.$store.dispatch('updateIsHiddenSideBarLeft', true)
       this.$router.push( '/mv/' + id )
+    },
+    likeSong(id){
+        axios.post('/user/like-song', {
+          songId: id
+        })
+        .then(() => {
+          this.liked = true
+        })
+        .catch(() => {
+        })
+    },
+    unlikeSong(id){
+        axios.post('/user/unlike-song', {
+          songId: id
+        })
+        .then(() => {
+          this.liked = false
+        })
+        .catch(() => {
+        })
     }
   },
   computed:{
@@ -296,6 +326,24 @@ export default {
     "$vuetify.breakpoint.width"(){
       this.firstLoadWidthImage()
     },
+    live_song(){
+      if(this.live_song.id != null){
+        axios.get('/user/check-like-song', {params : {
+          songId : this.live_song.id
+        }})
+        .then( (response) => {
+          if(response.data.message == 'like'){
+            this.liked = true
+          }else{
+            this.liked = false
+          }
+        })
+        .catch( (response) => {
+          console.log(response)
+          this.liked = false
+        })
+      }
+    }
   }
 };
 </script>

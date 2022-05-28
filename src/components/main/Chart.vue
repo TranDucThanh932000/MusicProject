@@ -121,6 +121,7 @@ export default {
           // }
           // singers = singers.substring(0, singers.length - 2)
           var data = {
+            id: res[i].id,
             img: 'https://docs.google.com/uc?id=' + res[i].image,
             title: res[i].name,
             singer: res[i].singer,

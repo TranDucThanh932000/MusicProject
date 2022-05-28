@@ -103,7 +103,6 @@
                                 <span 
                                 @mouseleave="leaveInforCard"
                                 @mouseover="checkLoad(singer.user_id)"
-                                style="position: relative"
                                 v-for="singer in mv.singers" 
                                 :key='singer.id + "-singer"'>
                                     <router-link :to='"/singer/" + singer.id'  class="link-singer">

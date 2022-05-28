@@ -94,6 +94,7 @@ export default {
           if (res.length != 0) {
             for (let i = 0; i < res.length; i++) {
               var data = {
+                id: res[i].id,
                 img: "https://docs.google.com/uc?id=" + res[i].image,
                 title: res[i].name,
                 singer: res[i].singer,
@@ -171,7 +172,7 @@ export default {
           singer: "Soobin",
           album: "Playah (Album)",
           time: "03:44",
-          src: "https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL",
+          src: "https://docs.google.com/uc?id=1dQzoVIgyQe6SYYduJm6o0OhFm0on_nWL"
         },
         {
           img: "https://images.genius.com/cfb3f64ab2fc08506b2365b1d8ab959b.600x600x1.webp",
@@ -218,7 +219,7 @@ export default {
     this.firstLoadSidebarApp();
     if(!this.$route.path.includes('admin')){
       var arr = [
-        { title: "Cá Nhân", icon: "mdi-account-music" ,to:'/'},
+        { title: "Cá Nhân", icon: "mdi-account-music" ,to:'/mymusic'},
         { title: "Khám Phá", icon: "mdi-sort-alphabetical-variant",to:'/' },
         { title: "Xếp Hạng", icon: "mdi-music",to:'/music-chart' },
         { title: "Radio", icon: "mdi-radio",to:'/radio' },
